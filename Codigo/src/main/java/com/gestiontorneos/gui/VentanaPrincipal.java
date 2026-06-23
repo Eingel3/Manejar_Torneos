@@ -41,4 +41,80 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         this.addMouseListener(this); //Listener del panel
     }
 
+    /**
+     * Dibuja los componentes gráficos del panel principal.
+     * <p>
+     * limpia el panel mediante la implementación de {@link JPanel}
+     * </p>
+     *
+     * @param g contexto gráfico utilizado para dibujar sobre el panel.
+     */
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g); //Limpia la pantalla y pinta el fondo blanco
+    }
+
+    /**
+     * Maneja el evento de click del mouse sobre el panel principal.
+     * <p>
+     * Obtiene las coordenadas del click y las delega a los subpaneles para que
+     * cada uno determine si debe reaccionar al evento. Finalmente, repinta el
+     * panel para reflejar posibles cambios visuales.
+     * </p>
+     *
+     * @param e evento de mouse que contiene la posición del click.
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int mouseX = e.getX(); //Obtenemos coordenadas del mouse
+        int mouseY = e.getY();
+
+        //aqui hay que llamar a los controladores para manejar los eventos
+        
+        repaint();
+    }
+
+    /**
+     * Método requerido por {@link MouseListener}.
+     * <p>
+     * No realiza ninguna acción cuando se presiona el botón del mouse.
+     * </p>
+     *
+     * @param e evento de mouse recibido.
+     */
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    /**
+     * Método requerido por {@link MouseListener}.
+     * <p>
+     * No realiza ninguna acción cuando se suelta el botón del mouse.
+     * </p>
+     *
+     * @param e evento de mouse recibido.
+     */
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    /**
+     * Método requerido por {@link MouseListener}.
+     * <p>
+     * No realiza ninguna acción cuando el cursor entra al panel.
+     * </p>
+     *
+     * @param e evento de mouse recibido.
+     */
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    /**
+     * Método requerido por {@link MouseListener}.
+     * <p>
+     * No realiza ninguna acción cuando el cursor sale del panel.
+     * </p>
+     *
+     * @param e evento de mouse recibido.
+     */
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }
