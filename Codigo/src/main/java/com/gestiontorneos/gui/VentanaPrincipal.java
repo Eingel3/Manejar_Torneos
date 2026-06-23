@@ -36,8 +36,9 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      * </p>
      */
     public VentanaPrincipal() {
-
+        this.setPreferredSize(new Dimension(ANCHO, ALTO)); //Dimensiones del panel
+        this.setBackground(Color.BLACK); //Color de fondo del panel
+        this.addMouseListener(this); //Listener del panel
     }
-
 
 }
