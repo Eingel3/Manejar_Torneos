@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Representa la vista grafica del calendario
+ * Representa la vista grafica de los torneos
  *
- * Este panel dibuja un calendario con todos los datos requeridos
+ * Este panel dibuja una lista de los torneos que el organizador puede editar
+ *  Estos torneos pueden ser clickeados para así ser editados
  */
 
 public class PanelMisTorneos extends JPanel {

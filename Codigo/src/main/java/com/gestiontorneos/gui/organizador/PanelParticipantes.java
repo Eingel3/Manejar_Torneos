@@ -3,9 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Representa la vista grafica del calendario
+ * Representa la vista grafica de los participantes
  *
- * Este panel dibuja un calendario con todos los datos requeridos
+ * Este panel dibuja una lista con los participantes
  */
 
 public class PanelParticipantes extends JPanel {

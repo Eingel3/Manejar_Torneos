@@ -3,9 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Representa la vista grafica del calendario
+ * Representa la vista grafica de los resultados
  *
- * Este panel dibuja un calendario con todos los datos requeridos
+ * Este panel muestra los resultados de un torneo, estadísticas generales y etc
  */
 
 public class PanelResultados extends JPanel {
