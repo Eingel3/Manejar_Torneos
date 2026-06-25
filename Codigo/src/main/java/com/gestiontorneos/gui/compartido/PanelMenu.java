@@ -8,8 +8,16 @@ public class PanelMenu extends JPanel {
         this.setPreferredSize(new Dimension(100, 800)); //Un poquit0 ancho + el largo de la VentanaPrincipal
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar los botones del menu lateral
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));// Le ponemos un borde más claro para que se diferencie el mennú
-        JButton prueba = new JButton("Prueba"); //creamos un boton de prueba
-        this.add(prueba); //y lo probamos
+        JButton inicio = new JButton("Inicio"); //creamos un boton de prueba
+        this.add(inicio); //y lo probamos
+        JButton calendario = new JButton("Calendario");
+        this.add(calendario);
+        JButton torneos = new JButton("Torneos");
+        this.add(torneos);
+        JButton clasificaciones = new JButton("Clasificaciones");
+        this.add(clasificaciones);
+        JButton partidos = new JButton("Partidos");
+        this.add(partidos);
     }
 
     /**
