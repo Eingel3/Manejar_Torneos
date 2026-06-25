@@ -1,4 +1,13 @@
 package com.gestiontorneos.gui;
+import com.gestiontorneos.gui.compartido.PanelCalendario;
+import com.gestiontorneos.gui.compartido.PanelClasificacion;
+import com.gestiontorneos.gui.compartido.PanelListaTorneos;
+import com.gestiontorneos.gui.compartido.PanelResultados;
+import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
+import com.gestiontorneos.gui.organizador.PanelMisTorneos;
+import com.gestiontorneos.gui.organizador.PanelParticipantes;
+import com.gestiontorneos.gui.organizador.PanelPartidos;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -36,9 +45,27 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      * </p>
      */
     public VentanaPrincipal() {
+        this.setLayout(null); //Lo dejamos así para crear un layout personalizado
         this.setPreferredSize(new Dimension(ANCHO, ALTO)); //Dimensiones del panel
         this.setBackground(Color.BLACK); //Color de fondo del panel
         this.addMouseListener(this); //Listener del panel
+        newPanels(); //Inicializamos los paneles
+    }
+
+    /**
+     * Metodo que crea todos los paneles que van a ser usados
+     * 
+     */
+    private void newPanels(){
+        calendario = new PanelCalendario();
+        clasificacion = new PanelClasificacion();
+        torneos = new PanelListaTorneos();
+        resultados = new PanelResultados();
+        crearTorneo = new PanelCrearTorneo();
+        torneosOrganizador = new PanelMisTorneos();
+        participantesOrganizador = new PanelParticipantes();
+        partidosOrganizador = new PanelPartidos();
+
     }
 
     /**
