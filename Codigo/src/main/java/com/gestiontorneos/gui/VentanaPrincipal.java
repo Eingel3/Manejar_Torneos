@@ -50,7 +50,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         newPanels(); //Inicializamos los paneles
         this.add(menuLateral);//Agregamos el menu lateral
         menuLateral.setVisible(true);
-        menuLateral.setBounds(0, 0, 50, ALTO);
+        menuLateral.setBounds(0, 0, 100, ALTO);
     }
 
     /**
