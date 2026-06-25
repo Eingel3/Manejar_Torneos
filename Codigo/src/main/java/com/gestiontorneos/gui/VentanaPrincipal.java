@@ -54,7 +54,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
     /**
      * Metodo que crea todos los paneles que van a ser usados
-     * 
+     *
      */
     private void newPanels(){
         calendario = new PanelCalendario();
@@ -66,6 +66,20 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         participantesOrganizador = new PanelParticipantes();
         partidosOrganizador = new PanelPartidos();
 
+    }
+
+    /**
+     * Metodo usado exteriormente para ver la ventana.
+     * Crea un nuevo Jframe y agrega la VentanaPrincipal en el
+     */
+    public void mostrar() {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(this); //Agregamos la VentanaPrincipal
+        frame.pack(); //Esto es para que se ajuste de forma automática
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Torneos"); //el título
     }
 
     /**
