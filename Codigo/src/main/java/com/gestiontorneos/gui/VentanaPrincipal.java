@@ -1,8 +1,5 @@
 package com.gestiontorneos.gui;
-import com.gestiontorneos.gui.compartido.PanelCalendario;
-import com.gestiontorneos.gui.compartido.PanelClasificacion;
-import com.gestiontorneos.gui.compartido.PanelListaTorneos;
-import com.gestiontorneos.gui.compartido.PanelResultados;
+import com.gestiontorneos.gui.compartido.*;
 import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
 import com.gestiontorneos.gui.organizador.PanelMisTorneos;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
@@ -36,6 +33,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     private PanelMisTorneos torneosOrganizador; ////Instancia de segmento del panel correspondiente a los torneos del organizador
     private PanelParticipantes participantesOrganizador; //Instancia de segmento del panel correspondiente a los participantes para que el organizador los pueda editar
     private PanelPartidos partidosOrganizador; //Instancia de segmento del panel correspondiente a los partidos para que el organizador pueda editarlos
+    private PanelMenu menuLateral; //Instancia de segmento del panel correspondiente al menu lateral que contiene los botones que dirigen a cada panel
 
     /**
      * Crea e inicializa la ventana principal de la aplicación.
@@ -65,7 +63,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         torneosOrganizador = new PanelMisTorneos();
         participantesOrganizador = new PanelParticipantes();
         partidosOrganizador = new PanelPartidos();
-
+        menuLateral = new PanelMenu();
     }
 
     /**
