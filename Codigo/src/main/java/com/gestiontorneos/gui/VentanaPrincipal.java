@@ -48,6 +48,9 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         this.setBackground(Color.BLACK); //Color de fondo del panel
         this.addMouseListener(this); //Listener del panel
         newPanels(); //Inicializamos los paneles
+        this.add(menuLateral);//Agregamos el menu lateral
+        menuLateral.setVisible(true);
+        menuLateral.setBounds(0, 0, 50, ALTO);
     }
 
     /**
