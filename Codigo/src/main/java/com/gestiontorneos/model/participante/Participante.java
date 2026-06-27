@@ -9,7 +9,7 @@ public abstract class Participante {
     private final String nombre;
     private final String contacto;
 
-    protected Participante(String nombre, String rut, String contacto) {
+    protected Participante(String nombre, String contacto) {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new DatosInvalidosException("El nombre del participante no puede estar vacío");
         }
