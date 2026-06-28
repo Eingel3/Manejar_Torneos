@@ -46,10 +46,28 @@ public class TorneoController{
         Torneo torneo = new Torneo(nombreTorneo, deporte);
 
         torneos.add(torneo);
-        
+
         return torneo;
     }
+    //buscar torneo por su nombre
+    public torneo BuscarTorneo(){
 
+    }
+
+    // Eliminar el torneo por su nombre
+    public boolean EliminarTorneo(){
+
+    }
+
+
+    //registrar a los participantes de un torneo
+    public boolean RegistrarParticipantes(){
+
+    }
+
+    public List<Torneo> listaTorneos() {
+        return null;
+    }
 }
 
 
