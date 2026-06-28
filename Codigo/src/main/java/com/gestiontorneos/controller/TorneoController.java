@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
+//esto debe importance cuando exista
+// import com.gestiontorneos.model.torneo.Torneo;
+// import com.gestiontorneos.model.deporte.Deporte;
+// import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 
 //funcion: Gestionar todas las acciones relacionadas con los torneos
 public class TorneoController{
@@ -73,7 +77,15 @@ public class TorneoController{
 
 
     //registrar a los participantes de un torneo
-    public boolean registrarParticipantes(){
+    public boolean registrarParticipantes(String nombreTorneo, Participante participante){
+
+        Torneo torneo = buscarTorneo(nombreTorneo);
+
+        if ( torneo != null ){
+            torneo.agegarParticipante(participante);
+            return true
+        }
+        return false
 
     }
 
