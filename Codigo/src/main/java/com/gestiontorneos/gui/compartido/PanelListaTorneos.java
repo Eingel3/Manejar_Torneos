@@ -10,7 +10,10 @@ import java.awt.*;
 
 public class PanelListaTorneos extends JPanel {
     public PanelListaTorneos(){
-
+    setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //definimos el layout
+        setBackground(Color.lightGray); //definimos el color de fondo
+        setPreferredSize(new Dimension(900,800));//Y las dimensiones
+        JPanel torneo1 = this.agregarTorneoGUI("Torneo 1"); //agregamos una tarjeta de torneo
     }
     private JPanel agregarTorneoGUI(String torneo){ //Eventualmente en vez de String torneo debería de ser tipo Torneo
         //Por ahora hay muchas cosas que no se incluirán debido al hecho de que model todavía no está listo
