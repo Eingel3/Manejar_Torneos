@@ -43,7 +43,7 @@ public class PanelListaTorneos extends JPanel {
         torneoGUI.add(lblOtroDato);
         //Y agregamos el JButton detalles
         torneoGUI.add(detalles);
-        this.add(torneoGUI)//añadimos al JPanel de PanelListaTorneos
+        this.add(torneoGUI);//añadimos al JPanel de PanelListaTorneos
         return torneoGUI; //Y finalmente retornamos el torneoGUI
     }
 
