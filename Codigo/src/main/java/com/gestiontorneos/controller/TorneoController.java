@@ -50,8 +50,14 @@ public class TorneoController{
         return torneo;
     }
     //buscar torneo por su nombre
-    public torneo BuscarTorneo(){
-
+    public Torneo buscarTorneo(String nombre){//importar eso de Torneo
+        for (Torneo torneo : torneos ){
+            if (torneo.getNombre().equals(nombre)){//revisa que el noombre del torneo
+                return torneo;
+            }
+        }
+        // lanzar excepcion
+        return null
     }
 
     // Eliminar el torneo por su nombre
@@ -65,8 +71,9 @@ public class TorneoController{
 
     }
 
+    //retorna una lista de todos los torneos existentes
     public List<Torneo> listaTorneos() {
-        return null;
+        return torneos;
     }
 }
 
