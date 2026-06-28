@@ -18,9 +18,13 @@ public class PanelListaTorneos extends JPanel {
         cantidadTorneos = 3; //A futuro hay que reemplazar con una llamada a metodo obtenerCantidadTorneos();
 
         JPanel torneo1 = this.agregarTorneoGUI("Torneo 1"); //agregamos una tarjeta de torneo
+        this.gestionarTorneosGUI();//llamamos a la funcion que gestiona la agregacion de torneos
     }
-    private void gestionarTorneosGUI(){
-
+    private void gestionarTorneosGUI(){ //esta funcion es de prueba por ahora
+        //ciclo for para agregar todos los torneos
+        for(int i = 0; i < cantidadTorneos; i++){
+            JPanel torneoX = this.agregarTorneoGUI("Torneo " + (i + 1)); //agregamos los torneos
+        }
     }
     private JPanel agregarTorneoGUI(String torneo){ //Eventualmente en vez de String torneo debería de ser tipo Torneo
         //Por ahora hay muchas cosas que no se incluirán debido al hecho de que model todavía no está listo
