@@ -27,30 +27,26 @@ public class TorneoController{
         this.persistenciaController = new PersistenciaController();
     }
 
+    // Crear un torneo nuevo
     public Torneo crearTorneo(String nombreTorneo,
                               String nombreDeporte,
-                              formatoTorneo formato,
-                              localDate fechaInicio,
-                              localDate fechaFin){
+                              FormatoTorneo formato,
+                              LocalDate fechaInicio,
+                              LocalDate fechaFin) {
 
-
-        //buscar deporte
+        // Buscar si el deporte ya existe
         Deporte deporte = deporteController.buscarDeporte(nombreDeporte);
 
-
-        //si no existe el deporte se crea
-        if ( deporte == null ){
-            deporte = deporteController.crearDeporte(nombreDeporte)
+        // Si no existe, se crea
+        if (deporte == null) {
+            deporte = deporteController.crearDeporte(nombreDeporte);
         }
 
-        //se crea el torneo para el deporte
+        // Se crea el torneo
         Torneo torneo = new Torneo(nombreTorneo, deporte);
 
-        //mientras no se use json no es necesario esto
-        //persistenciaController.guardarTorneo(torneos);
-
         torneos.add(torneo);
-
+        
         return torneo;
     }
 
