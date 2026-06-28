@@ -26,8 +26,22 @@ public class PanelListaTorneos extends JPanel {
         torneoGUI.setBorder(BorderFactory.createLineBorder(Color.GRAY));//le damos un borde
         torneoGUI.setBackground(Color.PINK); //y un color de fondo
         torneoGUI.setPreferredSize(new Dimension(500, 150));//Y su tamaño
-        
-
+        //Creamos los distintos labels para cada informacion que mostremos
+        JLabel lblNombre = new JLabel(nombre);
+        JLabel lblFecha = new JLabel(fecha);
+        JLabel lblOtroDato = new JLabel(otroDato);
+        //Ahora le asignamos una fuente y el tamaño a los labels
+        lblNombre.setFont(new Font("Dialog", Font.BOLD, 18)); //este es mas grando
+        lblFecha.setFont(new Font("Dialog", Font.BOLD, 14));
+        lblOtroDato.setFont(new Font("Dialog", Font.BOLD, 14));
+        //Y agregamos los labels a torneoGUI
+        torneoGUI.add(lblNombre);
+        torneoGUI.add(lblFecha);
+        torneoGUI.add(lblOtroDato);
+        //Y agregamos el JButton detalles
+        torneoGUI.add(detalles);
+        this.add(torneoGUI)//añadimos al JPanel de PanelListaTorneos
+        return torneoGUI; //Y finalmente retornamos el torneoGUI
     }
 
 }
