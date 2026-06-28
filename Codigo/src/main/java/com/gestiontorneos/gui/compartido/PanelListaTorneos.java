@@ -12,5 +12,15 @@ public class PanelListaTorneos extends JPanel {
     public PanelListaTorneos(){
 
     }
+    private JPanel agregarTorneoGUI(String torneo){ //Eventualmente en vez de String torneo debería de ser tipo Torneo
+        //Por ahora hay muchas cosas que no se incluirán debido al hecho de que model todavía no está listo
+        //Por ejemplo, aquí deberíamos de utilizar los metodos de Torneo para obtener el nombre y otros detalles
+        //Por ahora solo utilizaremos String para todas las variables
+        String nombre = "Torneo x";
+        String fecha = "Desde xx/xx/xxxx hasta xx/xx/xxxx";
+        String otroDato = "Otro dato";
+        JPanel torneoGUI = new JPanel(); //Aquí es donde dejaremos todos los datos
+        JButton detalles = new JButton("Detalles");
+    }
 
 }
