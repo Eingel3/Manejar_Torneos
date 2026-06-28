@@ -20,7 +20,11 @@ public class TorneoController{
 
     }
 
-    public Torneo crearTorneo(String nombreTorneo, String nombreDeporte){
+    public Torneo crearTorneo(String nombreTorneo,
+                              String nombreDeporte,
+                              formatoTorneo formato,
+                              localDate fechaInicio,
+                              localDate fechaFin){
 
 
         //buscar deporte
@@ -37,7 +41,12 @@ public class TorneoController{
 
         //mientras no se use json no es necesario esto
         //persistenciaController.guardarTorneo(torneos);
+
+        torneos.add(torneo);
+
+        return torneo;
     }
-     return torneo;
+
 }
+
 
