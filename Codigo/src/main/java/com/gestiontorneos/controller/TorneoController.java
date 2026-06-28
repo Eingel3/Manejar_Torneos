@@ -1,5 +1,10 @@
 package com.gestiontorneos.controller;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.time.LocalDate;
+
+
 //funcion: Gestionar todas las acciones relacionadas con los torneos
 public class TorneoController{
 
@@ -17,7 +22,9 @@ public class TorneoController{
 
 
     public TorneoController(){
-
+        this.torneos = new ArrayList<>();
+        this.deporteController = new DeporteController();
+        this.persistenciaController = new PersistenciaController();
     }
 
     public Torneo crearTorneo(String nombreTorneo,
