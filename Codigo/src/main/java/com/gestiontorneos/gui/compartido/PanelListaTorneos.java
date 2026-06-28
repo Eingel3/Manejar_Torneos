@@ -21,6 +21,13 @@ public class PanelListaTorneos extends JPanel {
         String otroDato = "Otro dato";
         JPanel torneoGUI = new JPanel(); //Aquí es donde dejaremos todos los datos
         JButton detalles = new JButton("Detalles");
+        detalles.setPreferredSize(new Dimension(100, 50));
+        torneoGUI.setLayout(new BoxLayout(torneoGUI, BoxLayout.Y_AXIS)); //layout tipo cajas como el usado en PanelMenu
+        torneoGUI.setBorder(BorderFactory.createLineBorder(Color.GRAY));//le damos un borde
+        torneoGUI.setBackground(Color.PINK); //y un color de fondo
+        torneoGUI.setPreferredSize(new Dimension(500, 150));//Y su tamaño
+        
+
     }
 
 }
