@@ -43,7 +43,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      * </p>
      */
     public VentanaPrincipal() {
-        this.setLayout(null); //Lo dejamos así para crear un layout personalizado
+        this.setLayout(new FlowLayout()); //Lo dejamos así para crear un layout personalizado
         this.setPreferredSize(new Dimension(ANCHO, ALTO)); //Dimensiones del panel
         this.setBackground(Color.BLACK); //Color de fondo del panel
         this.addMouseListener(this); //Listener del panel
@@ -51,6 +51,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         this.add(menuLateral);//Agregamos el menu lateral
         menuLateral.setVisible(true);
         menuLateral.setBounds(0, 0, 100, ALTO);
+        this.add(torneos);
+        torneos.setVisible(true);
     }
 
     /**
