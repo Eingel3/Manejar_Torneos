@@ -61,13 +61,19 @@ public class TorneoController{
     }
 
     // Eliminar el torneo por su nombre
-    public boolean EliminarTorneo(){
+    public boolean eliminarTorneo(String nombre){
+        Torneo torneo = buscarTorneo(nombre);
 
+        if ( torneo != null ){
+            torneos.remove(torneo);
+            return true;
+        }
+        return false;
     }
 
 
     //registrar a los participantes de un torneo
-    public boolean RegistrarParticipantes(){
+    public boolean registrarParticipantes(){
 
     }
 
