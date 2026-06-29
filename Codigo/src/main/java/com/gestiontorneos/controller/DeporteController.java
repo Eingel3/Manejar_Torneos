@@ -1,17 +1,15 @@
 package com.gestiontorneos.controller;
 
-import com.gestiontorneos.model.deporte.Deporte;
-
 import java.util.List;
 import java.util.ArrayList;
-// import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.deporte.Deporte;
 
 public class DeporteController {
 
-    private ArrayList<Deporte> deportes;
+    private List<Deporte> deportes;
 
     public DeporteController(){
-        this.deportes = new ArrayList<Deporte>();
+        this.deportes = new ArrayList<>();
     }
 
     public Deporte buscarDeporte(String nombre){
@@ -25,15 +23,17 @@ public class DeporteController {
     }
 
 
-    public Deporte crearDeporte(String nombreDeporte){
-        return null;
+    public Deporte crearDeporte(){
+        Deporte deporte = new Deporte(nombre);
+        deportes.add(deporte);
+        return deporte;
     }
 
     public boolean eliminarDeporte(){
-        return false;
+        
     }
 
-    public ArrayList<Deporte> listaDeportes(){
+    public List<Deporte> listaDeportes(){
         return deportes;
     }
 
