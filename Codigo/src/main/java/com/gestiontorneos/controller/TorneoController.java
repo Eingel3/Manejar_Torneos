@@ -3,17 +3,25 @@ package com.gestiontorneos.controller;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
-import com.gestiontorneos.model.torneo.Torneo;
-import com.gestiontorneos.model.deporte.Deporte;
+import  com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
+import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.controller.DeporteController;
 
+//esto debe importance cuando exista
+// import com.gestiontorneos.model.torneo.Torneo;
+// import com.gestiontorneos.model.deporte.Deporte;
+// import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 
 //funcion: Gestionar todas las acciones relacionadas con los torneos
 public class TorneoController{
 
     //guarda torneos existentes
     private List<Torneo> torneos;
+
+    //es la lista de deportes
+    private List<Deporte> deportes;
 
     //sirve para utilizar deportes existentes, eliminando la necesidad de crearlo de cero
     private DeporteController deporteController;
@@ -91,3 +99,5 @@ public class TorneoController{
         return torneos;
     }
 }
+
+
