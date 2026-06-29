@@ -2,6 +2,7 @@ package com.gestiontorneos.controller;
 
 import java.util.List;
 import java.util.ArrayList;
+// import com.gestiontorneos.model.deporte.Deporte;
 
 public class DeporteController {
 
@@ -11,9 +12,16 @@ public class DeporteController {
         this.deportes = new ArrayList<>();
     }
 
-    public Deporte buscarDeporte(){
+    public Deporte buscarDeporte(String nombre){
+        for (Deporte deporte : deportes){
+            if ( deporte.getNombre().equals(nombre)){
+                return deporte;
 
+            }
+        }
+        return null;
     }
+
 
     public Deporte crearDeportes(){
 
