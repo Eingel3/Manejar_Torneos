@@ -23,7 +23,7 @@ public class DeporteController {
     }
 
 
-    public Deporte crearDeportes(){
+    public Deporte crearDeporte(){
 
     }
 
