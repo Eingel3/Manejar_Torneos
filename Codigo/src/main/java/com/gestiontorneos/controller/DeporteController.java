@@ -23,14 +23,19 @@ public class DeporteController {
     }
 
 
-    public Deporte crearDeporte(){
+    public Deporte crearDeporte(String nombre){
         Deporte deporte = new Deporte(nombre);
         deportes.add(deporte);
         return deporte;
     }
 
-    public boolean eliminarDeporte(){
-        
+    public boolean eliminarDeporte(String nombre){
+        Deporte deporte = buscarDeporte(nombre);
+        if (deporte != null){
+            deportes.remove(deporte);
+            return true;
+        }
+        return false;
     }
 
     public List<Deporte> listaDeportes(){
