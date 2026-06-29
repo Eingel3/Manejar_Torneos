@@ -7,6 +7,8 @@ import  com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.controller.DeporteController;
+
 //esto debe importance cuando exista
 // import com.gestiontorneos.model.torneo.Torneo;
 // import com.gestiontorneos.model.deporte.Deporte;
@@ -85,7 +87,7 @@ public class TorneoController{
         Torneo torneo = buscarTorneo(nombreTorneo);
 
         if ( torneo != null ){
-            torneo.agegarParticipante(participante);
+            torneo.agregarParticipante(participante);
             return true;
         }
         return false;
