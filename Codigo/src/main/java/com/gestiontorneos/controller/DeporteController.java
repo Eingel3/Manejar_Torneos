@@ -2,7 +2,7 @@ package com.gestiontorneos.controller;
 
 import java.util.List;
 import java.util.ArrayList;
-// import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.deporte.Deporte;
 
 public class DeporteController {
 
@@ -24,11 +24,13 @@ public class DeporteController {
 
 
     public Deporte crearDeporte(){
-
+        Deporte deporte = new Deporte(nombre);
+        deportes.add(deporte);
+        return deporte;
     }
 
     public boolean eliminarDeporte(){
-
+        
     }
 
     public List<Deporte> listaDeportes(){
