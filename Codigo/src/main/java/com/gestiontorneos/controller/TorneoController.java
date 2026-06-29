@@ -3,7 +3,10 @@ package com.gestiontorneos.controller;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
-
+import  com.gestiontorneos.model.torneo.Torneo;
+import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
+import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.participante.Participante;
 //esto debe importance cuando exista
 // import com.gestiontorneos.model.torneo.Torneo;
 // import com.gestiontorneos.model.deporte.Deporte;
