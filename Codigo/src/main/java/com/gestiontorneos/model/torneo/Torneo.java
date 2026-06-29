@@ -26,4 +26,7 @@ public class Torneo {
             //codigo
         }
     }
+    public Deporte getDeporte(){
+        return deporte;
+    }
 }
