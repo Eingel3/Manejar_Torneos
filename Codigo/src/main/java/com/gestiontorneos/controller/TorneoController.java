@@ -61,7 +61,7 @@ public class TorneoController{
             }
         }
         // lanzar excepcion
-        return null
+        return null;
     }
 
     // Eliminar el torneo por su nombre
@@ -83,9 +83,9 @@ public class TorneoController{
 
         if ( torneo != null ){
             torneo.agegarParticipante(participante);
-            return true
+            return true;
         }
-        return false
+        return false;
 
     }
 
