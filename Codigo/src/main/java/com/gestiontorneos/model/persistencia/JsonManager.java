@@ -12,13 +12,23 @@ import java.io.*;//implementa todos los import relacionados con los archivos
 
 public class JsonManager{
 
-    Gson gson = new Gson();
+    private Gson gson;
 
     public JsonManager(){
         this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    public void guardar(){
-        
+    public void guardar(String archivo, Object datos){
+        //se ocupa filewriter para abrir el archivo o crrearlo
+        try(FileWriter writer = new FileWriter(archivo)){
+
+            gson.toJson(datos, writer);
+        //el tipo de error que ocurre mas comun
+        }catch (IOException e){
+            System.err.println("Error al guardar el archivo.");
+            //print enfocado en errores detallados
+            e.printStackTrace();
+        }
+
     }
 }
