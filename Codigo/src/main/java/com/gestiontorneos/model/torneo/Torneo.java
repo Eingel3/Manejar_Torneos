@@ -1,5 +1,6 @@
 package com.gestiontorneos.model.torneo;
 
+import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.participante.Participante;
 
 /**
@@ -9,7 +10,12 @@ import com.gestiontorneos.model.participante.Participante;
 
 public class Torneo {
     private String nombre;
-    public Torneo() {}
+    private Deporte deporte;
+
+    public Torneo(String nombre, Deporte deporte) {
+        this.nombre = nombre;
+        this.deporte = deporte;
+    }
 
     public String getNombre(){
         return nombre;
