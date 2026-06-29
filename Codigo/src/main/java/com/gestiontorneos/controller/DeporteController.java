@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class DeporteController {
 
-    private list<Deporte> deportes;
+    private List<Deporte> deportes;
 
     public DeporteController(){
         this.deportes = new ArrayList<>();
