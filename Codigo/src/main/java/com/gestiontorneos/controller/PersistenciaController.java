@@ -15,5 +15,7 @@ public class PersistenciaController{
         this.jsonManager = new JsonManager();
     }
 
-    
+    public void guardarTorneos(List<Torneo> torneos){
+        jsonManager.guardar("torneos.json", torneos);
+    }
 }
