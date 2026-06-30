@@ -36,6 +36,13 @@ public class TorneoController{
         this.persistenciaController = new PersistenciaController();
     }
 
+
+
+    //--------------------------------------------------------------
+                            //TORNEOS
+    //--------------------------------------------------------------
+
+
     // Crear un torneo nuevo
     public Torneo crearTorneo(String nombreTorneo,
                               String nombreDeporte,
@@ -58,6 +65,7 @@ public class TorneoController{
 
         return torneo;
     }
+
     //buscar torneo por su nombre
     public Torneo buscarTorneo(String nombre){//importar eso de Torneo
         for (Torneo torneo : torneos ){
@@ -80,6 +88,15 @@ public class TorneoController{
         return false;
     }
 
+    //retorna una lista de todos los torneos existentes
+    public List<Torneo> listaTorneos() {
+        return torneos;
+    }
+
+
+    //--------------------------------------------------------------
+                            //PARTICIPANTES
+    //--------------------------------------------------------------
 
     //registrar a los participantes de un torneo
     public boolean registrarParticipante(String nombreTorneo, Participante participante){
@@ -119,10 +136,27 @@ public class TorneoController{
     }
 
 
-    //retorna una lista de todos los torneos existentes
-    public List<Torneo> listaTorneos() {
-        return torneos;
+
+    //--------------------------------------------------------------
+                            //PARTIDOS
+    //--------------------------------------------------------------
+
+    public crearPartido(){
+
     }
+
+    public eliminarPartido(){
+
+    }
+
+    public buscarPartido(){
+
+    }
+
+    public listaPartidos(){
+        
+    }
+
 }
 
 
