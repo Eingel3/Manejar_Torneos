@@ -96,7 +96,14 @@ public class TorneoController{
 
     //eliminar participantes
     public boolean eliminarParticipante(String nombreTorneo, Participante participante){
+        Torneo torneo = buscarTorneo(nombreTorneo);
 
+        if (torneo != null){
+            torneo.eliminarParticipante(participante);
+            return true
+        }
+        System.out.println("Fallo en EliminarParticipante")
+        return false
     }
 
 
@@ -107,7 +114,7 @@ public class TorneoController{
         if ( torneo != null ){
             return torneo.getParticipantes(nombreTorneo);
         }
-        System.out.println("Lista vacia")
+        System.out.println("Fallo en lista de participantes")
         return new ArrayList<>();
     }
 
