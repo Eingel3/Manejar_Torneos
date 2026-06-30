@@ -101,8 +101,14 @@ public class TorneoController{
 
 
     //lista de participantes
-    public listarParticipantes(String nombreTorneo){
+    public List<Participantes> listarParticipantes(String nombreTorneo){
+        Torneo torneo = buscarTorneo(nombreTorneo);
 
+        if ( torneo != null ){
+            return torneo.getParticipantes(nombreTorneo);
+        }
+        System.out.println("Lista vacia")
+        return new ArrayList<>();
     }
 
 
