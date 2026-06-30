@@ -82,7 +82,7 @@ public class TorneoController{
 
 
     //registrar a los participantes de un torneo
-    public boolean registrarParticipantes(String nombreTorneo, Participante participante){
+    public boolean registrarParticipante(String nombreTorneo, Participante participante){
 
         Torneo torneo = buscarTorneo(nombreTorneo);
 
@@ -93,6 +93,18 @@ public class TorneoController{
         return false;
 
     }
+
+    //eliminar participantes
+    public boolean eliminarParticipante(String nombreTorneo, Participante participante){
+
+    }
+
+
+    //lista de participantes
+    public listarParticipantes(String nombreTorneo){
+
+    }
+
 
     //retorna una lista de todos los torneos existentes
     public List<Torneo> listaTorneos() {

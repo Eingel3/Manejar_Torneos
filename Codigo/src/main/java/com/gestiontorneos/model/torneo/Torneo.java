@@ -11,20 +11,28 @@ import com.gestiontorneos.model.participante.Participante;
 public class Torneo {
     private String nombre;
     private Deporte deporte;
+    private List<Participante> participantes;
 
     public Torneo(String nombre, Deporte deporte) {
         this.nombre = nombre;
         this.deporte = deporte;
+        this.participantes = new ArrayList<>();
     }
 
     public String getNombre(){
         return nombre;
     }
 
-    public void agregarParticipante(Participante participante){
-        if ( participante != null ){
-            //codigo
+    public List<Participante> getParticipantes() {
+        return participantes;
+    }
+    public void agregarParticipante(Participante participante) {
+        if (participante != null) {
+            participantes.add(participante);
         }
+    }
+    public void eliminarParticipante(Particpante participante) {
+        participantes.remove(participante);
     }
     public Deporte getDeporte(){
         return deporte;
