@@ -4,6 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
  public class BotonSimple implements Boton{
+     /**
+      * Metodo que se encarga de crear los botones genericos
+      *  Se utiliza para crear los botones uno a uno
+      * @param nombre es un String con el texto que se mostrara en el boton
+      * @return boton retorna un JButton con ciertos tamaños
+      */
     @Override
     public JButton crear(String nombre) {
         JButton boton = new JButton(nombre); //le damos su nombre
