@@ -36,9 +36,9 @@ public class JsonManager{
 
         try(FileReader reader = new FileReader(archivo)){
 
-            return gson.fromJson(reader);
+            return gson.fromJson(reader, new TypeToken<T>(){}.getType());
 
-        }catch(IOexception e){
+        }catch(IOException e){
             System.err.println("Error al cargar el archivo.");
             //print enfocado en errores detallados
             e.printStackTrace();
