@@ -1,4 +1,4 @@
-package com.gestionTorneos.gui.factory;
+package com.gestiontorneos.gui.factory;
 
 import javax.swing.*;
 
