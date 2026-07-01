@@ -29,20 +29,20 @@ public class JsonManager{
             //print enfocado en errores detallados
             e.printStackTrace();
         }
+    }
 
-        //el <T> T significa que es una lista generica pero una lista dentro de todo
-        public <T> T deserializar(String archivo){
+    //el <T> T significa que es una lista generica pero una lista dentro de todo
+    public <T> T deserializar(String archivo){
 
-            try(FileReader reader = new FileReader(archivo)){
+        try(FileReader reader = new FileReader(archivo)){
 
-                return gson.fromJson(reader);
+            return gson.fromJson(reader);
 
-            }catch(IOexception e){
-                System.err.println("Error al cargar el archivo.");
-                //print enfocado en errores detallados
-                e.printStackTrace();
-                return null;
-            }
+        }catch(IOexception e){
+            System.err.println("Error al cargar el archivo.");
+            //print enfocado en errores detallados
+            e.printStackTrace();
+            return null;
         }
     }
 }
