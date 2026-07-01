@@ -41,7 +41,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      * </p>
      */
     public VentanaPrincipal() {
-        this.setLayout(new FlowLayout()); //Lo dejamos así para crear un layout personalizado
+        this.setLayout(new FlowLayout(FlowLayout.LEFT)); //Utilizamos FlowLayout que deja los componentes desde la izquierda a la derecha
         this.setPreferredSize(new Dimension(
                 PanelInformacion.VENTANAPRINCIPAL.getAncho(),
                 PanelInformacion.VENTANAPRINCIPAL.getAlto())); //Dimensiones del panel

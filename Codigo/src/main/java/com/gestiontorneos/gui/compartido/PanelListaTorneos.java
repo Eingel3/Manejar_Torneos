@@ -15,7 +15,7 @@ public class PanelListaTorneos extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //definimos el layout
         setBackground(Color.lightGray); //definimos el color de fondo
         setPreferredSize(new Dimension(
-                PanelInformacion.VENTANASINMENU.getAncho(),
+                PanelInformacion.VENTANASINMENU.getAncho() - 10, //Le quitamos 10 para una correcta implementación
                 PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
         cantidadTorneos = 3; //A futuro hay que reemplazar con una llamada a metodo obtenerCantidadTorneos();
 
