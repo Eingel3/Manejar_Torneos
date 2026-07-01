@@ -14,7 +14,9 @@ public class PanelListaTorneos extends JPanel {
         //Ajustes del JPanel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //definimos el layout
         setBackground(Color.lightGray); //definimos el color de fondo
-        setPreferredSize(new Dimension(900,800));//Y las dimensiones
+        setPreferredSize(new Dimension(
+                PanelInformacion.VENTANASINMENU.getAncho(),
+                PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
         cantidadTorneos = 3; //A futuro hay que reemplazar con una llamada a metodo obtenerCantidadTorneos();
 
         JPanel torneo1 = this.agregarTorneoGUI("Torneo 1"); //agregamos una tarjeta de torneo
@@ -30,7 +32,7 @@ public class PanelListaTorneos extends JPanel {
         //Por ahora hay muchas cosas que no se incluirán debido al hecho de que model todavía no está listo
         //Por ejemplo, aquí deberíamos de utilizar los metodos de Torneo para obtener el nombre y otros detalles
         //Por ahora solo utilizaremos String para todas las variables
-        String nombre = "Torneo x";
+        String nombre = torneo;
         String fecha = "Desde xx/xx/xxxx hasta xx/xx/xxxx";
         String otroDato = "Otro dato";
         JPanel torneoGUI = new JPanel(); //Aquí es donde dejaremos todos los datos

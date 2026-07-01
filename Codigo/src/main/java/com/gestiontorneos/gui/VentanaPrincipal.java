@@ -20,8 +20,6 @@ import java.awt.event.*;
  * </p>
  */
 public class VentanaPrincipal extends JPanel implements MouseListener {
-    private final int ANCHO = 1200; //Ancho del panel en pixeles
-    private final int ALTO = 800; //Alto del panel en pixeles
 
     //Paneles compartidos entre todos los usuarios
     private PanelCalendario calendario; //Instancia de segmento del panel correspondiente al calendario
@@ -44,13 +42,17 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      */
     public VentanaPrincipal() {
         this.setLayout(new FlowLayout()); //Lo dejamos así para crear un layout personalizado
-        this.setPreferredSize(new Dimension(ANCHO, ALTO)); //Dimensiones del panel
+        this.setPreferredSize(new Dimension(
+                PanelInformacion.VENTANAPRINCIPAL.getAncho(),
+                PanelInformacion.VENTANAPRINCIPAL.getAlto())); //Dimensiones del panel
         this.setBackground(Color.BLACK); //Color de fondo del panel
         this.addMouseListener(this); //Listener del panel
         newPanels(); //Inicializamos los paneles
         this.add(menuLateral);//Agregamos el menu lateral
         menuLateral.setVisible(true);
-        menuLateral.setBounds(0, 0, 100, ALTO);
+        menuLateral.setBounds(0, 0,
+                PanelInformacion.MENULATERAL.getAncho(),
+                PanelInformacion.MENULATERAL.getAlto());
         this.add(torneos);
         torneos.setVisible(true);
     }
