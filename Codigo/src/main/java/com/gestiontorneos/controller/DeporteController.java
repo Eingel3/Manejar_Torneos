@@ -3,6 +3,7 @@ package com.gestiontorneos.controller;
 import java.util.List;
 import java.util.ArrayList;
 import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
 
 public class DeporteController {
 
@@ -22,9 +23,9 @@ public class DeporteController {
         return null;
     }
 
-
+    //por mientras coloco tipo individual para no complicar, despues sera a eleccion del organizador
     public Deporte crearDeporte(String nombre){
-        Deporte deporte = new Deporte(nombre);
+            Deporte deporte = new Deporte(nombre, TipoParticipacion.INDIVIDUAL);
         deportes.add(deporte);
         return deporte;
     }

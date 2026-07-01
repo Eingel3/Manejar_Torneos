@@ -1,5 +1,7 @@
 package com.gestiontorneos.model.torneo;
 
+import java.util.List;
+import java.util.ArrayList;
 import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.participante.Participante;
 
@@ -31,7 +33,7 @@ public class Torneo {
             participantes.add(participante);
         }
     }
-    public void eliminarParticipante(Particpante participante) {
+    public void eliminarParticipante(Participante participante) {
         participantes.remove(participante);
     }
     public Deporte getDeporte(){
