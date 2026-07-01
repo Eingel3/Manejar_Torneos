@@ -15,6 +15,10 @@ public class PanelResultados extends JPanel {
     private String descripcion;
     private Torneo torneo;
     private String fechas;
+    private String deporte;
+    private String tipoCompeticion;
+    private String ganador;
+    private String participantes;
 
 
     public PanelResultados(Torneo torneo) {
@@ -25,7 +29,15 @@ public class PanelResultados extends JPanel {
         this.setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
-
-        this.nombre = torneo.getNombre();
+        this.torneo = torneo;
+    }
+    private void iniciarAtributos() {
+        this.nombre = this.torneo.getNombre();
+        this.descripcion = "descripcion";
+        this.fechas = "fechas";
+        this.deporte = "deporte";
+        this.tipoCompeticion = "tipoCompeticion";
+        this.ganador = "ganador";
+        this.participantes = "participante";
     }
 }
