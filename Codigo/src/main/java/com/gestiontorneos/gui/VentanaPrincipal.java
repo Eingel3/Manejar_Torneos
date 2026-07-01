@@ -63,7 +63,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         calendario = new PanelCalendario();
         clasificacion = new PanelClasificacion();
         torneos = new PanelListaTorneos();
-        resultados = new PanelResultados();
+        // resultados = new PanelResultados(); //por ahora no lo iniciamos
         crearTorneo = new PanelCrearTorneo();
         torneosOrganizador = new PanelMisTorneos();
         participantesOrganizador = new PanelParticipantes();
