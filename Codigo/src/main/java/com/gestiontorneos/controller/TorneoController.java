@@ -3,25 +3,16 @@ package com.gestiontorneos.controller;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
-import  com.gestiontorneos.model.torneo.Torneo;
+import com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.participante.Participante;
-import com.gestiontorneos.controller.DeporteController;
-
-//esto debe importance cuando exista
-// import com.gestiontorneos.model.torneo.Torneo;
-// import com.gestiontorneos.model.deporte.Deporte;
-// import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 
 //funcion: Gestionar todas las acciones relacionadas con los torneos
 public class TorneoController{
 
     //guarda torneos existentes
     private List<Torneo> torneos;
-
-    //es la lista de deportes
-    private List<Deporte> deportes;
 
     //sirve para utilizar deportes existentes, eliminando la necesidad de crearlo de cero
     private DeporteController deporteController;
@@ -67,13 +58,12 @@ public class TorneoController{
     }
 
     //buscar torneo por su nombre
-    public Torneo buscarTorneo(String nombre){//importar eso de Torneo
+    public Torneo buscarTorneo(String nombre){
         for (Torneo torneo : torneos ){
-            if (torneo.getNombre().equals(nombre)){//revisa que el noombre del torneo
+            if (torneo.getNombre().equals(nombre)){
                 return torneo;
             }
         }
-        // lanzar excepcion
         return null;
     }
 
@@ -117,21 +107,21 @@ public class TorneoController{
 
         if (torneo != null){
             torneo.eliminarParticipante(participante);
-            return true
+            return true;
         }
-        System.out.println("Fallo en EliminarParticipante")
-        return false
+        System.out.println("Fallo en EliminarParticipante");
+        return false;
     }
 
 
     //lista de participantes
-    public List<Participantes> listarParticipantes(String nombreTorneo){
+    public List<Participante> listarParticipantes(String nombreTorneo){
         Torneo torneo = buscarTorneo(nombreTorneo);
 
         if ( torneo != null ){
-            return torneo.getParticipantes(nombreTorneo);
+            return torneo.getParticipantes();
         }
-        System.out.println("Fallo en lista de participantes")
+        System.out.println("Fallo en lista de participantes");
         return new ArrayList<>();
     }
 
@@ -141,22 +131,20 @@ public class TorneoController{
                             //PARTIDOS
     //--------------------------------------------------------------
 
-    public crearPartido(){
+    public void crearPartido(){
 
     }
 
-    public eliminarPartido(){
+    public void eliminarPartido(){
 
     }
 
-    public buscarPartido(){
+    public void buscarPartido(){
 
     }
 
-    public listaPartidos(){
-        
+    public void listaPartidos(){
+
     }
 
 }
-
-
