@@ -17,4 +17,26 @@ public class SubPanel extends JPanel implements PanelFactory {
                 PanelInformacion.VENTANASINMENU.getAlto()));
         return panel; //Finalmente retornamos el panel
     }
+
+    @Override public JPanel crear(int ancho){
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.PINK); //definimos el color de fondo
+        panel.setLayout(new FlowLayout());//definimos el layout
+        panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY)); //Definimos un borde
+        panel.setPreferredSize(new Dimension(//Y definimos las dimensiones
+                ancho,
+                PanelInformacion.VENTANASINMENU.getAlto()));
+        return panel; //Finalmente retornamos el panel
+    }
+
+    @Override public JPanel crear(int alto, int ancho){
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.PINK); //definimos el color de fondo
+        panel.setLayout(new FlowLayout());//definimos el layout
+        panel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY)); //Definimos un borde
+        panel.setPreferredSize(new Dimension(//Y definimos las dimensiones
+                ancho - 10,
+                alto));
+        return panel; //Finalmente retornamos el panel
+    }
 }
