@@ -1,8 +1,8 @@
 package com.gestiontorneos.gui.compartido;
 import javax.swing.*;
 import java.awt.*;
-import com.gestiontorneos.gui.compartido.PanelInformacion;
-import com.gestiontorneos.gui.factory.Boton;
+
+import com.gestiontorneos.gui.factory.BotonFactory;
 import com.gestiontorneos.gui.factory.BotonSimple;
 
 public class PanelMenu extends JPanel {
@@ -21,7 +21,7 @@ public class PanelMenu extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar los botones del menu lateral
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));// Le ponemos un borde más claro para que se diferencie el mennú
 
-        Boton crearBoton = new BotonSimple();
+        BotonFactory crearBoton = new BotonSimple();
 
         inicio = crearBoton.crear("Inicio"); //creamos un boton para la pestaña de inicio
         this.add(inicio); //y lo agregamos al panel

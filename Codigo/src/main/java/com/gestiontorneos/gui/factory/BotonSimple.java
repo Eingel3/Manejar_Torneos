@@ -3,7 +3,7 @@ package com.gestiontorneos.gui.factory;
 import javax.swing.*;
 import java.awt.*;
 
- public class BotonSimple implements Boton{
+ public class BotonSimple implements BotonFactory {
      /**
       * Metodo que se encarga de crear los botones genericos
       *  Se utiliza para crear los botones uno a uno

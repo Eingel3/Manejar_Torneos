@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 //Este metodo crea el panel donde se muestran la lista de torneos, o el calendario, y en general todas las pestañas
-public class SubPanel extends JPanel implements Panel {
+public class SubPanel extends JPanel implements PanelFactory {
     @Override public JPanel crear(){
         JPanel panel = new JPanel();
         panel.setBackground(Color.PINK); //definimos el color de fondo
