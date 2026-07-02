@@ -54,6 +54,16 @@ public class Torneo {
         System.out.println("Fallo en agregar partido");
     }
 
+    //metodo para buscar un partido por su nombre
+    public Partido buscarPartido(String nombre) {
+        for (Partido partido : partidos) {
+            if (partido.getNombre().equals(nombre)) {
+                return partido;
+            }
+        }
+        return null;
+    }
+
 
 
 }

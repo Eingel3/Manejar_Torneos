@@ -132,11 +132,11 @@ public class TorneoController{
                             //PARTIDOS
     //--------------------------------------------------------------
 
-    public boolean crearPartido(String nombrePartido, String nombreTorneo){
+    public boolean crearPartido(String nombrePartido, String nombreTorneo, int numero){
         Torneo torneo = buscarTorneo(nombreTorneo);
 
         if(torneo != null){
-            Partido partido = new Partido(nombrePartido, torneo);
+            Partido partido = new Partido(nombrePartido, torneo, numero);
             torneo.agregarPartido(partido);
             return true;
         }
