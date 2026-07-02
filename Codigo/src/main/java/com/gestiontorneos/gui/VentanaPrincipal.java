@@ -4,6 +4,9 @@ import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
 import com.gestiontorneos.gui.organizador.PanelMisTorneos;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
 import com.gestiontorneos.gui.organizador.PanelPartidos;
+import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
+import com.gestiontorneos.model.torneo.Torneo;
 
 import java.awt.*;
 import javax.swing.*;
@@ -54,7 +57,9 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
                 PanelInformacion.MENULATERAL.getAncho(),
                 PanelInformacion.MENULATERAL.getAlto());
         this.add(torneos);
-        torneos.setVisible(true);
+        torneos.setVisible(false);
+        this.add(resultados);
+        resultados.setVisible(true);
     }
 
     /**
@@ -65,7 +70,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         calendario = new PanelCalendario();
         clasificacion = new PanelClasificacion();
         torneos = new PanelListaTorneos();
-        // resultados = new PanelResultados(); //por ahora no lo iniciamos
+        resultados = new PanelResultados(new Torneo("nombre", new Deporte("NombreDeporte", TipoParticipacion.INDIVIDUAL))); //por ahora es de prueba
         crearTorneo = new PanelCrearTorneo();
         torneosOrganizador = new PanelMisTorneos();
         participantesOrganizador = new PanelParticipantes();
