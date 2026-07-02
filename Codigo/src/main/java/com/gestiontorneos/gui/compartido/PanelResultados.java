@@ -21,6 +21,9 @@ public class PanelResultados extends JPanel {
     private String tipoCompeticion;
     private String ganador;
     private String participantes;
+    private JPanel titulosPanel;
+    private JPanel labelsPanel;
+    private int anchoTitulosPanel;
 
 
     public PanelResultados(Torneo torneo) {
@@ -34,6 +37,14 @@ public class PanelResultados extends JPanel {
                 PanelInformacion.VENTANASINMENU.getAncho() -10,
                 PanelInformacion.VENTANASINMENU.getAlto()));
         this.torneo = torneo;
+
+        anchoTitulosPanel = 200;
+
+        PanelFactory constructorPanel = new PanelLateral();
+        titulosPanel = constructorPanel.crear(anchoTitulosPanel); //Panel Lateral con el layout tipo Box orientacion vertical
+        labelsPanel = constructorPanel.crear(  //Otro panel que ocupe el resto de espacio libre
+                PanelInformacion.VENTANASINMENU.getAncho() - anchoTitulosPanel - 30
+        );
 
         iniciarAtributos();
         iniciarEstructura();
@@ -50,9 +61,7 @@ public class PanelResultados extends JPanel {
     }
 
     public void iniciarEstructura() {
-        PanelFactory constructorPanel = new PanelLateral();
 
-        JPanel titulosPanel = constructorPanel.crear(200); //Panel Lateral con el layout tipo Box orientacion vertical, ancho 200
         titulosPanel.setBackground(Color.CYAN); //Le dejamos del mismo color que el resto del panel
         //Agregamos los titulos
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el titulo
@@ -76,6 +85,8 @@ public class PanelResultados extends JPanel {
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para los participantes
                 PanelInformacion.MENULATERAL.getAncho(), 120)));
         this.add(titulosPanel); //Y lo agregamos
+
+        this.add(labelsPanel);
     }
 
     public void iniciarLabels() {
@@ -108,12 +119,12 @@ public class PanelResultados extends JPanel {
 
 
         //Y añadimos los JLAbels
-        this.add(nombreL);
-        this.add(descripcionL);
-        this.add(fechasL);
-        this.add(deporteL);
-        this.add(tipoCompeticionL);
-        this.add(ganadorL);
-        this.add(participantesL);
+        labelsPanel.add(nombreL);
+        labelsPanel.add(descripcionL);
+        labelsPanel.add(fechasL);
+        labelsPanel.add(deporteL);
+        labelsPanel.add(tipoCompeticionL);
+        labelsPanel.add(ganadorL);
+        labelsPanel.add(participantesL);
     }
 }
