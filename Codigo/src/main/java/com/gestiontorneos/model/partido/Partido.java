@@ -9,6 +9,9 @@ public class Partido{
     private Torneo torneo;
     private EstadoPartido estado;
 
+    //ejemplo de uso
+    //torneo.agregarPartido(new Partido(1, "Octavos 1", torneo));
+    //torneo.agregarPartido(new Partido(1, "1", torneo));
     public Partido(String nombre, Torneo torneo, int numero){
         this.nombre = nombre;//si es semifinal, final o algo asi, si es torneo por puntos es igual al atributo numerod e abajo
         this.torneo = torneo;

@@ -51,7 +51,7 @@ public class TorneoController{
         }
 
         // Se crea el torneo
-        Torneo torneo = new Torneo(nombreTorneo, deporte);
+        Torneo torneo = new Torneo(nombreTorneo, deporte, fechaInicio, fechaFin);
 
         torneos.add(torneo);
 

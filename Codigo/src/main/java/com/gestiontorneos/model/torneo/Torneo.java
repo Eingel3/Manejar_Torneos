@@ -2,6 +2,7 @@ package com.gestiontorneos.model.torneo;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.time.LocalDate;
 import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.participante.Participante;
 import com.gestiontorneos.model.partido.Partido;
@@ -16,12 +17,17 @@ public class Torneo {
     private Deporte deporte;
     private List<Participante> participantes;
     private List<Partido> partidos;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
-    public Torneo(String nombre, Deporte deporte) {
+    public Torneo(String nombre, Deporte deporte, LocalDate fechaInicio, LocalDate fechaFin) {
         this.nombre = nombre;
         this.deporte = deporte;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.participantes = new ArrayList<>();
         this.partidos= new ArrayList<>();
+
     }
 
     public String getNombre(){
@@ -65,5 +71,11 @@ public class Torneo {
     }
 
 
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
 
 }
