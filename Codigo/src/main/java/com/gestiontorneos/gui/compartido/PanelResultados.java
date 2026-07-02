@@ -24,6 +24,7 @@ public class PanelResultados extends JPanel {
     private JPanel titulosPanel;
     private JPanel labelsPanel;
     private int anchoTitulosPanel;
+    int anchoLabelsPanel;
 
 
     public PanelResultados(Torneo torneo) {
@@ -39,12 +40,11 @@ public class PanelResultados extends JPanel {
         this.torneo = torneo;
 
         anchoTitulosPanel = 200;
+        anchoLabelsPanel = PanelInformacion.VENTANASINMENU.getAncho() - anchoTitulosPanel - 30; //Le quitamos 30 para su correcta visualizacion
 
         PanelFactory constructorPanel = new PanelLateral();
         titulosPanel = constructorPanel.crear(anchoTitulosPanel); //Panel Lateral con el layout tipo Box orientacion vertical
-        labelsPanel = constructorPanel.crear(  //Otro panel que ocupe el resto de espacio libre
-                PanelInformacion.VENTANASINMENU.getAncho() - anchoTitulosPanel - 30
-        );
+        labelsPanel = constructorPanel.crear(anchoLabelsPanel); //Otro panel que ocupe el resto de espacio libre
 
         iniciarAtributos();
         iniciarEstructura();
@@ -85,7 +85,8 @@ public class PanelResultados extends JPanel {
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para los participantes
                 PanelInformacion.MENULATERAL.getAncho(), 120)));
         this.add(titulosPanel); //Y lo agregamos
-
+        //Ahora preparamos y añadimos el labelsPanel
+        labelsPanel.setBackground(Color.CYAN);
         this.add(labelsPanel);
     }
 
@@ -120,11 +121,23 @@ public class PanelResultados extends JPanel {
 
         //Y añadimos los JLAbels
         labelsPanel.add(nombreL);
+        labelsPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio entre labels
+                anchoTitulosPanel, 30)));
         labelsPanel.add(descripcionL);
+        labelsPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio entre labels
+                anchoTitulosPanel, 30)));
         labelsPanel.add(fechasL);
+        labelsPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio entre labels
+                anchoTitulosPanel, 30)));
         labelsPanel.add(deporteL);
+        labelsPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio entre labels
+                anchoTitulosPanel, 30)));
         labelsPanel.add(tipoCompeticionL);
+        labelsPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio entre labels
+                anchoTitulosPanel, 30)));
         labelsPanel.add(ganadorL);
+        labelsPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio entre labels
+                anchoTitulosPanel, 30)));;
         labelsPanel.add(participantesL);
     }
 }
