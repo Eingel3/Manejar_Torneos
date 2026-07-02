@@ -14,6 +14,8 @@ public class PanelLateral implements PanelFactory{
                 PanelInformacion.MENULATERAL.getAncho(),
                 PanelInformacion.MENULATERAL.getAlto())); //Un poquit0 ancho + el largo de la VentanaPrincipal
 
-        panel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar los botones del menu lateral
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar los botones del menu lateral
+
+        return  panel;
     }
 }
