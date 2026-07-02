@@ -1,4 +1,6 @@
 package com.gestiontorneos.gui.compartido;
+import com.gestiontorneos.gui.factory.PanelFactory;
+import com.gestiontorneos.gui.factory.PanelLateral;
 import com.gestiontorneos.model.torneo.Torneo;
 
 import javax.swing.*;
@@ -26,7 +28,7 @@ public class PanelResultados extends JPanel {
 
         //Definimos las caracteriscticas del JPanel
         this.setBackground(Color.CYAN);
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         this.setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho() -10,
@@ -34,6 +36,7 @@ public class PanelResultados extends JPanel {
         this.torneo = torneo;
 
         iniciarAtributos();
+        iniciarEstructura();
         iniciarLabels();
     }
     private void iniciarAtributos() {
@@ -44,6 +47,35 @@ public class PanelResultados extends JPanel {
         this.tipoCompeticion = "tipoCompeticion";
         this.ganador = "ganador";
         this.participantes = "participante";
+    }
+
+    public void iniciarEstructura() {
+        PanelFactory constructorPanel = new PanelLateral();
+
+        JPanel titulosPanel = constructorPanel.crear(); //Panel Lateral con el layout tipo Box orientacion vertical
+        titulosPanel.setBackground(Color.CYAN); //Le dejamos del mismo color que el resto del panel
+        //Agregamos los titulos
+        titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el titulo
+                PanelInformacion.MENULATERAL.getAncho(), 30)));
+        titulosPanel.add(new JLabel("Descripcion del torneo:"));
+        titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para la descripcion
+                PanelInformacion.MENULATERAL.getAncho(), 120)));
+        titulosPanel.add(new JLabel("Fechas del torneo:"));
+        titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para las fechas
+                PanelInformacion.MENULATERAL.getAncho(), 30)));
+        titulosPanel.add(new JLabel("Deporte:"));
+        titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el deporte
+                PanelInformacion.MENULATERAL.getAncho(), 60)));
+        titulosPanel.add(new JLabel("Tipo Competicion:"));
+        titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el tipo de competicion
+                PanelInformacion.MENULATERAL.getAncho(), 60)));
+        titulosPanel.add(new JLabel("Ganador:"));
+        titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el ganador
+                PanelInformacion.MENULATERAL.getAncho(), 30)));
+        titulosPanel.add(new JLabel("Participantes:"));
+        titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para los participantes
+                PanelInformacion.MENULATERAL.getAncho(), 120)));
+        this.add(titulosPanel); //Y lo agregamos
     }
 
     public void iniciarLabels() {
@@ -72,6 +104,8 @@ public class PanelResultados extends JPanel {
         tipoCompeticionL.setAlignmentX(Component.LEFT_ALIGNMENT);
         ganadorL.setAlignmentX(Component.LEFT_ALIGNMENT);
         participantesL.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+
 
         //Y añadimos los JLAbels
         this.add(nombreL);
