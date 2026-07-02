@@ -52,23 +52,23 @@ public class PanelResultados extends JPanel {
     public void iniciarEstructura() {
         PanelFactory constructorPanel = new PanelLateral();
 
-        JPanel titulosPanel = constructorPanel.crear(); //Panel Lateral con el layout tipo Box orientacion vertical
+        JPanel titulosPanel = constructorPanel.crear(200); //Panel Lateral con el layout tipo Box orientacion vertical, ancho 200
         titulosPanel.setBackground(Color.CYAN); //Le dejamos del mismo color que el resto del panel
         //Agregamos los titulos
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el titulo
-                PanelInformacion.MENULATERAL.getAncho(), 30)));
+                PanelInformacion.MENULATERAL.getAncho(), 60)));
         titulosPanel.add(new JLabel("Descripcion del torneo:"));
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para la descripcion
                 PanelInformacion.MENULATERAL.getAncho(), 120)));
         titulosPanel.add(new JLabel("Fechas del torneo:"));
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para las fechas
-                PanelInformacion.MENULATERAL.getAncho(), 30)));
+                PanelInformacion.MENULATERAL.getAncho(), 60)));
         titulosPanel.add(new JLabel("Deporte:"));
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el deporte
-                PanelInformacion.MENULATERAL.getAncho(), 60)));
+                PanelInformacion.MENULATERAL.getAncho(), 90)));
         titulosPanel.add(new JLabel("Tipo Competicion:"));
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el tipo de competicion
-                PanelInformacion.MENULATERAL.getAncho(), 60)));
+                PanelInformacion.MENULATERAL.getAncho(), 90)));
         titulosPanel.add(new JLabel("Ganador:"));
         titulosPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio para el ganador
                 PanelInformacion.MENULATERAL.getAncho(), 30)));
