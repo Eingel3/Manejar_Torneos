@@ -33,6 +33,8 @@ public class Torneo {
             participantes.add(participante);
         }
     }
+
+
     public void eliminarParticipante(Participante participante) {
         participantes.remove(participante);
     }
