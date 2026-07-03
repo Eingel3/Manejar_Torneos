@@ -4,6 +4,9 @@ import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
 import com.gestiontorneos.gui.organizador.PanelMisTorneos;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
 import com.gestiontorneos.gui.organizador.PanelPartidos;
+import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
+import com.gestiontorneos.model.torneo.Torneo;
 
 import java.awt.*;
 import javax.swing.*;
@@ -20,8 +23,6 @@ import java.awt.event.*;
  * </p>
  */
 public class VentanaPrincipal extends JPanel implements MouseListener {
-    private final int ANCHO = 1200; //Ancho del panel en pixeles
-    private final int ALTO = 800; //Alto del panel en pixeles
 
     //Paneles compartidos entre todos los usuarios
     private PanelCalendario calendario; //Instancia de segmento del panel correspondiente al calendario
@@ -43,16 +44,22 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      * </p>
      */
     public VentanaPrincipal() {
-        this.setLayout(new FlowLayout()); //Lo dejamos así para crear un layout personalizado
-        this.setPreferredSize(new Dimension(ANCHO, ALTO)); //Dimensiones del panel
+        this.setLayout(new FlowLayout(FlowLayout.LEFT)); //Utilizamos FlowLayout que deja los componentes desde la izquierda a la derecha
+        this.setPreferredSize(new Dimension(
+                PanelInformacion.VENTANAPRINCIPAL.getAncho(),
+                PanelInformacion.VENTANAPRINCIPAL.getAlto())); //Dimensiones del panel
         this.setBackground(Color.BLACK); //Color de fondo del panel
         this.addMouseListener(this); //Listener del panel
         newPanels(); //Inicializamos los paneles
         this.add(menuLateral);//Agregamos el menu lateral
         menuLateral.setVisible(true);
-        menuLateral.setBounds(0, 0, 100, ALTO);
+        menuLateral.setBounds(0, 0,
+                PanelInformacion.MENULATERAL.getAncho(),
+                PanelInformacion.MENULATERAL.getAlto());
         this.add(torneos);
-        torneos.setVisible(true);
+        torneos.setVisible(false);
+        this.add(resultados);
+        resultados.setVisible(true);
     }
 
     /**
@@ -63,7 +70,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         calendario = new PanelCalendario();
         clasificacion = new PanelClasificacion();
         torneos = new PanelListaTorneos();
-        resultados = new PanelResultados();
+        resultados = new PanelResultados(new Torneo("nombre", new Deporte("NombreDeporte", TipoParticipacion.INDIVIDUAL))); //por ahora es de prueba
         crearTorneo = new PanelCrearTorneo();
         torneosOrganizador = new PanelMisTorneos();
         participantesOrganizador = new PanelParticipantes();
