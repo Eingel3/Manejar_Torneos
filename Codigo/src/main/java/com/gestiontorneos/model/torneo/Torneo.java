@@ -53,17 +53,20 @@ public class Torneo {
     }
 
 
-    public void agregarPartido(Partido partido){
-        if (partido != null){
+    public void agregarPartido(Partido partido) {
+        if (partido != null) {
             partidos.add(partido);
+        } else {
+            System.out.println("Fallo en agregar partido");
         }
-        System.out.println("Fallo en agregar partido");
     }
 
     //metodo para buscar un partido por su nombre
-    public Partido buscarPartido(String nombre) {
+    public Partido buscarPartido(Participante local, Participante visitante, int ronda) {
         for (Partido partido : partidos) {
-            if (partido.getNombre().equals(nombre)) {
+            if (partido.getLocal().equals(local)
+                    && partido.getVisitante().equals(visitante)
+                        && partido.getRonda() == ronda){
                 return partido;
             }
         }
