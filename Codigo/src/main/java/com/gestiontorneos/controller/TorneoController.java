@@ -132,16 +132,14 @@ public class TorneoController{
                             //PARTIDOS
     //--------------------------------------------------------------
 
-    public boolean crearPartido(String nombrePartido, String nombreTorneo, int numero){
+    public boolean crearPartido(Participante local, Participante visitante, String nombreTorneo, int ronda){
         Torneo torneo = buscarTorneo(nombreTorneo);
-
         if(torneo != null){
-            Partido partido = new Partido(nombrePartido, torneo, numero);
+            Partido partido = new Partido(local, visitante, ronda, torneo);
             torneo.agregarPartido(partido);
             return true;
         }
         System.out.println("Fallo en creacion de partido");
-
         return false;
     }
 
