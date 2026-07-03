@@ -7,6 +7,7 @@ import com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.model.partido.Partido;
 
 //funcion: Gestionar todas las acciones relacionadas con los torneos
 public class TorneoController{
@@ -50,7 +51,7 @@ public class TorneoController{
         }
 
         // Se crea el torneo
-        Torneo torneo = new Torneo(nombreTorneo, deporte);
+        Torneo torneo = new Torneo(nombreTorneo, deporte, fechaInicio, fechaFin);
 
         torneos.add(torneo);
 
@@ -131,8 +132,17 @@ public class TorneoController{
                             //PARTIDOS
     //--------------------------------------------------------------
 
-    public void crearPartido(){
+    public boolean crearPartido(String nombrePartido, String nombreTorneo, int numero){
+        Torneo torneo = buscarTorneo(nombreTorneo);
 
+        if(torneo != null){
+            Partido partido = new Partido(nombrePartido, torneo, numero);
+            torneo.agregarPartido(partido);
+            return true;
+        }
+        System.out.println("Fallo en creacion de partido");
+
+        return false;
     }
 
     public void eliminarPartido(){

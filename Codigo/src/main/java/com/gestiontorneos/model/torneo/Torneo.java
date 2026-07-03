@@ -2,8 +2,10 @@ package com.gestiontorneos.model.torneo;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.time.LocalDate;
 import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.model.partido.Partido;
 
 /**
  * Clase editada para que no de problemas por ahora
@@ -14,11 +16,18 @@ public class Torneo {
     private String nombre;
     private Deporte deporte;
     private List<Participante> participantes;
+    private List<Partido> partidos;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
-    public Torneo(String nombre, Deporte deporte) {
+    public Torneo(String nombre, Deporte deporte, LocalDate fechaInicio, LocalDate fechaFin) {
         this.nombre = nombre;
         this.deporte = deporte;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.participantes = new ArrayList<>();
+        this.partidos= new ArrayList<>();
+
     }
 
     public String getNombre(){
@@ -28,15 +37,45 @@ public class Torneo {
     public List<Participante> getParticipantes() {
         return participantes;
     }
+
     public void agregarParticipante(Participante participante) {
         if (participante != null) {
             participantes.add(participante);
         }
     }
+
     public void eliminarParticipante(Participante participante) {
         participantes.remove(participante);
     }
+
     public Deporte getDeporte(){
         return deporte;
     }
+
+
+    public void agregarPartido(Partido partido){
+        if (partido != null){
+            partidos.add(partido);
+        }
+        System.out.println("Fallo en agregar partido");
+    }
+
+    //metodo para buscar un partido por su nombre
+    public Partido buscarPartido(String nombre) {
+        for (Partido partido : partidos) {
+            if (partido.getNombre().equals(nombre)) {
+                return partido;
+            }
+        }
+        return null;
+    }
+
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
 }
