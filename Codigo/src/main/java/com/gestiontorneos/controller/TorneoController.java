@@ -135,7 +135,7 @@ public class TorneoController{
     public boolean crearPartido(Participante local, Participante visitante, String nombreTorneo, int ronda){
         Torneo torneo = buscarTorneo(nombreTorneo);
         if(torneo != null){
-            Partido partido = new Partido(local, visitante, ronda, torneo);
+            Partido partido = new Partido(local, visitante, ronda);
             torneo.agregarPartido(partido);
             return true;
         }

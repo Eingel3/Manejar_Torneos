@@ -105,4 +105,11 @@ public class Torneo {
     public String toString() { //toString para mostrar información básica del torneo
         return nombre + " | " + deporte.getNombre() + " | " + estado;
     }
+
+    public void agregarPartido(Partido partido) {
+
+    }
+    public void eliminarParticipante(Participante participante) {
+
+    }
 }
