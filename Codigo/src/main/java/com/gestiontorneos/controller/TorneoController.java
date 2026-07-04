@@ -39,8 +39,8 @@ public class TorneoController{
     public Torneo crearTorneo(String nombreTorneo,
                               String nombreDeporte,
                               FormatoTorneo formato,
-                              LocalDate fechaInicio,
-                              LocalDate fechaFin) {
+                              String fechaInicio,
+                              String fechaFin) {
 
         // Buscar si el deporte ya existe
         Deporte deporte = deporteController.buscarDeporte(nombreDeporte);
@@ -51,7 +51,7 @@ public class TorneoController{
         }
 
         // Se crea el torneo
-        Torneo torneo = new Torneo(nombreTorneo, deporte, fechaInicio, fechaFin);
+        Torneo torneo = new Torneo(nombreTorneo, deporte, formato, fechaInicio, fechaFin);
 
         torneos.add(torneo);
 

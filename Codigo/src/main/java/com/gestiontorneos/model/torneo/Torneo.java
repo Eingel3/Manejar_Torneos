@@ -85,6 +85,7 @@ public class Torneo {
         List<Partido> siguienteRonda = formato.generarSiguienteRonda(calendario); //En LigaSimple devuelve lista vacía
         for (Partido p : siguienteRonda) {
             calendario.agregarPartido(p); //Agrega los nuevos partidos al calendario
+        }
     }
     //Getters
     public String getNombre() { return nombre; }

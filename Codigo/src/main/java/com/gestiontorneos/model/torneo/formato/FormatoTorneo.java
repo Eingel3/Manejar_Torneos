@@ -4,6 +4,8 @@ import com.gestiontorneos.model.participante.Participante;
 import com.gestiontorneos.model.partido.Partido;
 import com.gestiontorneos.model.partido.Calendario;
 import com.gestiontorneos.model.torneo.Clasificacion;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface FormatoTorneo {
