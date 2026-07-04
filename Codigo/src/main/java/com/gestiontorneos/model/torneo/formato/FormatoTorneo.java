@@ -16,4 +16,8 @@ public interface FormatoTorneo {
     boolean haTerminado(Calendario calendario); //Verifica si el torneo ha terminado
 
     Participante obtenerGanador(Calendario calendario, Clasificacion clasificacion); //Devuelve el ganador del torneo
+
+    default List<Partido> generarSiguienteRonda(Calendario calendario){ //Necesario para generar nuevos partidos en torneos de eliminación directa
+        return new ArrayList<>();
+    }
 }
