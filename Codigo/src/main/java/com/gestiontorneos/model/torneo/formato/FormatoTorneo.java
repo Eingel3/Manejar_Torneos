@@ -8,8 +8,16 @@ import java.util.List;
 
 public interface FormatoTorneo {
 
-    List<Partido> generarEnfrentamientos(List<Participante> participantes);
-    void actualizarClasificacion(Clasificacion clasificacion, Partido partido);
-    boolean haTerminado(Calendario calendario);
-    Participante obtenerGanador(Calendario calendario, Clasificacion clasificacion);
+
+    List<Partido> generarEnfrentamientos(List<Participante> participantes); //Genera todos los partidos iniciales según los participantes inscritos
+
+    void actualizarClasificacion(Clasificacion clasificacion, Partido partido);     //Recalcula la tabla cuando un partido termina
+
+    boolean haTerminado(Calendario calendario); //Verifica si el torneo ha terminado
+
+    Participante obtenerGanador(Calendario calendario, Clasificacion clasificacion); //Devuelve el ganador del torneo
+
+    default List<Partido> generarSiguienteRonda(Calendario calendario){ //Necesario para generar nuevos partidos en torneos de eliminación directa
+        return new ArrayList<>();
+    }
 }

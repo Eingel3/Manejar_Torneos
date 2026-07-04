@@ -1,84 +1,107 @@
 package com.gestiontorneos.model.torneo;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.time.LocalDate;
 import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.excepciones.DatosInvalidosException;
 import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.model.partido.Calendario;
 import com.gestiontorneos.model.partido.Partido;
-
-/**
- * Clase editada para que no de problemas por ahora
- * Es decir, está incompleta
- */
+import com.gestiontorneos.model.partido.Resultado;
+import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Torneo {
+
     private String nombre;
     private Deporte deporte;
+    private FormatoTorneo formato; //Puede ser LigaSimple, EliminacionDirecta, etc. — patrón Strategy
+    private String fechaInicio;
+    private String fechaFin;
     private List<Participante> participantes;
-    private List<Partido> partidos;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
+    private Calendario calendario;
+    private Clasificacion clasificacion;
+    private String estado; // "INSCRIPCION", "EN_CURSO" o "FINALIZADO"
 
-    public Torneo(String nombre, Deporte deporte, LocalDate fechaInicio, LocalDate fechaFin) {
-        this.nombre = nombre;
+    public Torneo(String nombre, Deporte deporte, FormatoTorneo formato,
+                  String fechaInicio, String fechaFin) { //Constructor para crear un torneo
+        if (nombre == null || nombre.trim().isEmpty()) { //Validación de entradas
+            throw new DatosInvalidosException("El nombre no puede estar vacío");
+        }
+        if (deporte == null) {
+            throw new DatosInvalidosException("El deporte no puede ser null");
+        }
+        if (formato == null) {
+            throw new DatosInvalidosException("El formato no puede ser null");
+        }
+
+        this.nombre = nombre.trim();
         this.deporte = deporte;
+        this.formato = formato;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.participantes = new ArrayList<>();
-        this.partidos= new ArrayList<>();
-
+        this.participantes = new ArrayList<>(); //Lista vacía, se llena con agregarParticipante()
+        this.calendario = new Calendario(); //Sin partidos hasta que se genere el calendario
+        this.clasificacion = new Clasificacion(); //Tabla vacía, se actualiza al registrar resultados
+        this.estado = "INSCRIPCION"; //Todo torneo parte en fase de inscripción
     }
 
-    public String getNombre(){
-        return nombre;
-    }
-
-    public List<Participante> getParticipantes() {
-        return participantes;
-    }
-
-    public void agregarParticipante(Participante participante) {
-        if (participante != null) {
-            participantes.add(participante);
+    public void agregarParticipante(Participante participante) { //Inscribe un participante al torneo
+        if (participante == null) {
+            throw new DatosInvalidosException("El participante no puede ser null");
         }
-    }
-
-    public void eliminarParticipante(Participante participante) {
-        participantes.remove(participante);
-    }
-
-    public Deporte getDeporte(){
-        return deporte;
-    }
-
-
-    public void agregarPartido(Partido partido) {
-        if (partido != null) {
-            partidos.add(partido);
-        } else {
-            System.out.println("Fallo en agregar partido");
+        if (!estado.equals("INSCRIPCION")) { //Solo se pueden inscribir antes de iniciar el torneo
+            throw new IllegalStateException("Ya no se pueden inscribir participantes");
         }
-    }
-
-    //metodo para buscar un partido por su nombre
-    public Partido buscarPartido(Participante local, Participante visitante, int ronda) {
-        for (Partido partido : partidos) {
-            if (partido.getLocal().equals(local)
-                    && partido.getVisitante().equals(visitante)
-                        && partido.getRonda() == ronda){
-                return partido;
-            }
+        if (participantes.contains(participante)) { //Usa el equals() de Participante para detectar duplicados
+            throw new DatosInvalidosException("El participante ya está inscrito");
         }
-        return null;
+        participantes.add(participante);
+        clasificacion.registrarParticipante(participante); //Lo agrega a la tabla con 0 puntos
     }
 
+    public void generarCalendario() { //Crea todos los partidos según el formato elegido
+        if (participantes.size() < 2) {
+            throw new IllegalStateException("Se necesitan al menos 2 participantes");
+        }
+        if (!estado.equals("INSCRIPCION")) {
+            throw new IllegalStateException("El calendario ya fue generado");
+        }
 
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
-    }
-    public LocalDate getFechaFin() {
-        return fechaFin;
+        List<Partido> partidos = formato.generarEnfrentamientos(participantes); //Torneo no sabe cómo se generan, lo decide el formato
+        for (Partido p : partidos) {
+            calendario.agregarPartido(p);
+        }
+        estado = "EN_CURSO"; //Una vez generado el calendario, no se pueden inscribir más participantes
     }
 
+    public void registrarResultado(Partido partido, Resultado resultado) { //Anota el resultado de un partido y actualiza la tabla
+        if (!estado.equals("EN_CURSO")) {
+            throw new IllegalStateException("El torneo no está en curso");
+        }
+        partido.registrarResultado(resultado); //Guarda el resultado en el partido
+        formato.actualizarClasificacion(clasificacion, partido); //El formato decide cuántos puntos suma cada uno
+
+        List<Partido> siguienteRonda = formato.generarSiguienteRonda(calendario); //En LigaSimple devuelve lista vacía
+        for (Partido p : siguienteRonda) {
+            calendario.agregarPartido(p); //Agrega los nuevos partidos al calendario
+    }
+    //Getters
+    public String getNombre() { return nombre; }
+    public Deporte getDeporte() { return deporte; }
+    public FormatoTorneo getFormato() { return formato; }
+    public String getFechaInicio() { return fechaInicio; }
+    public String getFechaFin() { return fechaFin; }
+    public String getEstado() { return estado; }
+    public Calendario getCalendario() { return calendario; }
+    public Clasificacion getClasificacion() { return clasificacion; }
+
+    public List<Participante> getParticipantes() { //Devuelve la lista de participantes como solo lectura
+        return Collections.unmodifiableList(participantes);
+    }
+
+    @Override
+    public String toString() { //toString para mostrar información básica del torneo
+        return nombre + " | " + deporte.getNombre() + " | " + estado;
+    }
 }
