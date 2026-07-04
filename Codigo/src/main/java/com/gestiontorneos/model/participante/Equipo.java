@@ -11,10 +11,11 @@ public class Equipo extends Participante {
 
     public Equipo(String nombre, String contacto, List<String> integrantes) {
         super(nombre, contacto);
-        // toDo: Validaciones
+        if (integrantes == null || integrantes.isEmpty()) { //Un equipo sin integrantes no tiene sentido
+            throw new DatosInvalidosException("El equipo debe tener al menos un integrante");
+        }
 
-        this.integrantes = new ArrayList<>(integrantes);
-
+        this.integrantes = new ArrayList<>(integrantes); //Copia la lista para no depender de la original
     }
 
     @Override
@@ -22,8 +23,8 @@ public class Equipo extends Participante {
         return integrantes.size();
     }
 
-    public List<String> getIntegrantes() { //toDo
-        return null;
+    public List<String> getIntegrantes() { //Devuelve la lista como solo lectura para proteger los datos internos
+        return Collections.unmodifiableList(integrantes);
     }
 
     public void agregarIntegrante(String nombreIntegrante) {

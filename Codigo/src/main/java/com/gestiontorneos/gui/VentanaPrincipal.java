@@ -7,6 +7,7 @@ import com.gestiontorneos.gui.organizador.PanelPartidos;
 import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.deporte.TipoParticipacion;
 import com.gestiontorneos.model.torneo.Torneo;
+import java.time.LocalDate;
 
 import java.awt.*;
 import javax.swing.*;
@@ -72,6 +73,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         torneos = new PanelListaTorneos();
         resultados = new PanelResultados(new Torneo("nombre", new Deporte("NombreDeporte", TipoParticipacion.INDIVIDUAL))); //por ahora es de prueba
         crearTorneo = new PanelCrearTorneo();
+        resultados = new PanelResultados(new Torneo("nombre", new Deporte("NombreDeporte", TipoParticipacion.INDIVIDUAL), LocalDate.now(), LocalDate.now().plusDays(7)));        crearTorneo = new PanelCrearTorneo();
         torneosOrganizador = new PanelMisTorneos();
         participantesOrganizador = new PanelParticipantes();
         partidosOrganizador = new PanelPartidos();
