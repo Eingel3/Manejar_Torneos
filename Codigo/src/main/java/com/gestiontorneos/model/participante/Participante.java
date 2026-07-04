@@ -18,7 +18,7 @@ public abstract class Participante {
         this.contacto = contacto;
     }
 
-    public String getRut() {
+    public String getId() {
         return id;
     }
 
