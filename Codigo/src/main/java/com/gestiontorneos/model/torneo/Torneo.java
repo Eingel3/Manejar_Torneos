@@ -81,6 +81,10 @@ public class Torneo {
         }
         partido.registrarResultado(resultado); //Guarda el resultado en el partido
         formato.actualizarClasificacion(clasificacion, partido); //El formato decide cuántos puntos suma cada uno
+
+        List<Partido> siguienteRonda = formato.generarSiguienteRonda(calendario); //En LigaSimple devuelve lista vacía
+        for (Partido p : siguienteRonda) {
+            calendario.agregarPartido(p); //Agrega los nuevos partidos al calendario
     }
     //Getters
     public String getNombre() { return nombre; }
