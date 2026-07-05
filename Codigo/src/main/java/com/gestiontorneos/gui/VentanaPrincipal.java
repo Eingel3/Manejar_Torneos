@@ -63,12 +63,12 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.setLayout(cardLayout = new CardLayout());
         subPanel.setBackground(Color.BLACK);
         subPanel.setPreferredSize(new Dimension(
-                PanelInformacion.VENTANASINMENU.getAncho() - 10,
+                PanelInformacion.VENTANASINMENU.getAncho() - 15,
                 PanelInformacion.VENTANASINMENU.getAlto()));
         //Añadimos los paneles
         addPanels();
         menuLateral.setVisible(true);
-        cardLayout.show(subPanel, "Resultados");
+        mostrarPanel("Torneos");
     }
 
     /**
@@ -90,6 +90,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
     private void addPanels(){
         this.add(menuLateral);//Agregamos el menu lateral
+
+        //Agregamos al SubPanel todos los otros JPanels
         subPanel.add(calendario, "Calendario");
         subPanel.add(clasificacion,  "Clasificacion");
         subPanel.add(torneos, "Torneos");
@@ -97,7 +99,9 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.add(crearTorneo,  "Crear Torneo");
         subPanel.add(participantesOrganizador,  "Participantes");
         subPanel.add(partidosOrganizador,  "Partidos");
-        subPanel.add(torneosOrganizador,   "Torneos");
+        subPanel.add(torneosOrganizador,   "Torneos Organizador");
+
+        //Y añadimos el SubPanel
         this.add(subPanel);
     }
 
@@ -120,7 +124,27 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      * @param id es la pestaña que se desea mostrar
      */
     public void mostrarPanel(String id) {
+
         cardLayout.show(subPanel, id);
+
+        switch (id) {
+            case "Torneos": torneos.setVisible(true);
+            break;
+            case "Resultados": resultados.setVisible(true);
+            break;
+            case "Crear Torneo": crearTorneo.setVisible(true);
+            break;
+            case "Participantes": participantesOrganizador.setVisible(true);
+            break;
+            case "Partidos": partidosOrganizador.setVisible(true);
+            break;
+            case "Calendario": calendario.setVisible(true);
+            break;
+            case "Clasificacion": clasificacion.setVisible(true);
+            break;
+            case "Torneos Organizador": torneosOrganizador.setVisible(true);
+            break;
+        }
     }
 
     /**
