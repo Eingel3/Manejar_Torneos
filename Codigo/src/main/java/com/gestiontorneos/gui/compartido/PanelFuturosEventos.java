@@ -26,8 +26,8 @@ public class PanelFuturosEventos extends JPanel{
         futurosTorneos = new JPanel();
         futurosPartidos = new JPanel();
 
-        futurosPartidos.setLayout(new GridLayout(cantidadPartidos,1));
-        futurosTorneos.setLayout(new GridLayout(cantidadTorneos,1));
+        futurosPartidos.setLayout(new GridBagLayout());
+        futurosTorneos.setLayout(new GridBagLayout());
 
         futurosTorneos.setBackground(Color.white);
         futurosPartidos.setBackground(Color.cyan);
@@ -35,8 +35,12 @@ public class PanelFuturosEventos extends JPanel{
         futurosTorneos.setBorder(BorderFactory.createLineBorder(Color.yellow));
         futurosPartidos.setBorder(BorderFactory.createLineBorder(Color.yellow));
 
-        futurosTorneos.setPreferredSize(new Dimension((PanelInformacion.VENTANASINMENU.getAncho()/2) - 20,PanelInformacion.VENTANASINMENU.getAlto()));
-        futurosPartidos.setPreferredSize(new Dimension((PanelInformacion.VENTANASINMENU.getAncho()/2) - 20,PanelInformacion.VENTANASINMENU.getAlto()));
+        futurosTorneos.setPreferredSize(new Dimension((
+                PanelInformacion.VENTANASINMENU.getAncho()/2) - 15,
+                PanelInformacion.VENTANASINMENU.getAlto()));
+        futurosPartidos.setPreferredSize(new Dimension((
+                PanelInformacion.VENTANASINMENU.getAncho()/2) - 15,
+                PanelInformacion.VENTANASINMENU.getAlto()));
 
         this.add(futurosTorneos);
         this.add(futurosPartidos);
@@ -50,5 +54,29 @@ public class PanelFuturosEventos extends JPanel{
         if (cantidadTorneos > 0) {
             this.cantidadTorneos = cantidadTorneos;
         }
+    }
+
+    public void setFuturoTorneo(int id, String datos){
+
+        JLabel datosLabel = new JLabel(datos);
+        datosLabel.setBackground(Color.white);
+        datosLabel.setForeground(Color.black);
+        datosLabel.setOpaque(true);
+        JPanel datosPanel = new JPanel();
+        datosPanel.setLayout(new BoxLayout(datosPanel, BoxLayout.Y_AXIS));
+        datosPanel.setBackground(Color.white);
+        datosPanel.add(datosLabel);
+
+    }
+
+    public void setFuturoPartido(int id, String datos){
+        JLabel datosLabel = new JLabel(datos);
+        datosLabel.setBackground(Color.white);
+        datosLabel.setForeground(Color.black);
+        datosLabel.setOpaque(true);
+        JPanel datosPanel = new JPanel();
+        datosPanel.setLayout(new BoxLayout(datosPanel, BoxLayout.Y_AXIS));
+        datosPanel.setBackground(Color.cyan);
+        datosPanel.add(datosLabel);
     }
 }
