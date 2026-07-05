@@ -13,6 +13,7 @@ public class PanelMenu extends JPanel {
     private JButton partidos;
     private JButton inicio;
     private JButton futurosEventos;
+    private JButton crearTorneo;
 
         public PanelMenu() {
             this.setBackground(Color.BLACK); //Color de fondo del panel
@@ -51,6 +52,10 @@ public class PanelMenu extends JPanel {
             add(Box.createRigidArea(new Dimension(0, 30)));
             futurosEventos = crearBoton.crear("Futuros Eventos");
             this.add(futurosEventos);
+            add(Box.createRigidArea(new Dimension(0, 30)));
+            crearTorneo = crearBoton.crear("Crear torneo");
+            this.add(crearTorneo);
+            add(Box.createRigidArea(new Dimension(0, 30)));
         }
 
         public void agregarListener(String id, ActionListener evento) {
@@ -72,6 +77,9 @@ public class PanelMenu extends JPanel {
                        break;
                case "Futuros Eventos":
                    futurosEventos.addActionListener(evento);
+                   break;
+               case "Crear Torneo":
+                   crearTorneo.addActionListener(evento);
                    break;
                 default:
                     throw new IllegalArgumentException("Botón desconocido: " + id);

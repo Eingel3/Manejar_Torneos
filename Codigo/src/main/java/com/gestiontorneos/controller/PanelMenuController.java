@@ -17,5 +17,6 @@ public class PanelMenuController {
         menu.agregarListener("Clasificaciones", e -> ventanaPrincipal.mostrarPanel("Clasificaciones"));
         menu.agregarListener("Partidos", e -> ventanaPrincipal.mostrarPanel("Partidos"));
         menu.agregarListener("Futuros Eventos", e -> ventanaPrincipal.mostrarPanel("Futuros Eventos"));
+        menu.agregarListener("Crear Torneo", e -> ventanaPrincipal.mostrarPanel("Crear Torneo"));
     }
 }
