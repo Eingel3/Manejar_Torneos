@@ -46,13 +46,28 @@ public class PanelFuturosEventos extends JPanel{
         this.add(futurosPartidos);
     }
     public void setCantidadPartidos (int cantidadPartidos) {
-        if (cantidadPartidos > 0) {
+        if (cantidadPartidos >= 0) {
             this.cantidadPartidos = cantidadPartidos;
+            ajustarFilas(cantidadPartidos, futurosPartidos);
         }
     }
     public void setCantidadTorneos(int cantidadTorneos) {
-        if (cantidadTorneos > 0) {
+        if (cantidadTorneos >= 0) {
             this.cantidadTorneos = cantidadTorneos;
+            ajustarFilas(cantidadTorneos, futurosTorneos);
+        }
+    }
+
+    private void ajustarFilas(int cantidadFilas, JPanel panelObjetivo) {
+        //Creamos las variables que almacenaran el layout y los constraints que vamos a usar
+        GridBagLayout gbl = (GridBagLayout) panelObjetivo.getLayout();
+        GridBagConstraints gbc = new GridBagConstraints();
+        //Revisamos cada uno de los componentes del panelObjetivo
+        for (Component componente : panelObjetivo.getComponents()) {
+            gbc = gbl.getConstraints(componente); //Obtenemos los constraints del componente
+            if (gbc.gridy > cantidadFilas) { //Ahora, si el componente pertenece a una fila mayor que cantidadFilas
+                panelObjetivo.remove(componente);
+            }
         }
     }
 
@@ -72,7 +87,7 @@ public class PanelFuturosEventos extends JPanel{
 
         //Ahora removemos el evento que ya esté en el id
         GridBagLayout layout = (GridBagLayout) futurosTorneos.getLayout(); //en el layout
-        GridBagConstraints gbc;
+        GridBagConstraints gbc = new GridBagConstraints();
         for (Component comp : futurosTorneos.getComponents()) { //Revisamos cada componente
             gbc = layout.getConstraints(comp); //Asignamos el gbc segun los datos del componente
             if (gbc.gridx == 0 && gbc.gridy == id) { //Revisamos que el componente esté dentro de la celda que queremos cambiar
@@ -81,12 +96,10 @@ public class PanelFuturosEventos extends JPanel{
             }
         }
 
-        //Si resulta que en el lugar de la celda que se quiere colocar un nuevo evento no existe un evento anterior entonces inicializamos el gbc de forma manual
-        if (gbc == null) {
-            gbc = new GridBagConstraints();
-            gbc.gridx = 0;
-            gbc.gridy = id;
-        }
+        //Si resulta que en el lugar de la celda que se quiere colocar un nuevo evento no existe un evento anterior entonces asignamos los valores del gbc de forma manual
+
+        gbc.gridx = 0;
+        gbc.gridy = id;
 
         //Lo siguiente maneja el como los componentes ocupan el espacio
         //En este caso, los paneles usan todo el espacio disponible
@@ -116,7 +129,7 @@ public class PanelFuturosEventos extends JPanel{
         datosPanel.add(datosLabel);
         //Ahora removemos el evento que ya esté en el id
         GridBagLayout layout = (GridBagLayout) futurosPartidos.getLayout(); //en el layout
-        GridBagConstraints gbc;
+        GridBagConstraints gbc = new GridBagConstraints();
         for (Component comp : futurosPartidos.getComponents()) { //Revisamos cada componente
             gbc = layout.getConstraints(comp); //Asignamos el gbc segun los datos del componente
             if (gbc.gridx == 0 && gbc.gridy == id) { //Revisamos que el componente esté dentro de la celda que queremos cambiar
@@ -125,12 +138,10 @@ public class PanelFuturosEventos extends JPanel{
             }
         }
 
-        //Si resulta que en el lugar de la celda que se quiere colocar un nuevo evento no existe un evento anterior entonces inicializamos el gbc de forma manual
-        if (gbc == null) {
-            gbc = new GridBagConstraints();
-            gbc.gridx = 0;
-            gbc.gridy = id;
-        }
+        //Si resulta que en el lugar de la celda que se quiere colocar un nuevo evento no existe un evento anterior entonces asignamos los valores del gbc de forma manual
+
+        gbc.gridx = 0;
+        gbc.gridy = id;
 
         //Lo siguiente maneja el como los componentes ocupan el espacio
         //En este caso, los paneles usan todo el espacio disponible
