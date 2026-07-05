@@ -32,7 +32,7 @@ public class PanelListaTorneos extends JPanel {
             JButton detallesX = this.agregarTorneoGUI("Torneo " + (i + 1), "a", "b"); //agregamos los torneos
         }
     }
-    private JButton agregarTorneoGUI(String torneo, String fecha, String otroDato){
+    public JButton agregarTorneoGUI(String torneo, String fecha, String otroDato){
 
 
         JPanel torneoGUI = new JPanel(); //Aquí es donde dejaremos todos los datos
