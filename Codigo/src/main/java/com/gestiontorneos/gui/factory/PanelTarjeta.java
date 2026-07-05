@@ -7,21 +7,21 @@ import java.awt.*;
 
 /**
  * clase que implementa al PanelFactory.
- *  Se utliza para crear un panel angosto, de layout tipo Box, disposicion vertical.
+ *  Se utliza para crear una tarjeta, de layout tipo Box, disposicion vertical.
  *  Gracias a la sobrecarga del metodo crear se puede adaptar a distintos usos.
  */
-public class PanelLateral implements PanelFactory{
+public class PanelTarjeta implements PanelFactory{
     /**
      * Override del metodo crear, esta funcion crea un JPanel lateral predeterminado
-     * @return panel retorna un JPanel angosto, de layout tipo Box, disposicion vertical.
+     * @return panel retorna un JPanel de layout tipo Box, disposicion vertical.
      */
     @Override
     public JPanel crear(){
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK); //Color de fondo del panel
         panel.setPreferredSize(new Dimension(
-                PanelInformacion.MENULATERAL.getAncho(),
-                PanelInformacion.MENULATERAL.getAlto())); //las dimensiones son determinadas por el enum PanelInformacion
+                PanelInformacion.TARJETA.getAncho(),
+                PanelInformacion.TARJETA.getAlto())); //las dimensiones son determinadas por el enum PanelInformacion
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
         return  panel;
     }
@@ -29,16 +29,16 @@ public class PanelLateral implements PanelFactory{
     /**
      *   Override del metodo crear, esta funcion crea un JPanel lateral predeterminado
      *
-     * @param ancho es el ancho que se desea que tenga el JPanel lateral
+     * @param alto es el alto que se desea que tenga el JPanel lateral
      * @return Retorna un JPanel de ancho personalizado, dado por la variable ancho, de layout tipo Box, disposicion vertical.
      */
     @Override
-    public JPanel crear(int ancho){
+    public JPanel crear(int alto){
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK); //Color de fondo del panel
         panel.setPreferredSize(new Dimension(
-                ancho,
-                PanelInformacion.MENULATERAL.getAlto()));
+                PanelInformacion.TARJETA.getAncho(),
+                alto));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
         return  panel;
     }
@@ -60,4 +60,5 @@ public class PanelLateral implements PanelFactory{
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
         return  panel;
     }
+
 }
