@@ -1,5 +1,6 @@
 package com.gestiontorneos.gui;
 import com.gestiontorneos.gui.compartido.*;
+import com.gestiontorneos.gui.factory.SubPanel;
 import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
 import com.gestiontorneos.gui.organizador.PanelMisTorneos;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
@@ -114,8 +115,12 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         frame.setTitle("Torneos"); //el título
     }
 
-    public void mostrarCalendario() {
-        cardLayout.show(calendario, "Calendario");
+    /**
+     * Metodo usado para mostrar una de las pestañas
+     * @param id es la pestaña que se desea mostrar
+     */
+    public void mostrarPanel(String id) {
+        cardLayout.show(subPanel, id);
     }
 
     /**
