@@ -57,7 +57,10 @@ public class PanelFuturosEventos extends JPanel{
     }
 
     public void setFuturoTorneo(int id, String datos){
-
+        if (cantidadTorneos < id){ //Si hay un error respecto al id, se cambia al evento mas antiguo o el evento 0
+            id = 0;
+        }
+        //Primero gestionamos el label con los datos y el JPanel que contendrá a los datos
         JLabel datosLabel = new JLabel(datos);
         datosLabel.setBackground(Color.white);
         datosLabel.setForeground(Color.black);
@@ -67,9 +70,34 @@ public class PanelFuturosEventos extends JPanel{
         datosPanel.setBackground(Color.white);
         datosPanel.add(datosLabel);
 
+        //Ahora removemos el evento que ya esté en el id
+        GridBagLayout layout = (GridBagLayout) futurosTorneos.getLayout(); //en el layout
+        GridBagConstraints gbc;
+        for (Component comp : futurosTorneos.getComponents()) { //Revisamos cada componente
+            gbc = layout.getConstraints(comp); //Asignamos el gbc segun los datos del componente
+            if (gbc.gridx == 0 && gbc.gridy == id) { //Revisamos que el componente esté dentro de la celda que queremos cambiar
+                futurosTorneos.remove(comp); //Y removemos el componente para reemplazarlo
+                break;
+            }
+        }
+        //Lo siguiente maneja el como los componentes ocupan el espacio
+        //En este caso, los paneles usan todo el espacio disponible
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        //Finalmente agregamos el datosPanel
+        futurosTorneos.add(datosPanel, gbc);
+        //Y revalidamos y repintamos para que los cambios sean correctamente actualizados
+        futurosTorneos.revalidate();
+        futurosTorneos.repaint();
     }
 
     public void setFuturoPartido(int id, String datos){
+        if (cantidadPartidos < id){ //Si hay un error respecto al id, se cambia al evento mas antiguo o el evento 0
+            id = 0;
+        }
+        //Primero gestionamos el label con los datos y el JPanel que contendrá a los datos
         JLabel datosLabel = new JLabel(datos);
         datosLabel.setBackground(Color.white);
         datosLabel.setForeground(Color.black);
@@ -78,5 +106,26 @@ public class PanelFuturosEventos extends JPanel{
         datosPanel.setLayout(new BoxLayout(datosPanel, BoxLayout.Y_AXIS));
         datosPanel.setBackground(Color.cyan);
         datosPanel.add(datosLabel);
+        //Ahora removemos el evento que ya esté en el id
+        GridBagLayout layout = (GridBagLayout) futurosTorneos.getLayout(); //en el layout
+        GridBagConstraints gbc;
+        for (Component comp : futurosTorneos.getComponents()) { //Revisamos cada componente
+            gbc = layout.getConstraints(comp); //Asignamos el gbc segun los datos del componente
+            if (gbc.gridx == 0 && gbc.gridy == id) { //Revisamos que el componente esté dentro de la celda que queremos cambiar
+                futurosTorneos.remove(comp); //Y removemos el componente para reemplazarlo
+                break;
+            }
+        }
+        //Lo siguiente maneja el como los componentes ocupan el espacio
+        //En este caso, los paneles usan todo el espacio disponible
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        //Finalmente agregamos el datosPanel
+        futurosTorneos.add(datosPanel, gbc);
+        //Y revalidamos y repintamos para que los cambios sean correctamente actualizados
+        futurosTorneos.revalidate();
+        futurosTorneos.repaint();
     }
 }
