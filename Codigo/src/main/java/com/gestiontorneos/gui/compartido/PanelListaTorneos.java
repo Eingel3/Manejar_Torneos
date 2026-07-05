@@ -23,31 +23,27 @@ public class PanelListaTorneos extends JPanel {
                 PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
         cantidadTorneos = 3; //A futuro hay que reemplazar con una llamada a metodo obtenerCantidadTorneos();
 
-        JPanel torneo1 = this.agregarTorneoGUI("Torneo 1"); //agregamos una tarjeta de torneo
+        JButton detalles0 = this.agregarTorneoGUI("Torneo 1", "aaaa", "bbbb"); //agregamos una tarjeta de torneo
         this.gestionarTorneosGUI();//llamamos a la funcion que gestiona la agregacion de torneos
     }
     private void gestionarTorneosGUI(){ //esta funcion es de prueba por ahora
         //ciclo for para agregar todos los torneos
         for(int i = 0; i < cantidadTorneos; i++){
-            JPanel torneoX = this.agregarTorneoGUI("Torneo " + (i + 1)); //agregamos los torneos
+            JButton detallesX = this.agregarTorneoGUI("Torneo " + (i + 1), "a", "b"); //agregamos los torneos
         }
     }
-    private JPanel agregarTorneoGUI(String torneo){ //Eventualmente en vez de String torneo debería de ser tipo Torneo
-        //Por ahora hay muchas cosas que no se incluirán debido al hecho de que model todavía no está listo
-        //Por ejemplo, aquí deberíamos de utilizar los metodos de Torneo para obtener el nombre y otros detalles
-        //Por ahora solo utilizaremos String para todas las variables
-        String nombre = torneo;
-        String fecha = "Desde xx/xx/xxxx hasta xx/xx/xxxx";
-        String otroDato = "Otro dato";
+    private JButton agregarTorneoGUI(String torneo, String fecha, String otroDato){
+
+
         JPanel torneoGUI = new JPanel(); //Aquí es donde dejaremos todos los datos
         JButton detalles = new JButton("Detalles");
         detalles.setPreferredSize(new Dimension(100, 50));
-        torneoGUI.setLayout(new BoxLayout(torneoGUI, BoxLayout.Y_AXIS)); //layout tipo cajas como el usado en PanelMenu
+        torneoGUI.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
         torneoGUI.setBorder(BorderFactory.createLineBorder(Color.GRAY));//le damos un borde
         torneoGUI.setBackground(Color.PINK); //y un color de fondo
         torneoGUI.setPreferredSize(new Dimension(500, 150));//Y su tamaño
         //Creamos los distintos labels para cada informacion que mostremos
-        JLabel lblNombre = new JLabel(nombre);
+        JLabel lblNombre = new JLabel(torneo);
         JLabel lblFecha = new JLabel(fecha);
         JLabel lblOtroDato = new JLabel(otroDato);
         //Ahora le asignamos una fuente y el tamaño a los labels
@@ -61,7 +57,9 @@ public class PanelListaTorneos extends JPanel {
         //Y agregamos el JButton detalles
         torneoGUI.add(detalles);
         this.add(torneoGUI);//añadimos al JPanel de PanelListaTorneos
-        return torneoGUI; //Y finalmente retornamos el torneoGUI
+        this.revalidate();
+        this.repaint();
+        return detalles; //Y finalmente retornamos el torneoGUI
     }
 
 
