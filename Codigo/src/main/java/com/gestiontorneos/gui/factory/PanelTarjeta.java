@@ -22,6 +22,13 @@ public class PanelTarjeta implements PanelFactory{
         panel.setPreferredSize(new Dimension(
                 PanelInformacion.TARJETA.getAncho(),
                 PanelInformacion.TARJETA.getAlto())); //las dimensiones son determinadas por el enum PanelInformacion
+        panel.setMinimumSize(new Dimension( //Declaramos un tamaño minimo para evitar bugs visuales
+                PanelInformacion.TARJETA.getAncho() - 400,
+                PanelInformacion.TARJETA.getAlto() - 100));
+        panel.setMaximumSize(new Dimension( //Y un tamaño maximo para evitar comportamientos no deseados
+                PanelInformacion.TARJETA.getAncho(),
+                PanelInformacion.TARJETA.getAlto()));
+        panel.setBorder(BorderFactory.createLineBorder(Color.PINK));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
         return  panel;
     }
@@ -39,6 +46,13 @@ public class PanelTarjeta implements PanelFactory{
         panel.setPreferredSize(new Dimension(
                 PanelInformacion.TARJETA.getAncho(),
                 alto));
+        panel.setMinimumSize(new Dimension( //Declaramos un tamaño minimo para evitar bugs visuales
+                PanelInformacion.TARJETA.getAncho() - 400,
+                PanelInformacion.TARJETA.getAlto() - 100));
+        panel.setMaximumSize(new Dimension( //Y un tamaño maximo para evitar comportamientos no deseados
+                PanelInformacion.TARJETA.getAncho(),
+                PanelInformacion.TARJETA.getAlto()));
+        panel.setBorder(BorderFactory.createLineBorder(Color.PINK));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
         return  panel;
     }
@@ -57,6 +71,13 @@ public class PanelTarjeta implements PanelFactory{
         panel.setPreferredSize(new Dimension(
                 ancho,
                 alto));
+        panel.setMinimumSize(new Dimension( //Declaramos un tamaño minimo para evitar bugs visuales
+                PanelInformacion.TARJETA.getAncho() - 400,
+                PanelInformacion.TARJETA.getAlto() - 100));
+        panel.setMaximumSize(new Dimension( //Y un tamaño maximo para evitar comportamientos no deseados
+                PanelInformacion.TARJETA.getAncho(),
+                PanelInformacion.TARJETA.getAlto()));
+        panel.setBorder(BorderFactory.createLineBorder(Color.PINK));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
         return  panel;
     }

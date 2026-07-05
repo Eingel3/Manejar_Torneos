@@ -55,6 +55,10 @@ public class PanelClasificacion extends JPanel {
         //Ahora, hay que crear los labels
         iniciarLabels();
 
+        this.add(puesto1);
+        this.add(puesto2);
+        this.add(puesto3);
+
     }
 
     public void iniciarLabels(){
@@ -111,7 +115,7 @@ public class PanelClasificacion extends JPanel {
      * @param dato5 es el dato5 del puesto
      */
     public void setPuesto1(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
-        nombrePuesto1.setText(nombrePuesto1);
+        nombrePuesto1.setText(nombrePuesto);
         dato1Puesto1.setText(dato1);
         dato2Puesto1.setText(dato2);
         dato3Puesto1.setText(dato3);
@@ -129,7 +133,7 @@ public class PanelClasificacion extends JPanel {
      * @param dato5 es el dato5 del puesto
      */
     public void setPuesto2(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
-        nombrePuesto2.setText(nombrePuesto1);
+        nombrePuesto2.setText(nombrePuesto);
         dato1Puesto2.setText(dato1);
         dato2Puesto2.setText(dato2);
         dato3Puesto2.setText(dato3);
@@ -145,8 +149,8 @@ public class PanelClasificacion extends JPanel {
      * @param dato4 es el dato4 del puesto
      * @param dato5 es el dato5 del puesto
      */
-    public void setPuesto2(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
-        nombrePuesto2.setText(nombrePuesto1);
+    public void setPuesto3(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
+        nombrePuesto2.setText(nombrePuesto);
         dato1Puesto2.setText(dato1);
         dato2Puesto2.setText(dato2);
         dato3Puesto2.setText(dato3);
