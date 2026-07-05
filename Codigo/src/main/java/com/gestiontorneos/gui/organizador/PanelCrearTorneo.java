@@ -12,12 +12,11 @@ import java.awt.*;
  */
 
 public class PanelCrearTorneo extends JPanel {
-    public PanelCrearTorneo() {
         private JTextField txtNombre;
         private JTextField txtFechaInicio;
         private JTextField txtFechaFin;
-        private JComboBox<String> cmbDeporte;
-        private JComboBox<String> cmbFormato;
+        private JTextField txtDeporte;
+        private JTextField txtFormato;
         private JTextArea txtDescripcion;
         private JButton btnCrear;
         private JButton btnCancelar;
@@ -28,7 +27,28 @@ public class PanelCrearTorneo extends JPanel {
             setPreferredSize(new Dimension(
                     PanelInformacion.VENTANASINMENU.getAncho(),
                     PanelInformacion.VENTANASINMENU.getAlto()));
+            agregarComponentes();
+        }
+
+        private void agregarComponentes() {
+            JLabel lblTitulo = new JLabel("Crear Nuevo Torneo");
+            lblTitulo.setFont(new Font("Dialog", Font.BOLD, 24));
+            lblTitulo.setForeground(Color.BLACK);
+            lblTitulo.setAlignmentX(CENTER_ALIGNMENT);
+
+            this.add(new JLabel("Nombre del torneo:"));
+            this.add(txtNombre = new JTextField());
+            this.add(new JLabel("Fecha inicio:"));
+            this.add(txtFechaInicio = new JTextField());
+            this.add(new JLabel("Fecha fin:"));
+            this.add(txtFechaFin = new JTextField());
+            this.add(new JLabel("Deporte:"));
+            this.add(txtDeporte = new JTextField());
+            this.add(new JLabel("Formato:"));
+            this.add(txtFormato = new JTextField());
+            this.add(btnCrear = new JButton("Crear"));
+            this.add(btnCancelar = new JButton("Cancelar"));
+
         }
 
     }
-}
