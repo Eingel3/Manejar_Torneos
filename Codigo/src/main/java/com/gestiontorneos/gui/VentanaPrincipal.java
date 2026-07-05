@@ -39,6 +39,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     private PanelParticipantes participantesOrganizador; //Instancia de segmento del panel correspondiente a los participantes para que el organizador los pueda editar
     private PanelPartidos partidosOrganizador; //Instancia de segmento del panel correspondiente a los partidos para que el organizador pueda editarlos
     private PanelMenu menuLateral; //Instancia de segmento del panel correspondiente al menu lateral que contiene los botones que dirigen a cada panel
+    private PanelFuturosEventos eventos; //Instancia de segmento del panel correspondiente a un panel que contiene la visualizacion de futuros eventos
     private JPanel subPanel;
     private CardLayout cardLayout;
 
@@ -92,6 +93,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         participantesOrganizador = new PanelParticipantes();
         partidosOrganizador = new PanelPartidos();
         menuLateral = new PanelMenu();
+        eventos = new PanelFuturosEventos();
     }
 
     private void addPanels(){
@@ -106,6 +108,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.add(participantesOrganizador,  "Participantes");
         subPanel.add(partidosOrganizador,  "Partidos");
         subPanel.add(torneosOrganizador,   "Torneos Organizador");
+        subPanel.add(eventos,  "Futuros Eventos");
 
         //Y añadimos el SubPanel
         this.add(subPanel);
@@ -149,6 +152,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
             case "Clasificacion": clasificacion.setVisible(true);
             break;
             case "Torneos Organizador": torneosOrganizador.setVisible(true);
+            break;
+            case "Futuros Eventos": eventos.setVisible(true);
             break;
         }
     }
