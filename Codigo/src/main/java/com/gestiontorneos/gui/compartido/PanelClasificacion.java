@@ -10,8 +10,16 @@ import java.awt.*;
 
 public class PanelClasificacion extends JPanel {
 
-
     public PanelClasificacion() {
+        //Definimos las caracteriscticas del JPanel
+        this.setBackground(Color.CYAN);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+        this.setPreferredSize(new Dimension(
+                PanelInformacion.VENTANASINMENU.getAncho(),
+                PanelInformacion.VENTANASINMENU.getAlto()));
+
+
 
     }
 

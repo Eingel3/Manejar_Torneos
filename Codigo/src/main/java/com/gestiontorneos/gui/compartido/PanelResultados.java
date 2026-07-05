@@ -43,7 +43,7 @@ public class PanelResultados extends JPanel {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         this.setPreferredSize(new Dimension(
-                PanelInformacion.VENTANASINMENU.getAncho() -10,
+                PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
         this.torneo = torneo;
 
