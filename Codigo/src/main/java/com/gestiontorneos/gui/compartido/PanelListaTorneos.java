@@ -1,6 +1,9 @@
 package com.gestiontorneos.gui.compartido;
+import com.gestiontorneos.model.torneo.Torneo;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Representa la vista grafica de los torneos
@@ -10,6 +13,7 @@ import java.awt.*;
 
 public class PanelListaTorneos extends JPanel {
     private int cantidadTorneos;
+    private ActionListener evento;
     public PanelListaTorneos(){
         //Ajustes del JPanel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //definimos el layout
@@ -58,6 +62,14 @@ public class PanelListaTorneos extends JPanel {
         torneoGUI.add(detalles);
         this.add(torneoGUI);//añadimos al JPanel de PanelListaTorneos
         return torneoGUI; //Y finalmente retornamos el torneoGUI
+    }
+
+
+    /**
+     * Permite al controlador registrar un listener para los clics en "Detalles".
+     */
+    public void agregarListener(ActionListener evento) {
+        this.evento = evento;
     }
 
 }
