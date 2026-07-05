@@ -11,16 +11,9 @@ public class PanelMenu extends JPanel {
     JButton clasificaciones;
     JButton partidos;
     JButton inicio;
+    JButton futurosEventos;
 
-    public class PanelMenu extends JPanel {
-        JButton calendario;
-        JButton torneos;
-        JButton clasificaciones;
-        JButton partidos;
-        JButton inicio;
-        JButton futurosEventos;
-
-        public  PanelMenu() {
+        public PanelMenu() {
             this.setBackground(Color.BLACK); //Color de fondo del panel
             this.setPreferredSize(new Dimension(
                     PanelInformacion.MENULATERAL.getAncho(),
@@ -33,7 +26,7 @@ public class PanelMenu extends JPanel {
 
         }
 
-        private void crearBotones(){
+        private void crearBotones() {
             BotonFactory crearBoton = new BotonSimple();
 
             inicio = crearBoton.crear("Inicio"); //creamos un boton para la pestaña de inicio
@@ -58,5 +51,4 @@ public class PanelMenu extends JPanel {
             futurosEventos = crearBoton.crear("Futuros Eventos");
             this.add(futurosEventos);
         }
-
     }
