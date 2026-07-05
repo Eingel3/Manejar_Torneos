@@ -1,17 +1,18 @@
 package com.gestiontorneos.gui.compartido;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import com.gestiontorneos.gui.factory.BotonFactory;
 import com.gestiontorneos.gui.factory.BotonSimple;
 
 public class PanelMenu extends JPanel {
-    JButton calendario;
-    JButton torneos;
-    JButton clasificaciones;
-    JButton partidos;
-    JButton inicio;
-    JButton futurosEventos;
+    private JButton calendario;
+    private JButton torneos;
+    private JButton clasificaciones;
+    private JButton partidos;
+    private JButton inicio;
+    private JButton futurosEventos;
 
         public PanelMenu() {
             this.setBackground(Color.BLACK); //Color de fondo del panel
@@ -50,5 +51,31 @@ public class PanelMenu extends JPanel {
             add(Box.createRigidArea(new Dimension(0, 30)));
             futurosEventos = crearBoton.crear("Futuros Eventos");
             this.add(futurosEventos);
+        }
+
+        public void agregarListener(String id, ActionListener evento) {
+            switch  (id) {
+                case "Inicio":
+                    inicio.addActionListener(evento);
+                    break;
+               case "Calendario":
+                    calendario.addActionListener(evento);
+                    break;
+               case "Torneos":
+                     torneos.addActionListener(evento);
+                     break;
+               case "Clasificaciones":
+                      clasificaciones.addActionListener(evento);
+                      break;
+               case "Partidos":
+                       partidos.addActionListener(evento);
+                       break;
+               case "Futuros Eventos":
+                   futurosEventos.addActionListener(evento);
+                   break;
+                default:
+                    throw new IllegalArgumentException("Botón desconocido: " + id);
+            }
+
         }
     }

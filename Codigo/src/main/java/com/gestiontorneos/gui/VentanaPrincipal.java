@@ -1,5 +1,6 @@
 package com.gestiontorneos.gui;
 import com.gestiontorneos.controller.DeporteController;
+import com.gestiontorneos.controller.PanelMenuController;
 import com.gestiontorneos.controller.TorneoController;
 import com.gestiontorneos.gui.compartido.*;
 import com.gestiontorneos.gui.factory.SubPanel;
@@ -73,10 +74,12 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
                 PanelInformacion.VENTANASINMENU.getAlto()));
         //Añadimos los paneles
         addPanels();
-        menuLateral.setVisible(true);
+        //menuLateral.setVisible(true);
         //mostrarPanel("Torneos");
         //mostrarPanel("Clasificacion");
-        mostrarPanel("Futuros Eventos");
+        //mostrarPanel("Futuros Eventos");
+
+        new PanelMenuController(menuLateral, this);
     }
 
     /**
