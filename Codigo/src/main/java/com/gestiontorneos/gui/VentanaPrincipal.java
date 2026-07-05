@@ -1,4 +1,6 @@
 package com.gestiontorneos.gui;
+import com.gestiontorneos.controller.DeporteController;
+import com.gestiontorneos.controller.TorneoController;
 import com.gestiontorneos.gui.compartido.*;
 import com.gestiontorneos.gui.factory.SubPanel;
 import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
@@ -39,6 +41,9 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     private PanelMenu menuLateral; //Instancia de segmento del panel correspondiente al menu lateral que contiene los botones que dirigen a cada panel
     private JPanel subPanel;
     private CardLayout cardLayout;
+
+    private TorneoController torneoController;
+    private DeporteController deporteController;
 
     /**
      * Crea e inicializa la ventana principal de la aplicación.
@@ -145,6 +150,14 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
             case "Torneos Organizador": torneosOrganizador.setVisible(true);
             break;
         }
+    }
+
+    public void setTorneoController(TorneoController torneoController) {
+        this.torneoController = torneoController;
+    }
+
+    public void setDeporteController(DeporteController deporteController) {
+        this.deporteController = deporteController;
     }
 
     /**
