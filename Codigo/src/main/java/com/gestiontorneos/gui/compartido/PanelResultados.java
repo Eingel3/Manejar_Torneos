@@ -26,6 +26,14 @@ public class PanelResultados extends JPanel {
     private int anchoTitulosPanel;
     int anchoLabelsPanel;
 
+    JLabel nombreL;
+    JLabel descripcionL;
+    JLabel fechasL;
+    JLabel deporteL;
+    JLabel tipoCompeticionL;
+    JLabel ganadorL;
+    JLabel participantesL;
+
 
     public PanelResultados(Torneo torneo) {
         //Recibimos un Torneo como argumento para poder mostrar sus detalles
@@ -92,13 +100,13 @@ public class PanelResultados extends JPanel {
 
     public void iniciarLabels() {
         //Primero creamos los lables
-        JLabel nombreL = new JLabel(this.nombre);
-        JLabel descripcionL = new JLabel(this.descripcion);
-        JLabel fechasL = new JLabel(this.fechas);
-        JLabel deporteL = new JLabel(this.deporte);
-        JLabel tipoCompeticionL= new JLabel(this.tipoCompeticion);
-        JLabel ganadorL = new JLabel(this.ganador);
-        JLabel participantesL = new JLabel(this.participantes);
+        nombreL = new JLabel(this.nombre);
+        descripcionL = new JLabel(this.descripcion);
+        fechasL = new JLabel(this.fechas);
+        deporteL = new JLabel(this.deporte);
+        tipoCompeticionL= new JLabel(this.tipoCompeticion);
+        ganadorL = new JLabel(this.ganador);
+        participantesL = new JLabel(this.participantes);
 
         //Modificamos la alineación de los textos:
         nombreL.setHorizontalAlignment(JLabel.CENTER);
@@ -139,5 +147,55 @@ public class PanelResultados extends JPanel {
         labelsPanel.add(Box.createRigidArea(new Dimension( //agregamos un espacio entre labels
                 anchoTitulosPanel, 30)));;
         labelsPanel.add(participantesL);
+    }
+
+    /**
+     * Metodo para asignar el texto del label que muestra el nombre
+     * @param nombre String con el que se actualizara el label
+     */
+    public void actualizarNombre(String nombre) {
+        nombreL.setText(nombre);
+    }
+    /**
+     * Metodo para asignar el texto del label que muestra ela descripcion
+     * @param descripcion String con el que se actualizara el label
+     */
+    public void actualizarDescripcion(String descripcion) {
+        descripcionL.setText(descripcion);
+    }
+    /**
+     * Metodo para asignar el texto del label que muestra las fechas
+     * @param fechas String con el que se actualizara el label
+     */
+    public void actualizarFechas(String fechas) {
+        fechasL.setText(fechas);
+    }
+    /**
+     * Metodo para asignar el texto del label que muestra el deporte
+     * @param deporte String con el que se actualizara el label
+     */
+    public void actualizarDeporte(String deporte) {
+        deporteL.setText(deporte);
+    }
+    /**
+     * Metodo para asignar el texto del label que muestra el tipo de competicion
+     * @param tipoCompeticion String con el que se actualizara el label
+     */
+    public void actualizarTipoCompeticion(String tipoCompeticion) {
+        tipoCompeticionL.setText(tipoCompeticion);
+    }
+    /**
+     * Metodo para asignar el texto del label que muestra el ganador
+     * @param ganador String con el que se actualizara el label
+     */
+    public void actualizarGanador(String ganador) {
+        ganadorL.setText(ganador);
+    }
+    /**
+     * Metodo para asignar el texto del label que muestra los participantes
+     * @param participantes String con el que se actualizara el label
+     */
+    public void actualizarParticipantes(String participantes) {
+        participantesL.setText(participantes);
     }
 }
