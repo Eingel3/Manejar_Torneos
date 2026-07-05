@@ -75,7 +75,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         addPanels();
         menuLateral.setVisible(true);
         //mostrarPanel("Torneos");
-        mostrarPanel("Clasificacion");
+        //mostrarPanel("Clasificacion");
+        mostrarPanel("Futuros Eventos");
     }
 
     /**

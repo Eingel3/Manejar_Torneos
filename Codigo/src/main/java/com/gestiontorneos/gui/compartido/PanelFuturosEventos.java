@@ -16,8 +16,8 @@ public class PanelFuturosEventos extends JPanel{
         this.setBackground(Color.pink);
         this.setBorder(BorderFactory.createLineBorder(Color.white));
         this.setPreferredSize(new Dimension(PanelInformacion.VENTANASINMENU.getAncho(), PanelInformacion.VENTANASINMENU.getAlto()));
-        cantidadPartidos = 0;
-        cantidadTorneos = 0;
+        cantidadPartidos = 1;
+        cantidadTorneos = 1;
 
         iniciarPaneles();
     }
@@ -26,8 +26,8 @@ public class PanelFuturosEventos extends JPanel{
         futurosTorneos = new JPanel();
         futurosPartidos = new JPanel();
 
-        futurosPartidos.setLayout(new GridLayout(cantidadPartidos,0));
-        futurosTorneos.setLayout(new GridLayout(cantidadTorneos,0));
+        futurosPartidos.setLayout(new GridLayout(cantidadPartidos,1));
+        futurosTorneos.setLayout(new GridLayout(cantidadTorneos,1));
 
         futurosTorneos.setBackground(Color.white);
         futurosPartidos.setBackground(Color.cyan);
@@ -35,13 +35,20 @@ public class PanelFuturosEventos extends JPanel{
         futurosTorneos.setBorder(BorderFactory.createLineBorder(Color.yellow));
         futurosPartidos.setBorder(BorderFactory.createLineBorder(Color.yellow));
 
+        futurosTorneos.setPreferredSize(new Dimension((PanelInformacion.VENTANASINMENU.getAncho()/2) - 20,PanelInformacion.VENTANASINMENU.getAlto()));
+        futurosPartidos.setPreferredSize(new Dimension((PanelInformacion.VENTANASINMENU.getAncho()/2) - 20,PanelInformacion.VENTANASINMENU.getAlto()));
+
         this.add(futurosTorneos);
         this.add(futurosPartidos);
     }
     public void setCantidadPartidos (int cantidadPartidos) {
-        this.cantidadPartidos = cantidadPartidos;
+        if (cantidadPartidos > 0) {
+            this.cantidadPartidos = cantidadPartidos;
+        }
     }
     public void setCantidadTorneos(int cantidadTorneos) {
-        this.cantidadTorneos = cantidadTorneos;
+        if (cantidadTorneos > 0) {
+            this.cantidadTorneos = cantidadTorneos;
+        }
     }
 }
