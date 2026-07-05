@@ -54,6 +54,7 @@ public class PanelMenu extends JPanel {
             add(Box.createRigidArea(new Dimension(0, 30)));
             partidos = crearBoton.crear("Partidos");
             this.add(partidos);
+            add(Box.createRigidArea(new Dimension(0, 30)));
             futurosEventos = crearBoton.crear("Futuros Eventos");
             this.add(futurosEventos);
         }
