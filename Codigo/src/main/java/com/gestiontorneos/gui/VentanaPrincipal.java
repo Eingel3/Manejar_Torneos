@@ -8,9 +8,6 @@ import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.deporte.TipoParticipacion;
 import com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
-import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
-
-import java.time.LocalDate;
 
 import java.awt.*;
 import javax.swing.*;
@@ -39,6 +36,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     private PanelParticipantes participantesOrganizador; //Instancia de segmento del panel correspondiente a los participantes para que el organizador los pueda editar
     private PanelPartidos partidosOrganizador; //Instancia de segmento del panel correspondiente a los partidos para que el organizador pueda editarlos
     private PanelMenu menuLateral; //Instancia de segmento del panel correspondiente al menu lateral que contiene los botones que dirigen a cada panel
+    private JPanel subPanel;
+    private CardLayout cardLayout;
 
     /**
      * Crea e inicializa la ventana principal de la aplicación.
@@ -55,15 +54,20 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         this.setBackground(Color.BLACK); //Color de fondo del panel
         this.addMouseListener(this); //Listener del panel
         newPanels(); //Inicializamos los paneles
-        this.add(menuLateral);//Agregamos el menu lateral
-        menuLateral.setVisible(true);
+        //Configuramos el menuLateral
         menuLateral.setBounds(0, 0,
                 PanelInformacion.MENULATERAL.getAncho(),
                 PanelInformacion.MENULATERAL.getAlto());
-        this.add(torneos);
-        torneos.setVisible(false);
-        this.add(resultados);
-        resultados.setVisible(true);
+        //Ahora respecto al SubPanel
+        subPanel.setLayout(cardLayout = new CardLayout());
+        subPanel.setBackground(Color.BLACK);
+        subPanel.setPreferredSize(new Dimension(
+                PanelInformacion.VENTANASINMENU.getAncho() - 10,
+                PanelInformacion.VENTANASINMENU.getAlto()));
+        //Añadimos los paneles
+        addPanels();
+        menuLateral.setVisible(true);
+        cardLayout.show(subPanel, "Resultados");
     }
 
     /**
@@ -71,16 +75,29 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      *
      */
     private void newPanels(){
+        subPanel = new JPanel();
         calendario = new PanelCalendario();
         clasificacion = new PanelClasificacion();
         torneos = new PanelListaTorneos();
         resultados = new PanelResultados(new Torneo("nombre", new Deporte("NombreDeporte", TipoParticipacion.INDIVIDUAL), new EliminacionDirecta(), "a", "a")); //por ahora es de prueba
         crearTorneo = new PanelCrearTorneo();
-        resultados = new PanelResultados(new Torneo("nombre", new Deporte("NombreDeporte", TipoParticipacion.INDIVIDUAL), new EliminacionDirecta(),"a", "a"));        crearTorneo = new PanelCrearTorneo();
         torneosOrganizador = new PanelMisTorneos();
         participantesOrganizador = new PanelParticipantes();
         partidosOrganizador = new PanelPartidos();
         menuLateral = new PanelMenu();
+    }
+
+    private void addPanels(){
+        this.add(menuLateral);//Agregamos el menu lateral
+        subPanel.add(calendario, "Calendario");
+        subPanel.add(clasificacion,  "Clasificacion");
+        subPanel.add(torneos, "Torneos");
+        subPanel.add(resultados,  "Resultados");
+        subPanel.add(crearTorneo,  "Crear Torneo");
+        subPanel.add(participantesOrganizador,  "Participantes");
+        subPanel.add(partidosOrganizador,  "Partidos");
+        subPanel.add(torneosOrganizador,   "Torneos");
+        this.add(subPanel);
     }
 
     /**
@@ -95,6 +112,10 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setTitle("Torneos"); //el título
+    }
+
+    public void mostrarCalendario() {
+        cardLayout.show(calendario, "Calendario");
     }
 
     /**
