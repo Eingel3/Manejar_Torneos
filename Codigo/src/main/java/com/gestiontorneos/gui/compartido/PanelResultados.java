@@ -15,7 +15,6 @@ import java.awt.*;
 public class PanelResultados extends JPanel {
     private String nombre;
     private String descripcion;
-    private Torneo torneo;
     private String fechas;
     private String deporte;
     private String tipoCompeticion;
@@ -35,7 +34,7 @@ public class PanelResultados extends JPanel {
     JLabel participantesL;
 
 
-    public PanelResultados(Torneo torneo) {
+    public PanelResultados() {
         //Recibimos un Torneo como argumento para poder mostrar sus detalles
 
         //Definimos las caracteriscticas del JPanel
@@ -45,7 +44,7 @@ public class PanelResultados extends JPanel {
         this.setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
-        this.torneo = torneo;
+
 
         anchoTitulosPanel = 200;
         anchoLabelsPanel = PanelInformacion.VENTANASINMENU.getAncho() - anchoTitulosPanel - 30; //Le quitamos 30 para su correcta visualizacion
@@ -59,7 +58,7 @@ public class PanelResultados extends JPanel {
         iniciarLabels();
     }
     private void iniciarAtributos() {
-        this.nombre = this.torneo.getNombre();
+        this.nombre = "Nombre Torneo";
         this.descripcion = "descripcion";
         this.fechas = "fechas";
         this.deporte = "deporte";
