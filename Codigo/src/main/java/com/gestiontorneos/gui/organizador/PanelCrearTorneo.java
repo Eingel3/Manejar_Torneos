@@ -17,7 +17,7 @@ public class PanelCrearTorneo extends JPanel {
         private JTextField txtFechaFin;
         private JTextField txtDeporte;
         private JTextField txtFormato;
-        private JTextArea txtDescripcion;
+        private JTextField txtDescripcion;
         private JButton btnCrear;
         private JButton btnCancelar;
 
@@ -38,16 +38,33 @@ public class PanelCrearTorneo extends JPanel {
 
             this.add(new JLabel("Nombre del torneo:"));
             this.add(txtNombre = new JTextField());
+            this.add(Box.createRigidArea(new Dimension(0, 30)));
+
             this.add(new JLabel("Fecha inicio:"));
             this.add(txtFechaInicio = new JTextField());
+            this.add(Box.createRigidArea(new Dimension(0, 30)));
+
             this.add(new JLabel("Fecha fin:"));
             this.add(txtFechaFin = new JTextField());
+            this.add(Box.createRigidArea(new Dimension(0, 30)));
+
             this.add(new JLabel("Deporte:"));
             this.add(txtDeporte = new JTextField());
+            this.add(Box.createRigidArea(new Dimension(0, 30)));
+
             this.add(new JLabel("Formato:"));
             this.add(txtFormato = new JTextField());
+            this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+            this.add(new JLabel("Descripcion:"));
+            this.add(txtDescripcion = new JTextField());
+            this.add(Box.createRigidArea(new Dimension(0, 30)));
+
             this.add(btnCrear = new JButton("Crear"));
+            this.add(Box.createRigidArea(new Dimension(0, 30)));
+
             this.add(btnCancelar = new JButton("Cancelar"));
+            this.add(Box.createRigidArea(new Dimension(0, 30)));
 
         }
 
