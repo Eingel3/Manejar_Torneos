@@ -101,6 +101,58 @@ public class PanelClasificacion extends JPanel {
         puesto3.add(dato5Puesto3);
     }
 
+    /**
+     * Metodo destinado al controller que designa cada uno de los datos de la tarjeta del puesto 1
+     * @param nombrePuesto es el nombre del equipo o individuo que esta en dicho puesto
+     * @param dato1 es el dato1 del puesto
+     * @param dato2 es el dato2 del puesto
+     * @param dato3 es el dato3 del puesto
+     * @param dato4 es el dato4 del puesto
+     * @param dato5 es el dato5 del puesto
+     */
+    public void setPuesto1(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
+        nombrePuesto1.setText(nombrePuesto1);
+        dato1Puesto1.setText(dato1);
+        dato2Puesto1.setText(dato2);
+        dato3Puesto1.setText(dato3);
+        dato4Puesto1.setText(dato4);
+        dato5Puesto1.setText(dato5);
+    }
+
+    /**
+     * Metodo destinado al controller que designa cada uno de los datos de la tarjeta del puesto 2
+     * @param nombrePuesto es el nombre del equipo o individuo que esta en dicho puesto
+     * @param dato1 es el dato1 del puesto
+     * @param dato2 es el dato2 del puesto
+     * @param dato3 es el dato3 del puesto
+     * @param dato4 es el dato4 del puesto
+     * @param dato5 es el dato5 del puesto
+     */
+    public void setPuesto2(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
+        nombrePuesto2.setText(nombrePuesto1);
+        dato1Puesto2.setText(dato1);
+        dato2Puesto2.setText(dato2);
+        dato3Puesto2.setText(dato3);
+        dato4Puesto2.setText(dato4);
+        dato5Puesto2.setText(dato5);
+    }
+    /**
+     * Metodo destinado al controller que designa cada uno de los datos de la tarjeta del puesto 3
+     * @param nombrePuesto es el nombre del equipo o individuo que esta en dicho puesto
+     * @param dato1 es el dato1 del puesto
+     * @param dato2 es el dato2 del puesto
+     * @param dato3 es el dato3 del puesto
+     * @param dato4 es el dato4 del puesto
+     * @param dato5 es el dato5 del puesto
+     */
+    public void setPuesto2(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
+        nombrePuesto2.setText(nombrePuesto1);
+        dato1Puesto2.setText(dato1);
+        dato2Puesto2.setText(dato2);
+        dato3Puesto2.setText(dato3);
+        dato4Puesto2.setText(dato4);
+        dato5Puesto2.setText(dato5);
+    }
 
 
 }
