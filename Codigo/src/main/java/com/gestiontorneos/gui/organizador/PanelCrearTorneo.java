@@ -1,5 +1,7 @@
 package com.gestiontorneos.gui.organizador;
 
+import com.gestiontorneos.controller.TorneoController;
+import com.gestiontorneos.gui.VentanaPrincipal;
 import com.gestiontorneos.gui.compartido.PanelInformacion;
 
 import javax.swing.*;
@@ -20,6 +22,22 @@ public class PanelCrearTorneo extends JPanel {
     private JTextField txtDescripcion;
     private JButton btnCrear;
     private JButton btnCancelar;
+
+    //se añade para interactuar con torneocontroller
+    private TorneoController torneoController;
+
+    //se añade para recargar la pagina principal tras enviar los datos
+    private VentanaPrincipal ventanaPrincipal;
+
+    //para recargar torneocontrolelr
+    public void setTorneoController(TorneoController tc) {
+        this.torneoController = tc;
+    }
+
+    //para recargar la ventana principal
+    public void setVentanaPrincipal(VentanaPrincipal vp) {
+        this.ventanaPrincipal = vp;
+    }
 
     public PanelCrearTorneo() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
