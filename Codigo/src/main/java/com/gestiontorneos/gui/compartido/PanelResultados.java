@@ -50,7 +50,6 @@ public class PanelResultados extends JPanel {
      * </p>
      */
     public PanelResultados() {
-        //Recibimos un Torneo como argumento para poder mostrar sus detalles
 
         //Definimos las caracteriscticas del JPanel
         this.setBackground(Color.CYAN);
@@ -196,6 +195,8 @@ public class PanelResultados extends JPanel {
                 anchoTitulosPanel, 30)));
 
         labelsPanel.add(participantesL);
+
+        actualizarCambios();
     }
 
     /**
@@ -259,5 +260,10 @@ public class PanelResultados extends JPanel {
      */
     public void actualizarParticipantes(String participantes) {
         participantesL.setText(participantes);
+    }
+
+    public void actualizarCambios(){
+        revalidate();
+        repaint();
     }
 }

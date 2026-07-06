@@ -1,4 +1,5 @@
 package com.gestiontorneos.gui.compartido;
+import com.gestiontorneos.gui.factory.PanelTarjeta;
 import com.gestiontorneos.model.torneo.Torneo;
 
 import javax.swing.*;
@@ -80,15 +81,13 @@ public class PanelListaTorneos extends JPanel {
      * @param otroDato información adicional que se desea mostrar.
      * @return botón de detalles asociado al torneo creado.
      */
-    public JButton agregarTorneoGUI(String torneo, String fecha, String otroDato) {
-        JPanel torneoGUI = new JPanel(); //Aquí es donde dejaremos todos los datos
+    public JButton agregarTorneoGUI(String torneo, String fecha, String otroDato){
+
+        PanelTarjeta creadorTarjeta = new PanelTarjeta();
+        JPanel torneoGUI = creadorTarjeta.crear(500, 150); //Aquí es donde dejaremos todos los datos
         JButton detalles = new JButton("Detalles");
         detalles.setPreferredSize(new Dimension(100, 50));
-
-        torneoGUI.setLayout(new FlowLayout(FlowLayout.LEFT)); //layout tipo Flow que agrega cada componente de izquierda a derecha
-        torneoGUI.setBorder(BorderFactory.createLineBorder(Color.GRAY)); //le damos un borde
-        torneoGUI.setBackground(Color.PINK); //y un color de fondo
-        torneoGUI.setPreferredSize(new Dimension(500, 150)); //Y su tamaño
+        torneoGUI.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
 
         //Creamos los distintos labels para cada informacion que mostremos
         JLabel lblNombre = new JLabel(torneo);
