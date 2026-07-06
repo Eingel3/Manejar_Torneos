@@ -7,22 +7,25 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- * Representa la vista grafica de los participantes
+ * Panel gráfico encargado de mostrar y gestionar participantes.
+ * <p>
+ * Esta vista está orientada al organizador y permitirá visualizar, agregar,
+ * editar o eliminar participantes asociados a un torneo.
+ * </p>
  *
- * Este panel dibuja una lista con los participantes
+ * @see JPanel
  */
-
 public class PanelParticipantes extends JPanel {
 
-    public PanelParticipantes(){
-            //Ajustes del JPanel
-            setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //definimos el layout
-            setBackground(Color.lightGray); //definimos el color de fondo
-            setPreferredSize(new Dimension(
-                    PanelInformacion.VENTANASINMENU.getAncho(),
-                    PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
+    public PanelParticipantes() {
+        //Ajustes del JPanel
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //definimos el layout
+        setBackground(Color.lightGray); //definimos el color de fondo
+        setPreferredSize(new Dimension(
+                PanelInformacion.VENTANASINMENU.getAncho(),
+                PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
+    }
 
-        }
         public void agregarParticipanteGUI(String nombre, String enQueParticipa, String esUnEquipoOUnIndividuo){
 
             PanelTarjeta creadorTarjeta = new PanelTarjeta();
