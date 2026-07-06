@@ -46,5 +46,4 @@ public class PanelParticipantes extends JPanel {
             this.repaint();
         }
 
-    }
 }

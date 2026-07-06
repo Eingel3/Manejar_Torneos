@@ -67,7 +67,7 @@ public class PanelTarjeta implements PanelFactory{
     @Override
     public JPanel crear(int ancho, int alto){
         JPanel panel = new JPanel();
-        panel.setBackground(Color.BLACK); //Color de fondo del panel
+        panel.setBackground(Color.PINK); //Color de fondo del panel
         panel.setPreferredSize(new Dimension(
                 ancho,
                 alto));
@@ -77,7 +77,7 @@ public class PanelTarjeta implements PanelFactory{
         panel.setMaximumSize(new Dimension( //Y un tamaño maximo para evitar comportamientos no deseados
                 PanelInformacion.TARJETA.getAncho(),
                 PanelInformacion.TARJETA.getAlto()));
-        panel.setBorder(BorderFactory.createLineBorder(Color.PINK));
+        panel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
         return  panel;
     }
