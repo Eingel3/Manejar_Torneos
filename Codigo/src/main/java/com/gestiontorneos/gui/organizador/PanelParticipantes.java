@@ -26,8 +26,8 @@ public class PanelParticipantes extends JPanel {
         public void agregarParticipanteGUI(String nombre, String enQueParticipa, String esUnEquipoOUnIndividuo){
 
             PanelTarjeta creadorTarjeta = new PanelTarjeta();
-            JPanel torneoGUI = creadorTarjeta.crear(500, 150); //Aquí es donde dejaremos todos los datos
-            torneoGUI.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
+            JPanel participanteGUI = creadorTarjeta.crear(500, 150); //Aquí es donde dejaremos todos los datos
+            participanteGUI.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
             //Creamos los distintos labels para cada informacion que mostremos
             JLabel lblNombre = new JLabel(nombre);
             JLabel lblParticipa = new JLabel(enQueParticipa);
@@ -37,11 +37,11 @@ public class PanelParticipantes extends JPanel {
             lblParticipa.setFont(new Font("Dialog", Font.BOLD, 14));
             lblQueEs.setFont(new Font("Dialog", Font.BOLD, 14));
             //Y agregamos los labels a torneoGUI
-            torneoGUI.add(lblNombre);
-            torneoGUI.add(lblParticipa);
-            torneoGUI.add(lblQueEs);
+            participanteGUI.add(lblNombre);
+            participanteGUI.add(lblParticipa);
+            participanteGUI.add(lblQueEs);
 
-            this.add(torneoGUI);//añadimos al JPanel de PanelListaTorneos
+            this.add(participanteGUI);//añadimos al JPanel de PanelListaTorneos
             this.revalidate();
             this.repaint();
         }
