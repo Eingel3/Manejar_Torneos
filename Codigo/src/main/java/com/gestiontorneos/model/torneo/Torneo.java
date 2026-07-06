@@ -12,6 +12,23 @@ import java.util.Collections;
 import java.util.List;
 import java.time.LocalDate;
 
+/**
+ * Representa un torneo dentro del sistema.
+ * <p>
+ * Un torneo contiene información general como nombre, deporte, formato,
+ * fechas, participantes, calendario, clasificación y estado actual.
+ * </p>
+ * <p>
+ * La generación de enfrentamientos y la actualización de puntos se delegan al
+ * formato del torneo mediante el patrón Strategy.
+ * </p>
+ *
+ * @see Deporte
+ * @see FormatoTorneo
+ * @see Participante
+ * @see Calendario
+ * @see Clasificacion
+ */
 public class Torneo {
 
     private String nombre;
@@ -24,6 +41,16 @@ public class Torneo {
     private Clasificacion clasificacion;
     private String estado; // "INSCRIPCION", "EN_CURSO" o "FINALIZADO"
 
+    /**
+     * Crea un nuevo torneo con sus datos principales.
+     *
+     * @param nombre nombre del torneo.
+     * @param deporte deporte asociado al torneo.
+     * @param formato formato de competición utilizado.
+     * @param fechaInicio fecha de inicio del torneo.
+     * @param fechaFin fecha de finalización del torneo.
+     * @throws DatosInvalidosException si algún dato obligatorio es inválido o si la fecha de fin es anterior a la de inicio.
+     */
     public Torneo(String nombre, Deporte deporte, FormatoTorneo formato,
                   LocalDate fechaInicio, LocalDate fechaFin) { //Constructor para crear un torneo
         if (nombre == null || nombre.trim().isEmpty()) { //Validación de entradas
@@ -53,6 +80,13 @@ public class Torneo {
         this.estado = "INSCRIPCION"; //Todo torneo parte en fase de inscripción
     }
 
+    /**
+     * Inscribe un participante en el torneo.
+     *
+     * @param participante participante que se desea agregar.
+     * @throws DatosInvalidosException si el participante es {@code null} o ya está inscrito.
+     * @throws IllegalStateException si el torneo ya no se encuentra en fase de inscripción.
+     */
     public void agregarParticipante(Participante participante) { //Inscribe un participante al torneo
         if (participante == null) {
             throw new DatosInvalidosException("El participante no puede ser null");
@@ -67,6 +101,11 @@ public class Torneo {
         clasificacion.registrarParticipante(participante); //Lo agrega a la tabla con 0 puntos
     }
 
+    /**
+     * Genera el calendario inicial del torneo según su formato.
+     *
+     * @throws IllegalStateException si hay menos de dos participantes o si el calendario ya fue generado.
+     */
     public void generarCalendario() { //Crea todos los partidos según el formato elegido
         if (participantes.size() < 2) {
             throw new IllegalStateException("Se necesitan al menos 2 participantes");
@@ -82,6 +121,17 @@ public class Torneo {
         estado = "EN_CURSO"; //Una vez generado el calendario, no se pueden inscribir más participantes
     }
 
+    /**
+     * Registra el resultado de un partido y actualiza la clasificación.
+     * <p>
+     * Después de registrar el resultado, solicita al formato del torneo la
+     * generación de una posible siguiente ronda.
+     * </p>
+     *
+     * @param partido partido al que se le registrará el resultado.
+     * @param resultado resultado del partido.
+     * @throws IllegalStateException si el torneo no está en curso.
+     */
     public void registrarResultado(Partido partido, Resultado resultado) { //Anota el resultado de un partido y actualiza la tabla
         if (!estado.equals("EN_CURSO")) {
             throw new IllegalStateException("El torneo no está en curso");
@@ -94,28 +144,116 @@ public class Torneo {
             calendario.agregarPartido(p); //Agrega los nuevos partidos al calendario
         }
     }
-    //Getters
-    public String getNombre() { return nombre; }
-    public Deporte getDeporte() { return deporte; }
-    public FormatoTorneo getFormato() { return formato; }
-    public LocalDate getFechaInicio() { return fechaInicio; }
-    public LocalDate getFechaFin() { return fechaFin; }
-    public String getEstado() { return estado; }
-    public Calendario getCalendario() { return calendario; }
-    public Clasificacion getClasificacion() { return clasificacion; }
 
+    /**
+     * Obtiene el nombre del torneo.
+     *
+     * @return nombre del torneo.
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * Obtiene el deporte asociado al torneo.
+     *
+     * @return deporte del torneo.
+     */
+    public Deporte getDeporte() {
+        return deporte;
+    }
+
+    /**
+     * Obtiene el formato de competición del torneo.
+     *
+     * @return formato del torneo.
+     */
+    public FormatoTorneo getFormato() {
+        return formato;
+    }
+
+    /**
+     * Obtiene la fecha de inicio del torneo.
+     *
+     * @return fecha de inicio.
+     */
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    /**
+     * Obtiene la fecha de finalización del torneo.
+     *
+     * @return fecha de finalización.
+     */
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    /**
+     * Obtiene el estado actual del torneo.
+     *
+     * @return estado del torneo.
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * Obtiene el calendario del torneo.
+     *
+     * @return calendario del torneo.
+     */
+    public Calendario getCalendario() {
+        return calendario;
+    }
+
+    /**
+     * Obtiene la clasificación del torneo.
+     *
+     * @return clasificación del torneo.
+     */
+    public Clasificacion getClasificacion() {
+        return clasificacion;
+    }
+
+    /**
+     * Obtiene la lista de participantes inscritos.
+     * <p>
+     * La lista retornada es de solo lectura.
+     * </p>
+     *
+     * @return lista no modificable de participantes.
+     */
     public List<Participante> getParticipantes() { //Devuelve la lista de participantes como solo lectura
         return Collections.unmodifiableList(participantes);
     }
 
+    /**
+     * Devuelve una representación textual básica del torneo.
+     *
+     * @return texto con nombre, deporte y estado del torneo.
+     */
     @Override
     public String toString() { //toString para mostrar información básica del torneo
         return nombre + " | " + deporte.getNombre() + " | " + estado;
     }
 
+    /**
+     * Agrega directamente un partido al calendario del torneo.
+     *
+     * @param partido partido que se desea agregar.
+     */
     public void agregarPartido(Partido partido) {
         calendario.agregarPartido(partido);
     }
+
+    /**
+     * Elimina un participante del torneo durante la fase de inscripción.
+     *
+     * @param participante participante que se desea eliminar.
+     * @throws IllegalStateException si el torneo ya fue iniciado.
+     */
     public void eliminarParticipante(Participante participante) {
         if (participante == null) return;
         if (!estado.equals("INSCRIPCION")) { //No se puede eliminar si el torneo ya empezó
