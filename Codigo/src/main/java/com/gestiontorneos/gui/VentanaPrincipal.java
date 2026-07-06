@@ -114,6 +114,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.add(partidosOrganizador,  "Partidos");
         subPanel.add(torneosOrganizador,   "Torneos Organizador");
         subPanel.add(eventos,  "Futuros Eventos");
+        subPanel.add(resultados, "Inicio");
 
         //Y añadimos el SubPanel
         this.add(subPanel);
@@ -159,7 +160,9 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
             case "Torneos Organizador": torneosOrganizador.setVisible(true);
             break;
             case "Futuros Eventos": eventos.setVisible(true);
-            break;
+                break;
+            case "Inicio": resultados.setVisible(true);
+                break;
         }
     }
 

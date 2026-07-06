@@ -4,6 +4,7 @@ import com.gestiontorneos.model.torneo.Torneo;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Representa la vista grafica de los torneos
@@ -21,11 +22,22 @@ public class PanelListaTorneos extends JPanel {
         setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
-        cantidadTorneos = 3; //A futuro hay que reemplazar con una llamada a metodo obtenerCantidadTorneos();
-
-        JButton detalles0 = this.agregarTorneoGUI("Torneo 1", "aaaa", "bbbb"); //agregamos una tarjeta de torneo
-        this.gestionarTorneosGUI();//llamamos a la funcion que gestiona la agregacion de torneos
     }
+
+    public void actualizarLista(List<Torneo> torneos) {
+        this.removeAll();  // limpiar tarjetas viejas
+        for (Torneo t : torneos) {
+            agregarTorneoGUI(
+                    t.getNombre(),
+                    t.getFechaInicio() + " - " + t.getFechaFin(),
+                    t.getDeporte().getNombre()
+            );
+        }
+        this.revalidate();
+        this.repaint();
+    }
+
+
     private void gestionarTorneosGUI(){ //esta funcion es de prueba por ahora
         //ciclo for para agregar todos los torneos
         for(int i = 0; i < cantidadTorneos; i++){

@@ -1,4 +1,6 @@
 package com.gestiontorneos;
+import com.gestiontorneos.controller.DeporteController;
+import com.gestiontorneos.controller.TorneoController;
 import com.gestiontorneos.gui.compartido.PanelCalendario;
 import com.gestiontorneos.gui.compartido.PanelClasificacion;
 import com.gestiontorneos.gui.compartido.PanelListaTorneos;
@@ -15,6 +17,10 @@ import java.awt.event.*;
 
 public class Main{
     public static void main(String[] args){
-        new VentanaPrincipal().mostrar();
+        VentanaPrincipal ventana = new VentanaPrincipal();
+        TorneoController tc = new TorneoController();
+        ventana.setTorneoController(tc);
+        ventana.setDeporteController(new DeporteController());
+        ventana.mostrar();
     }
 }
