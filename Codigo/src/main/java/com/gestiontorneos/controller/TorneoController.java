@@ -1,10 +1,9 @@
-    package com.gestiontorneos.controller;
+package com.gestiontorneos.controller;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import com.gestiontorneos.gui.compartido.PanelListaTorneos;
 import com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.deporte.Deporte;
@@ -25,7 +24,6 @@ public class TorneoController{
     //aca guarda los torneos con persistencia
     private PersistenciaController persistenciaController;
 
-    private PanelListaTorneos panelListaTorneos;
 
 
     public TorneoController(){
@@ -64,7 +62,7 @@ public class TorneoController{
             Torneo torneo = new Torneo(nombreTorneo, deporte, formato, inicio, fin);
             torneos.add(torneo);
 
-            JButton detallesBoton = panelListaTorneos.agregarTorneoGUI(nombreTorneo, "Desde: " + fechaInicio + "\nHasta: " + fechaFin, nombreDeporte);
+
 
             return torneo;
 

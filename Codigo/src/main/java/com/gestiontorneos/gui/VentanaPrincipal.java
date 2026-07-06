@@ -1,5 +1,4 @@
 package com.gestiontorneos.gui;
-
 import com.gestiontorneos.controller.DeporteController;
 import com.gestiontorneos.controller.PanelMenuController;
 import com.gestiontorneos.controller.TorneoController;
@@ -134,12 +133,13 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.add(calendario, "Calendario");
         subPanel.add(clasificacion, "Clasificacion");
         subPanel.add(torneos, "Torneos");
-        subPanel.add(resultados, "Resultados");
-        subPanel.add(crearTorneo, "Crear Torneo");
-        subPanel.add(participantesOrganizador, "Participantes");
-        subPanel.add(partidosOrganizador, "Partidos");
-        subPanel.add(torneosOrganizador, "Torneos Organizador");
-        subPanel.add(eventos, "Futuros Eventos");
+        subPanel.add(resultados,  "Resultados");
+        subPanel.add(crearTorneo,  "Crear Torneo");
+        subPanel.add(participantesOrganizador,  "Participantes");
+        subPanel.add(partidosOrganizador,  "Partidos");
+        subPanel.add(torneosOrganizador,   "Torneos Organizador");
+        subPanel.add(eventos,  "Futuros Eventos");
+        subPanel.add(resultados, "Inicio");
 
         //Y añadimos el SubPanel
         this.add(subPanel);
@@ -168,35 +168,29 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      * @param id identificador del panel que se desea mostrar.
      */
     public void mostrarPanel(String id) {
+
         cardLayout.show(subPanel, id);
 
         switch (id) {
-            case "Torneos":
-                torneos.setVisible(true);
+            case "Torneos": torneos.setVisible(true);
+            break;
+            case "Resultados": resultados.setVisible(true);
+            break;
+            case "Crear Torneo": crearTorneo.setVisible(true);
+            break;
+            case "Participantes": participantesOrganizador.setVisible(true);
+            break;
+            case "Partidos": partidosOrganizador.setVisible(true);
+            break;
+            case "Calendario": calendario.setVisible(true);
+            break;
+            case "Clasificacion": clasificacion.setVisible(true);
+            break;
+            case "Torneos Organizador": torneosOrganizador.setVisible(true);
+            break;
+            case "Futuros Eventos": eventos.setVisible(true);
                 break;
-            case "Resultados":
-                resultados.setVisible(true);
-                break;
-            case "Crear Torneo":
-                crearTorneo.setVisible(true);
-                break;
-            case "Participantes":
-                participantesOrganizador.setVisible(true);
-                break;
-            case "Partidos":
-                partidosOrganizador.setVisible(true);
-                break;
-            case "Calendario":
-                calendario.setVisible(true);
-                break;
-            case "Clasificacion":
-                clasificacion.setVisible(true);
-                break;
-            case "Torneos Organizador":
-                torneosOrganizador.setVisible(true);
-                break;
-            case "Futuros Eventos":
-                eventos.setVisible(true);
+            case "Inicio": resultados.setVisible(true);
                 break;
         }
     }

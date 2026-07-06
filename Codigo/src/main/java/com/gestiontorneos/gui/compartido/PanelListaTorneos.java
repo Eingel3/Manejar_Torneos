@@ -1,10 +1,10 @@
 package com.gestiontorneos.gui.compartido;
-
 import com.gestiontorneos.model.torneo.Torneo;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Panel gráfico encargado de mostrar una lista de torneos disponibles.
@@ -36,12 +36,26 @@ public class PanelListaTorneos extends JPanel {
         setBackground(Color.lightGray); //definimos el color de fondo
         setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho(),
-                PanelInformacion.VENTANASINMENU.getAlto())); //Y las dimensiones
+                PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
 
-        cantidadTorneos = 3; //A futuro hay que reemplazar con una llamada a metodo obtenerCantidadTorneos();
+        agregarTorneoGUI("Torneo 1", "01/07 - 10/07", "Futbol");
+        agregarTorneoGUI("Torneo 2", "05/07 - 15/07", "Basketball");
+        agregarTorneoGUI("Torneo 3", "10/07 - 20/07", "Tenis");
+    }
 
-        JButton detalles0 = this.agregarTorneoGUI("Torneo 1", "aaaa", "bbbb"); //agregamos una tarjeta de torneo
-        this.gestionarTorneosGUI(); //llamamos a la funcion que gestiona la agregacion de torneos
+
+
+    public void actualizarLista(List<Torneo> torneos) {
+        this.removeAll();  // limpiar tarjetas viejas
+        for (Torneo t : torneos) {
+            agregarTorneoGUI(
+                    t.getNombre(),
+                    t.getFechaInicio() + " - " + t.getFechaFin(),
+                    t.getDeporte().getNombre()
+            );
+        }
+        this.revalidate();
+        this.repaint();
     }
 
     /**

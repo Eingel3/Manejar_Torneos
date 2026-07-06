@@ -1,5 +1,7 @@
 package com.gestiontorneos.gui.organizador;
 
+import com.gestiontorneos.controller.TorneoController;
+import com.gestiontorneos.gui.VentanaPrincipal;
 import com.gestiontorneos.gui.compartido.PanelInformacion;
 
 import javax.swing.*;
@@ -18,15 +20,32 @@ import java.awt.*;
  * @see JButton
  */
 public class PanelCrearTorneo extends JPanel {
-
     private JTextField txtNombre;
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
     private JTextField txtDeporte;
-    private JTextField txtFormato;
+    private JComboBox<String> Formato;
     private JTextField txtDescripcion;
     private JButton btnCrear;
     private JButton btnCancelar;
+
+    //se añade para interactuar con torneocontroller
+    private TorneoController torneoController;
+
+    //se añade para recargar la pagina principal tras enviar los datos
+    private VentanaPrincipal ventanaPrincipal;
+
+    //para recargar torneocontrolelr
+    public void setTorneoController(TorneoController tc) {
+        this.torneoController = tc;
+    }
+
+    //para recargar la ventana principal
+    public void setVentanaPrincipal(VentanaPrincipal vp) {
+        this.ventanaPrincipal = vp;
+    }
+
+
 
     /**
      * Crea e inicializa el formulario de creación de torneos.
@@ -42,7 +61,21 @@ public class PanelCrearTorneo extends JPanel {
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
         agregarComponentes();
+
+        btnCrear.addActionListener(e -> {
+
+            if(getNombre().isEmpty() || getDeporte().isEmpty()){
+                System.out.println("Campo vacio");
+                return;
+            }else{
+                return;
+            }
+
+
+        });
     }
+
+
 
     /**
      * Agrega al panel todos los componentes visuales del formulario.
@@ -74,8 +107,8 @@ public class PanelCrearTorneo extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
         this.add(new JLabel("Formato:"));
-        this.add(txtFormato = new JTextField());
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        Formato = new JComboBox<>(new String[]{"Eliminacion Directa", "Liga Simple"});
+        this.add(Formato);
 
         this.add(new JLabel("Descripcion:"));
         this.add(txtDescripcion = new JTextField());
@@ -86,5 +119,59 @@ public class PanelCrearTorneo extends JPanel {
 
         this.add(btnCancelar = new JButton("Cancelar"));
         this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+    }
+
+
+
+    public JButton getBotonCrear() {
+        return btnCrear;
+    }
+
+    public JButton getBotonCancelar() {
+        return btnCancelar;
+    }
+
+    public String getNombre() {
+        return txtNombre.getText().trim();
+    }
+
+    public String getFechaInicio() {
+        return txtFechaInicio.getText().trim();
+    }
+
+    public String getFechaFin() {
+        return txtFechaFin.getText().trim();
+    }
+
+    public String getDeporte() {
+        return (String) txtDeporte.getText().trim();
+    }
+
+    public String getFormato() {
+        return (String) Formato.getSelectedItem();
+    }
+
+    public String getDescripcion() {
+        return txtDescripcion.getText().trim();
+    }
+
+    public void limpiarFormulario() {
+        txtNombre.setText("");
+        txtFechaInicio.setText("");
+        txtFechaFin.setText("");
+        txtDeporte.setText("");
+        Formato.setSelectedIndex(0);
+        txtDescripcion.setText("");
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public boolean confirmar(String pregunta){
+        int respuesta = JOptionPane.showConfirmDialog(this,pregunta,
+                "Advertencia", JOptionPane.YES_NO_OPTION);
+        return  respuesta == JOptionPane.YES_OPTION;
     }
 }
