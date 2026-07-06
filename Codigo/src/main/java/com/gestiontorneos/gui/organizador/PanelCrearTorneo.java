@@ -10,6 +10,8 @@ import com.gestiontorneos.model.torneo.formato.DobleEliminacion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Representa la vista grafica del torneo
@@ -57,6 +59,21 @@ public class PanelCrearTorneo extends JPanel {
 
             if(getNombre().isEmpty() || getDeporte().isEmpty()){
                 mostrarMensaje("Llenar campos de Nombre y Deporte");
+                return;
+            }
+            LocalDate inicio, fin;
+            try {
+                inicio = LocalDate.parse(getFechaInicio());
+                fin = LocalDate.parse(getFechaFin());
+                //System.out.println("inicio: " + inicio);
+                //System.out.println("fin: " + fin);
+
+            } catch (DateTimeParseException ex) {
+                mostrarMensaje("Fecha no valida, Use yyyy-MM-dd");
+                return;
+            }
+            if (fin.isBefore(inicio)) {
+                mostrarMensaje("La fecha de fin no puede ser anterior a la de inicio");
                 return;
             }
             String seleccion = (String) Formato.getSelectedItem();
