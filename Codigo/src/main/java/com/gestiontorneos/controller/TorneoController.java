@@ -90,9 +90,6 @@ public class TorneoController{
     }
 
 
-    //--------------------------------------------------------------
-                            //PARTICIPANTES
-    //--------------------------------------------------------------
 
     //registrar a los participantes de un torneo
     public boolean registrarParticipante(String nombreTorneo, Participante participante){
@@ -133,9 +130,6 @@ public class TorneoController{
 
 
 
-    //--------------------------------------------------------------
-                            //PARTIDOS
-    //--------------------------------------------------------------
 
     public boolean crearPartido(Participante local, Participante visitante, String nombreTorneo, int ronda){
         Torneo torneo = buscarTorneo(nombreTorneo);
