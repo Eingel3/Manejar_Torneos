@@ -8,6 +8,16 @@ import com.gestiontorneos.model.torneo.Clasificacion;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementación del formato de doble eliminación.
+ * <p>
+ * En este formato, los participantes comienzan en el bracket de ganadores. Al
+ * perder una vez pasan al bracket de perdedores y, si pierden nuevamente, quedan
+ * eliminados del torneo.
+ * </p>
+ *
+ * @see FormatoTorneo
+ */
 public class DobleEliminacion implements FormatoTorneo {
 
     private List<Participante> bracketGanadores; //Participantes que no han perdido ningún partido
@@ -15,6 +25,13 @@ public class DobleEliminacion implements FormatoTorneo {
     private int rondaActual;
     private boolean turnoGanadores; //Alterna entre procesar bracket ganadores y perdedores
 
+    /**
+     * Crea un formato de doble eliminación.
+     * <p>
+     * Inicializa los brackets, define la primera ronda y establece que el primer
+     * turno corresponde al bracket de ganadores.
+     * </p>
+     */
     public DobleEliminacion() {
         this.bracketGanadores = new ArrayList<>();
         this.bracketPerdedores = new ArrayList<>();
@@ -22,12 +39,24 @@ public class DobleEliminacion implements FormatoTorneo {
         this.turnoGanadores = true; //Siempre empieza el bracket de ganadores
     }
 
+    /**
+     * Genera los enfrentamientos iniciales del bracket de ganadores.
+     *
+     * @param participantes lista de participantes inscritos.
+     * @return lista de partidos iniciales.
+     */
     @Override
     public List<Partido> generarEnfrentamientos(List<Participante> participantes) { //Genera la primera ronda con todos los participantes
         bracketGanadores.addAll(participantes);
         return emparejar(bracketGanadores, rondaActual);
     }
 
+    /**
+     * Genera la siguiente ronda según el bracket que corresponda procesar.
+     *
+     * @param calendario calendario actual del torneo.
+     * @return lista de partidos de la siguiente ronda, o una lista vacía si no se puede avanzar.
+     */
     @Override
     public List<Partido> generarSiguienteRonda(Calendario calendario) {
         List<Partido> rondaAnterior = calendario.getPorRonda(rondaActual);
@@ -94,6 +123,12 @@ public class DobleEliminacion implements FormatoTorneo {
         return siguientes;
     }
 
+    /**
+     * Actualiza la clasificación sumando un punto al ganador del partido.
+     *
+     * @param clasificacion clasificación del torneo.
+     * @param partido partido finalizado.
+     */
     @Override
     public void actualizarClasificacion(Clasificacion clasificacion, Partido partido) { //1 punto por cada victoria
         Participante ganador = partido.getGanador();
@@ -102,16 +137,36 @@ public class DobleEliminacion implements FormatoTorneo {
         }
     }
 
+    /**
+     * Indica si todos los partidos del calendario se encuentran cerrados.
+     *
+     * @param calendario calendario del torneo.
+     * @return {@code true} si todos los partidos están finalizados o cancelados.
+     */
     @Override
     public boolean haTerminado(Calendario calendario) { //Termina cuando todos los partidos están finalizados
         return calendario.todosFinalizados();
     }
 
+    /**
+     * Obtiene el campeón del torneo según el líder de la clasificación.
+     *
+     * @param calendario calendario del torneo.
+     * @param clasificacion clasificación actual.
+     * @return participante ganador del torneo.
+     */
     @Override
     public Participante obtenerGanador(Calendario calendario, Clasificacion clasificacion) { //El campeón es quien ganó la final
         return clasificacion.getLider();
     }
 
+    /**
+     * Empareja participantes de dos en dos para generar partidos.
+     *
+     * @param participantes participantes que serán emparejados.
+     * @param ronda ronda asignada a los partidos.
+     * @return lista de partidos generados.
+     */
     private List<Partido> emparejar(List<Participante> participantes, int ronda) { //Empareja de a dos
         List<Partido> partidos = new ArrayList<>();
         for (int i = 0; i < participantes.size() - 1; i += 2) {
