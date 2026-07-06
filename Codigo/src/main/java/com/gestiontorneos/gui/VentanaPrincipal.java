@@ -3,15 +3,9 @@ import com.gestiontorneos.controller.DeporteController;
 import com.gestiontorneos.controller.PanelMenuController;
 import com.gestiontorneos.controller.TorneoController;
 import com.gestiontorneos.gui.compartido.*;
-import com.gestiontorneos.gui.factory.SubPanel;
 import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
-import com.gestiontorneos.gui.organizador.PanelMisTorneos;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
-import com.gestiontorneos.gui.organizador.PanelPartidos;
-import com.gestiontorneos.model.deporte.Deporte;
-import com.gestiontorneos.model.deporte.TipoParticipacion;
-import com.gestiontorneos.model.torneo.Torneo;
-import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
+import com.gestiontorneos.gui.organizador.PanelCrearPartido;
 
 import java.awt.*;
 import javax.swing.*;
@@ -31,16 +25,14 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
     //Paneles compartidos entre todos los usuarios
     private PanelInicio panelInicio; //Instancia de segmento del panel correspondiente a la pestaña de inicio
-    private PanelCalendario calendario; //Instancia de segmento del panel correspondiente al calendario
     private PanelClasificacion clasificacion; //Instancia de segmento del panel correspondiente a la clasificacion
     private PanelListaTorneos torneos; //Instancia de segmento del panel correspondiente a la lista de los torneos
     private PanelResultados resultados; //Instancia de segmento del panel correspondiente a los resultados
 
     //Paneles unicamente para usuarios tipo organizador
     private PanelCrearTorneo crearTorneo; //Instancia de segmento del panel correspondiente a la opcion de crear torneos
-    private PanelMisTorneos torneosOrganizador; ////Instancia de segmento del panel correspondiente a los torneos del organizador
     private PanelParticipantes participantesOrganizador; //Instancia de segmento del panel correspondiente a los participantes para que el organizador los pueda editar
-    private PanelPartidos partidosOrganizador; //Instancia de segmento del panel correspondiente a los partidos para que el organizador pueda editarlos
+    private PanelCrearPartido partidosOrganizador; //Instancia de segmento del panel correspondiente a los partidos para que el organizador pueda editarlos
     private PanelMenu menuLateral; //Instancia de segmento del panel correspondiente al menu lateral que contiene los botones que dirigen a cada panel
     private PanelFuturosEventos eventos; //Instancia de segmento del panel correspondiente a un panel que contiene la visualizacion de futuros eventos
     private JPanel subPanel;
@@ -94,14 +86,12 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      */
     private void newPanels() {
         subPanel = new JPanel();
-        calendario = new PanelCalendario();
         clasificacion = new PanelClasificacion();
         torneos = new PanelListaTorneos();
         resultados = new PanelResultados();
         crearTorneo = new PanelCrearTorneo();
-        torneosOrganizador = new PanelMisTorneos();
         participantesOrganizador = new PanelParticipantes();
-        partidosOrganizador = new PanelPartidos();
+        partidosOrganizador = new PanelCrearPartido();
         menuLateral = new PanelMenu();
         eventos = new PanelFuturosEventos();
         panelInicio = new PanelInicio();
@@ -118,14 +108,12 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         this.add(menuLateral); //Agregamos el menu lateral
 
         //Agregamos al SubPanel todos los otros JPanels
-        subPanel.add(calendario, "Calendario");
         subPanel.add(clasificacion, "Clasificacion");
         subPanel.add(torneos, "Torneos");
         subPanel.add(resultados,  "Resultados");
         subPanel.add(crearTorneo,  "Crear Torneo");
         subPanel.add(participantesOrganizador,  "Participantes");
         subPanel.add(partidosOrganizador,  "Partidos");
-        subPanel.add(torneosOrganizador,   "Torneos Organizador");
         subPanel.add(eventos,  "Futuros Eventos");
         subPanel.add(panelInicio, "Inicio");
 
@@ -166,11 +154,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
                 break;
             case "Partidos": partidosOrganizador.setVisible(true);
                 break;
-            case "Calendario": calendario.setVisible(true);
-                break;
             case "Clasificacion": clasificacion.setVisible(true);
-                break;
-            case "Torneos Organizador": torneosOrganizador.setVisible(true);
                 break;
             case "Futuros Eventos": eventos.setVisible(true);
                 break;
