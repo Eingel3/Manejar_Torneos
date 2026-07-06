@@ -67,6 +67,8 @@ public class PanelCrearTorneo extends JPanel {
                 }
                 torneoController.crearTorneo(getNombre(),getDeporte(), formato,getFechaInicio(),getFechaFin());
                 System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | Formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
+                mostrarMensaje("Torneo creado exitosamente!");
+                limpiarFormulario();
                 return;
             }
 
