@@ -119,6 +119,15 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 txtContacto.setText("");
                 tipoParticipante.setSelectedIndex(0);
                 txtNombreEquipo.setText("");
+                txtNombreTorneo.setText("");
+                this.revalidate();
+                this.repaint();
+    }
+
+    public void limpiarPanel() {
+        this.removeAll();
+        this.revalidate();
+        this.repaint();
     }
 
     public void mostrarMensaje(String mensaje) {
