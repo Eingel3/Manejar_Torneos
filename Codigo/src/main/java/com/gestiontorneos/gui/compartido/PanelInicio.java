@@ -2,6 +2,7 @@ package com.gestiontorneos.gui.compartido;
 
 import com.gestiontorneos.gui.factory.PanelTarjeta;
 import com.gestiontorneos.gui.factory.SubPanel;
+import com.gestiontorneos.model.torneo.Torneo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,5 +43,38 @@ public class PanelInicio extends JPanel {
         this.add(puesto1);
         this.add(Box.createRigidArea(new Dimension(0, 40))); //Agregamos un espacio entre cada componente
         this.add(informacion);
+
+        revalidate();
+        repaint();
+    }
+    public void setBienvenida(JPanel bienvenida){
+        this.bienvenida.removeAll(); //Removemos lo que ya existe
+        this.bienvenida.add(bienvenida); //Y agregamos el JPanel que se desea agregar
+        this.bienvenida.revalidate();
+        this.bienvenida.repaint();
+    }
+    public void setTorneoReciente(JPanel torneoReciente){
+        this.torneoReciente.removeAll();
+        this.torneoReciente.add(torneoReciente);
+        this.torneoReciente.revalidate();
+        this.torneoReciente.repaint();
+    }
+    public void setFuturoEvento(JPanel futuroEvento){
+        this.futuroEvento.removeAll();
+        this.futuroEvento.add(futuroEvento);
+        this.futuroEvento.revalidate();
+        this.futuroEvento.repaint();
+    }
+    public void setPuesto1(JPanel puesto1){
+        this.puesto1.removeAll();
+        this.puesto1.add(puesto1);
+        this.puesto1.revalidate();
+        this.puesto1.repaint();
+    }
+    public void setInformacion(JPanel informacion){
+        this.informacion.removeAll();
+        this.informacion.add(informacion);
+        this.informacion.revalidate();
+        this.informacion.repaint();
     }
 }
