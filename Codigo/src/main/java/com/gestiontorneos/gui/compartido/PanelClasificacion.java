@@ -1,15 +1,22 @@
 package com.gestiontorneos.gui.compartido;
+
 import com.gestiontorneos.gui.factory.PanelTarjeta;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Representa la vista grafica de la clasificacion
+ * Panel gráfico encargado de mostrar la clasificación principal de un torneo.
+ * <p>
+ * Esta vista contiene tres tarjetas que representan los primeros puestos de la
+ * clasificación. Cada tarjeta muestra el nombre del participante y varios datos
+ * asociados, como puntos, estadísticas u otra información definida por el
+ * controlador.
+ * </p>
  *
- * Este panel dibuja una tabla de calificaciones con todos los datos requeridos
+ * @see JPanel
+ * @see PanelTarjeta
  */
-
 public class PanelClasificacion extends JPanel {
 
     PanelTarjeta creadorTarjeta;
@@ -37,6 +44,14 @@ public class PanelClasificacion extends JPanel {
     JLabel dato4Puesto3;
     JLabel dato5Puesto3;
 
+    /**
+     * Crea e inicializa el panel de clasificación.
+     * <p>
+     * Configura el color de fondo, layout, borde y tamaño del panel. También
+     * crea las tarjetas correspondientes a los tres primeros puestos e inicializa
+     * sus etiquetas.
+     * </p>
+     */
     public PanelClasificacion() {
         //Definimos las caracteriscticas del JPanel
         this.setBackground(Color.CYAN);
@@ -45,8 +60,10 @@ public class PanelClasificacion extends JPanel {
         this.setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
+
         //Creamos el creador de tarjetas
         creadorTarjeta = new PanelTarjeta();
+
         //Y creamos los puestos
         puesto1 = creadorTarjeta.crear();
         puesto2 = creadorTarjeta.crear();
@@ -58,10 +75,16 @@ public class PanelClasificacion extends JPanel {
         this.add(puesto1);
         this.add(puesto2);
         this.add(puesto3);
-
     }
 
-    public void iniciarLabels(){
+    /**
+     * Inicializa las etiquetas de texto correspondientes a los tres primeros
+     * puestos de la clasificación.
+     * <p>
+     * Cada grupo de etiquetas se agrega a su respectiva tarjeta visual.
+     * </p>
+     */
+    public void iniciarLabels() {
         nombrePuesto1 = new JLabel("Nombre puesto 1");
         dato1Puesto1 = new JLabel("Dato 1");
         dato2Puesto1 = new JLabel("Dato 2");
@@ -106,15 +129,16 @@ public class PanelClasificacion extends JPanel {
     }
 
     /**
-     * Metodo destinado al controller que designa cada uno de los datos de la tarjeta del puesto 1
-     * @param nombrePuesto es el nombre del equipo o individuo que esta en dicho puesto
-     * @param dato1 es el dato1 del puesto
-     * @param dato2 es el dato2 del puesto
-     * @param dato3 es el dato3 del puesto
-     * @param dato4 es el dato4 del puesto
-     * @param dato5 es el dato5 del puesto
+     * Actualiza la información mostrada en la tarjeta del primer puesto.
+     *
+     * @param nombrePuesto nombre del equipo o participante ubicado en el primer puesto.
+     * @param dato1 primer dato asociado al participante.
+     * @param dato2 segundo dato asociado al participante.
+     * @param dato3 tercer dato asociado al participante.
+     * @param dato4 cuarto dato asociado al participante.
+     * @param dato5 quinto dato asociado al participante.
      */
-    public void setPuesto1(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
+    public void setPuesto1(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5) {
         nombrePuesto1.setText(nombrePuesto);
         dato1Puesto1.setText(dato1);
         dato2Puesto1.setText(dato2);
@@ -124,15 +148,16 @@ public class PanelClasificacion extends JPanel {
     }
 
     /**
-     * Metodo destinado al controller que designa cada uno de los datos de la tarjeta del puesto 2
-     * @param nombrePuesto es el nombre del equipo o individuo que esta en dicho puesto
-     * @param dato1 es el dato1 del puesto
-     * @param dato2 es el dato2 del puesto
-     * @param dato3 es el dato3 del puesto
-     * @param dato4 es el dato4 del puesto
-     * @param dato5 es el dato5 del puesto
+     * Actualiza la información mostrada en la tarjeta del segundo puesto.
+     *
+     * @param nombrePuesto nombre del equipo o participante ubicado en el segundo puesto.
+     * @param dato1 primer dato asociado al participante.
+     * @param dato2 segundo dato asociado al participante.
+     * @param dato3 tercer dato asociado al participante.
+     * @param dato4 cuarto dato asociado al participante.
+     * @param dato5 quinto dato asociado al participante.
      */
-    public void setPuesto2(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
+    public void setPuesto2(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5) {
         nombrePuesto2.setText(nombrePuesto);
         dato1Puesto2.setText(dato1);
         dato2Puesto2.setText(dato2);
@@ -140,16 +165,18 @@ public class PanelClasificacion extends JPanel {
         dato4Puesto2.setText(dato4);
         dato5Puesto2.setText(dato5);
     }
+
     /**
-     * Metodo destinado al controller que designa cada uno de los datos de la tarjeta del puesto 3
-     * @param nombrePuesto es el nombre del equipo o individuo que esta en dicho puesto
-     * @param dato1 es el dato1 del puesto
-     * @param dato2 es el dato2 del puesto
-     * @param dato3 es el dato3 del puesto
-     * @param dato4 es el dato4 del puesto
-     * @param dato5 es el dato5 del puesto
+     * Actualiza la información mostrada en la tarjeta del tercer puesto.
+     *
+     * @param nombrePuesto nombre del equipo o participante ubicado en el tercer puesto.
+     * @param dato1 primer dato asociado al participante.
+     * @param dato2 segundo dato asociado al participante.
+     * @param dato3 tercer dato asociado al participante.
+     * @param dato4 cuarto dato asociado al participante.
+     * @param dato5 quinto dato asociado al participante.
      */
-    public void setPuesto3(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5){
+    public void setPuesto3(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5) {
         nombrePuesto2.setText(nombrePuesto);
         dato1Puesto2.setText(dato1);
         dato2Puesto2.setText(dato2);
@@ -157,6 +184,4 @@ public class PanelClasificacion extends JPanel {
         dato4Puesto2.setText(dato4);
         dato5Puesto2.setText(dato5);
     }
-
-
 }

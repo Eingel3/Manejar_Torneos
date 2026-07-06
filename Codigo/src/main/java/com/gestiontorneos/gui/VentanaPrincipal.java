@@ -174,10 +174,6 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         this.deporteController = deporteController;
     }
 
-    public void actualizarTorneos(){
-        torneos.actualizarLista(torneoController.listaTorneos());
-    }
-
     /**
      * Dibuja los componentes gráficos del panel principal.
      * <p>
@@ -254,8 +250,4 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      */
     @Override
     public void mouseExited(MouseEvent e) {}
-
-    public PanelCrearTorneo getCrearTorneo() {
-        return crearTorneo;
-    }
 }
