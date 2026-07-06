@@ -38,7 +38,7 @@ public class PanelTarjeta implements PanelFactory {
                 PanelInformacion.TARJETA.getAncho(),
                 PanelInformacion.TARJETA.getAlto()));
         panel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
+        panel.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
         return panel;
     }
 
@@ -62,7 +62,7 @@ public class PanelTarjeta implements PanelFactory {
                 PanelInformacion.TARJETA.getAncho(),
                 PanelInformacion.TARJETA.getAlto()));
         panel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
+        panel.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
         return panel;
     }
 
@@ -87,7 +87,7 @@ public class PanelTarjeta implements PanelFactory {
                 PanelInformacion.TARJETA.getAncho(),
                 PanelInformacion.TARJETA.getAlto()));
         panel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
+        panel.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
         return panel;
     }
 }

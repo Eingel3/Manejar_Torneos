@@ -66,8 +66,13 @@ public class PanelClasificacion extends JPanel {
 
         //Y creamos los puestos
         puesto1 = creadorTarjeta.crear();
+        puesto1.setLayout(new BoxLayout(puesto1, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
+
         puesto2 = creadorTarjeta.crear();
+        puesto2.setLayout(new BoxLayout(puesto2, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
+
         puesto3 = creadorTarjeta.crear();
+        puesto3.setLayout(new BoxLayout(puesto3, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
 
         //Ahora, hay que crear los labels
         iniciarLabels();

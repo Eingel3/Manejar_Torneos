@@ -29,7 +29,7 @@ public enum PanelInformacion {
     /**
      * Dimensiones estándar de una tarjeta visual.
      */
-    TARJETA(1080, 200);
+    TARJETA(1000, 200);
 
     private final int ancho;
     private final int alto;

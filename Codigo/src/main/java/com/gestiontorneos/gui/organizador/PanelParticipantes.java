@@ -30,7 +30,6 @@ public class PanelParticipantes extends JPanel {
 
             PanelTarjeta creadorTarjeta = new PanelTarjeta();
             JPanel participanteGUI = creadorTarjeta.crear(500, 150); //Aquí es donde dejaremos todos los datos
-            participanteGUI.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
             //Creamos los distintos labels para cada informacion que mostremos
             JLabel lblNombre = new JLabel(nombre);
             JLabel lblParticipa = new JLabel(enQueParticipa);

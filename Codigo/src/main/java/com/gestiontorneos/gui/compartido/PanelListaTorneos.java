@@ -88,7 +88,6 @@ public class PanelListaTorneos extends JPanel {
 
         PanelTarjeta creadorTarjeta = new PanelTarjeta();
         JPanel torneoGUI = creadorTarjeta.crear(500, 150); //Aquí es donde dejaremos todos los datos
-        torneoGUI.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
 
         //Creamos el boton de detalles
         BotonSimple creadorBoton = new BotonSimple();
