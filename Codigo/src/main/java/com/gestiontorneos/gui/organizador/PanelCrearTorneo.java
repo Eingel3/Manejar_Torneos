@@ -21,7 +21,7 @@ public class PanelCrearTorneo extends JPanel {
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
     private JTextField txtDeporte;
-    private JComboBox<String> Formato;
+    private JComboBox<String> formato;
     private JTextField txtDescripcion;
     private JButton btnCrear;
     private JButton btnCancelar;
@@ -58,7 +58,7 @@ public class PanelCrearTorneo extends JPanel {
                 mostrarMensaje("Complete nombre y deporte para crear torneo");
                 System.out.println("Campo vacio");
             }else{
-                String seleccion = (String) Formato.getSelectedItem();
+                String seleccion = (String) formato.getSelectedItem();
                 FormatoTorneo formato;
                 if (seleccion.equals("Liga Simple")) {
                     formato = new LigaSimple();
@@ -66,7 +66,7 @@ public class PanelCrearTorneo extends JPanel {
                     formato = new EliminacionDirecta();
                 }
                 torneoController.crearTorneo(getNombre(),getDeporte(), formato,getFechaInicio(),getFechaFin());
-                System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | Formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
+                System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
                 mostrarMensaje("Torneo creado exitosamente!");
                 limpiarFormulario();
 
@@ -102,9 +102,9 @@ public class PanelCrearTorneo extends JPanel {
         this.add(txtDeporte = new JTextField());
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
-        this.add(new JLabel("Formato:"));
-        Formato = new JComboBox<>(new String[]{"Eliminacion Directa", "Liga Simple"});
-        this.add(Formato);
+        this.add(new JLabel("formato:"));
+        formato = new JComboBox<>(new String[]{"Eliminacion Directa", "Liga Simple"});
+        this.add(formato);
 
         this.add(new JLabel("Descripcion:"));
         this.add(txtDescripcion = new JTextField());
@@ -145,7 +145,7 @@ public class PanelCrearTorneo extends JPanel {
     }
 
     public String getFormato() {
-        return (String) Formato.getSelectedItem();
+        return (String) formato.getSelectedItem();
     }
 
     public String getDescripcion() {
@@ -157,7 +157,7 @@ public class PanelCrearTorneo extends JPanel {
         txtFechaInicio.setText("");
         txtFechaFin.setText("");
         txtDeporte.setText("");
-        Formato.setSelectedIndex(0);
+        formato.setSelectedIndex(0);
         txtDescripcion.setText("");
     }
 

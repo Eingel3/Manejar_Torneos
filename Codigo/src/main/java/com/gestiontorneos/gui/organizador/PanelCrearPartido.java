@@ -25,6 +25,7 @@ public class PanelCrearPartido extends JPanel {
     private JButton btnCancelar;
     private JButton btnSiguiente;
     private BotonSimple creadorBotones;
+    private JComboBox<String> estadoPartido;
     /**
      * Crea un nuevo panel de partidos.
 
@@ -54,11 +55,16 @@ public class PanelCrearPartido extends JPanel {
 
         this.add(new JLabel("Nombre del participante o equipo marcado como 'Visitante':"));
         this.add(txtNombreParticipanteVisitante = new JTextField());
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        this.add(Box.createRigidArea(new Dimension(0, 60)));
 
 
 
         this.add(new JLabel("Indique el estado del partido:"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        estadoPartido = new JComboBox<>(new String[]{"Pendiente", "En curso", "Finalizado", "Cancelado"});
+        this.add(estadoPartido);
+        this.add(Box.createRigidArea(new Dimension(0, 60)));
+
 
 
 
@@ -107,12 +113,17 @@ public class PanelCrearPartido extends JPanel {
         return (String) tipoParticipante.getSelectedItem();
     }
 
+    public String getEstadoPartido() {
+        return (String) estadoPartido.getSelectedItem();
+    }
+
 
     public void limpiarFormulario() {
         txtNombreParticipanteLocal.setText("");
         txtNombreParticipanteVisitante.setText("");
         tipoParticipante.setSelectedIndex(0);
         txtNombreTorneo.setText("");
+        estadoPartido.setSelectedIndex(0);
         this.revalidate();
         this.repaint();
     }
