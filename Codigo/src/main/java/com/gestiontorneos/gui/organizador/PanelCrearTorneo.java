@@ -55,10 +55,14 @@ public class PanelCrearTorneo extends JPanel {
 
         btnCrear.addActionListener(e -> {
 
+            if(getNombre().isEmpty() || getDeporte().isEmpty()){
+                mostrarMensaje("Llenar campos de Nombre y Deporte");
+                return;
+            }
             String seleccion = (String) Formato.getSelectedItem();
             FormatoTorneo formato;
             switch (seleccion) {
-                case "Liga Simple":         
+                case "Liga Simple":
                     formato = new LigaSimple();
                     break;
                 case "Doble Eliminacion":
