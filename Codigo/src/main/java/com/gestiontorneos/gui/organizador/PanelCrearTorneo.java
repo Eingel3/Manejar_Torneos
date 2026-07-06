@@ -3,22 +3,19 @@ package com.gestiontorneos.gui.organizador;
 import com.gestiontorneos.controller.TorneoController;
 import com.gestiontorneos.gui.VentanaPrincipal;
 import com.gestiontorneos.gui.compartido.PanelInformacion;
+import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
+import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
+import com.gestiontorneos.model.torneo.formato.LigaSimple;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Panel gráfico que permite al organizador crear un nuevo torneo.
- * <p>
- * Contiene campos de texto para ingresar el nombre del torneo, fechas, deporte,
- * formato y descripción. Además, incluye botones para confirmar o cancelar la
- * creación.
- * </p>
+ * Representa la vista grafica del torneo
  *
- * @see JPanel
- * @see JTextField
- * @see JButton
+ * Este panel indica los detalles de un torneo, y ofrece la opcion de cambiar los detalles
  */
+
 public class PanelCrearTorneo extends JPanel {
     private JTextField txtNombre;
     private JTextField txtFechaInicio;
@@ -47,13 +44,6 @@ public class PanelCrearTorneo extends JPanel {
 
 
 
-    /**
-     * Crea e inicializa el formulario de creación de torneos.
-     * <p>
-     * Configura el layout vertical, color de fondo, dimensiones del panel y
-     * agrega todos los componentes del formulario.
-     * </p>
-     */
     public PanelCrearTorneo() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.LIGHT_GRAY);
@@ -65,10 +55,23 @@ public class PanelCrearTorneo extends JPanel {
         btnCrear.addActionListener(e -> {
 
             if(getNombre().isEmpty() || getDeporte().isEmpty()){
+                mostrarMensaje("Complete nombre y deporte para crear torneo");
                 System.out.println("Campo vacio");
-                return;
             }else{
-                return;
+                String seleccion = (String) Formato.getSelectedItem();
+                FormatoTorneo formato;
+                if (seleccion.equals("Liga Simple")) {
+                    formato = new LigaSimple();
+                } else {
+                    formato = new EliminacionDirecta();
+                }
+                torneoController.crearTorneo(getNombre(),getDeporte(), formato,getFechaInicio(),getFechaFin());
+                System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | Formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
+                mostrarMensaje("Torneo creado exitosamente!");
+                limpiarFormulario();
+
+                ventanaPrincipal.actualizarTorneos();
+                ventanaPrincipal.mostrarPanel("Torneos");
             }
 
 
@@ -77,13 +80,6 @@ public class PanelCrearTorneo extends JPanel {
 
 
 
-    /**
-     * Agrega al panel todos los componentes visuales del formulario.
-     * <p>
-     * Incluye etiquetas descriptivas, campos de texto para los datos del torneo
-     * y botones de acción.
-     * </p>
-     */
     private void agregarComponentes() {
         JLabel lblTitulo = new JLabel("Crear Nuevo Torneo");
         lblTitulo.setFont(new Font("Dialog", Font.BOLD, 24));
