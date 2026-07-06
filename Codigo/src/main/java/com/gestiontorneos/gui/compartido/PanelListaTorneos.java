@@ -1,4 +1,5 @@
 package com.gestiontorneos.gui.compartido;
+import com.gestiontorneos.gui.factory.BotonSimple;
 import com.gestiontorneos.gui.factory.PanelTarjeta;
 import com.gestiontorneos.model.torneo.Torneo;
 
@@ -23,6 +24,7 @@ public class PanelListaTorneos extends JPanel {
 
     private int cantidadTorneos;
     private ActionListener evento;
+    private JPanel panelReciente;
 
     /**
      * Crea e inicializa el panel de lista de torneos.
@@ -38,6 +40,7 @@ public class PanelListaTorneos extends JPanel {
         setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
+        this.add(Box.createRigidArea(new Dimension(0, 10))); //Agregamos un espacio arriba
 
         agregarTorneoGUI("Torneo 1", "01/07 - 10/07", "Futbol");
         agregarTorneoGUI("Torneo 2", "05/07 - 15/07", "Basketball");
@@ -85,9 +88,11 @@ public class PanelListaTorneos extends JPanel {
 
         PanelTarjeta creadorTarjeta = new PanelTarjeta();
         JPanel torneoGUI = creadorTarjeta.crear(500, 150); //Aquí es donde dejaremos todos los datos
-        JButton detalles = new JButton("Detalles");
-        detalles.setPreferredSize(new Dimension(100, 50));
         torneoGUI.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
+
+        //Creamos el boton de detalles
+        BotonSimple creadorBoton = new BotonSimple();
+        JButton detalles = creadorBoton.crear("Detalles");
 
         //Creamos los distintos labels para cada informacion que mostremos
         JLabel lblNombre = new JLabel(torneo);
@@ -101,13 +106,21 @@ public class PanelListaTorneos extends JPanel {
 
         //Y agregamos los labels a torneoGUI
         torneoGUI.add(lblNombre);
+        torneoGUI.add(Box.createRigidArea(new Dimension(180, 10))); //Luego, agregamos un espacio entre este label y el siguiente
         torneoGUI.add(lblFecha);
+        torneoGUI.add(Box.createRigidArea(new Dimension(180, 10))); //Luego, agregamos un espacio entre este label y el siguiente
         torneoGUI.add(lblOtroDato);
+        torneoGUI.add(Box.createRigidArea(new Dimension(180, 10))); //Luego, agregamos un espacio entre este label y el siguiente
+
+        // Guardamos la referencia al panel más reciente antes de añadir el boton de detalles
+        this.panelReciente = torneoGUI;
 
         //Y agregamos el JButton detalles
         torneoGUI.add(detalles);
 
         this.add(torneoGUI); //añadimos al JPanel de PanelListaTorneos
+        this.add(Box.createRigidArea(new Dimension(0, 40))); //Luego, agregamos un espacio entre este torneoGUI y el siguiente
+
         this.revalidate();
         this.repaint();
 
@@ -122,5 +135,9 @@ public class PanelListaTorneos extends JPanel {
      */
     public void agregarListener(ActionListener evento) {
         this.evento = evento;
+    }
+
+    public JPanel getTorneoReciente(){
+        return this.panelReciente;
     }
 }
