@@ -37,6 +37,7 @@ import java.awt.event.*;
 public class VentanaPrincipal extends JPanel implements MouseListener {
 
     //Paneles compartidos entre todos los usuarios
+    private PanelInicio panelInicio; //Instancia de segmento del panel correspondiente a la pestaña de inicio
     private PanelCalendario calendario; //Instancia de segmento del panel correspondiente al calendario
     private PanelClasificacion clasificacion; //Instancia de segmento del panel correspondiente a la clasificacion
     private PanelListaTorneos torneos; //Instancia de segmento del panel correspondiente a la lista de los torneos
@@ -88,12 +89,6 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         //Añadimos los paneles
         addPanels();
 
-        //menuLateral.setVisible(true);
-        //mostrarPanel("Torneos");
-        //mostrarPanel("Clasificacion");
-        //mostrarPanel("Futuros Eventos");
-        //mostrarPanel("Crear Torneo");
-
         new PanelMenuController(menuLateral, this);
     }
 
@@ -117,6 +112,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         partidosOrganizador = new PanelPartidos();
         menuLateral = new PanelMenu();
         eventos = new PanelFuturosEventos();
+        panelInicio = new PanelInicio();
     }
 
     /**
@@ -139,7 +135,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.add(partidosOrganizador,  "Partidos");
         subPanel.add(torneosOrganizador,   "Torneos Organizador");
         subPanel.add(eventos,  "Futuros Eventos");
-        subPanel.add(resultados, "Inicio");
+        subPanel.add(panelInicio, "Inicio");
 
         //Y añadimos el SubPanel
         this.add(subPanel);
@@ -190,7 +186,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
             break;
             case "Futuros Eventos": eventos.setVisible(true);
                 break;
-            case "Inicio": resultados.setVisible(true);
+            case "Inicio": panelInicio.setVisible(true);
                 break;
         }
     }
