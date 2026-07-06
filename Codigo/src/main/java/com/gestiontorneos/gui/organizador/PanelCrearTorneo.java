@@ -30,7 +30,9 @@ public class PanelCrearTorneo extends JPanel {
             agregarComponentes();
         }
 
-        private void agregarComponentes() {
+
+
+    private void agregarComponentes() {
             JLabel lblTitulo = new JLabel("Crear Nuevo Torneo");
             lblTitulo.setFont(new Font("Dialog", Font.BOLD, 24));
             lblTitulo.setForeground(Color.BLACK);
@@ -66,6 +68,40 @@ public class PanelCrearTorneo extends JPanel {
             this.add(btnCancelar = new JButton("Cancelar"));
             this.add(Box.createRigidArea(new Dimension(0, 30)));
 
-        }
-
     }
+
+
+
+    public JButton getBotonCrear() {
+        return btnCrear;
+    }
+
+    public JButton getBotonCancelar() {
+        return btnCancelar;
+    }
+
+    public String getNombre() {
+        return txtNombre.getText().trim();
+    }
+
+    public String getFechaInicio() {
+        return txtFechaInicio.getText().trim();
+    }
+
+    public String getFechaFin() {
+        return txtFechaFin.getText().trim();
+    }
+
+    public String getDeporte() {
+        return (String) txtDeporte.getText().trim();
+    }
+
+    public String getFormato() {
+        return (String) txtFormato.getText().trim();
+    }
+
+    public String getDescripcion() {
+        return txtDescripcion.getText().trim();
+    }
+
+}
