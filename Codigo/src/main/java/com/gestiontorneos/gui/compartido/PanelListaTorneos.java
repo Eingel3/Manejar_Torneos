@@ -24,6 +24,8 @@ public class PanelListaTorneos extends JPanel {
                 PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
     }
 
+
+
     public void actualizarLista(List<Torneo> torneos) {
         this.removeAll();  // limpiar tarjetas viejas
         for (Torneo t : torneos) {
