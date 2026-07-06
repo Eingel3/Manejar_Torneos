@@ -4,13 +4,24 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Representa la vista grafica de los torneos
+ * Panel gráfico encargado de mostrar los torneos administrados por el
+ * organizador.
+ * <p>
+ * Esta vista está pensada para listar los torneos que el organizador puede
+ * editar, consultar o gestionar. Actualmente funciona como estructura base para
+ * futuras funcionalidades.
+ * </p>
  *
- * Este panel dibuja una lista de los torneos que el organizador puede editar
- *  Estos torneos pueden ser clickeados para así ser editados
+ * @see JPanel
  */
-
 public class PanelMisTorneos extends JPanel {
+
+    /**
+     * Crea un nuevo panel de torneos del organizador.
+     * <p>
+     * Actualmente no inicializa componentes visuales adicionales.
+     * </p>
+     */
     public PanelMisTorneos() {
 
     }

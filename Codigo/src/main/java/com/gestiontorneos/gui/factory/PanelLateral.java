@@ -6,58 +6,67 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * clase que implementa al PanelFactory.
- *  Se utliza para crear un panel angosto, de layout tipo Box, disposicion vertical.
- *  Gracias a la sobrecarga del metodo crear se puede adaptar a distintos usos.
+ * Fábrica de paneles laterales.
+ * <p>
+ * Esta clase implementa {@link PanelFactory} para crear paneles angostos con
+ * layout vertical basado en {@link BoxLayout}. Se utiliza principalmente para
+ * construir secciones laterales o columnas de información.
+ * </p>
+ *
+ * @see PanelFactory
+ * @see JPanel
+ * @see BoxLayout
  */
-public class PanelLateral implements PanelFactory{
+public class PanelLateral implements PanelFactory {
+
     /**
-     * Override del metodo crear, esta funcion crea un JPanel lateral predeterminado
-     * @return panel retorna un JPanel angosto, de layout tipo Box, disposicion vertical.
+     * Crea un panel lateral con dimensiones predeterminadas.
+     *
+     * @return panel lateral con ancho y alto definidos en {@link PanelInformacion}.
      */
     @Override
-    public JPanel crear(){
+    public JPanel crear() {
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK); //Color de fondo del panel
         panel.setPreferredSize(new Dimension(
                 PanelInformacion.MENULATERAL.getAncho(),
                 PanelInformacion.MENULATERAL.getAlto())); //las dimensiones son determinadas por el enum PanelInformacion
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
-        return  panel;
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
+        return panel;
     }
 
     /**
-     *   Override del metodo crear, esta funcion crea un JPanel lateral predeterminado
+     * Crea un panel lateral con ancho personalizado y alto predeterminado.
      *
-     * @param ancho es el ancho que se desea que tenga el JPanel lateral
-     * @return Retorna un JPanel de ancho personalizado, dado por la variable ancho, de layout tipo Box, disposicion vertical.
+     * @param ancho ancho deseado para el panel.
+     * @return panel lateral con el ancho indicado.
      */
     @Override
-    public JPanel crear(int ancho){
+    public JPanel crear(int ancho) {
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK); //Color de fondo del panel
         panel.setPreferredSize(new Dimension(
                 ancho,
                 PanelInformacion.MENULATERAL.getAlto()));
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
-        return  panel;
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
+        return panel;
     }
 
     /**
-     *   Override del metodo crear, esta funcion crea un JPanel lateral predeterminado
+     * Crea un panel lateral con ancho y alto personalizados.
      *
-     * @param ancho es el ancho que se desea que tenga el JPanel lateral
-     * @param alto es el alto que se desea que tenga el JPanel lateral
-     * @return Retorna un JPanel de ancho  y alto personalizados, dados por las variables ancho y alto, de layout tipo Box, disposicion vertical.
+     * @param ancho ancho deseado para el panel.
+     * @param alto alto deseado para el panel.
+     * @return panel lateral con dimensiones personalizadas.
      */
     @Override
-    public JPanel crear(int ancho, int alto){
+    public JPanel crear(int ancho, int alto) {
         JPanel panel = new JPanel();
         panel.setBackground(Color.BLACK); //Color de fondo del panel
         panel.setPreferredSize(new Dimension(
                 ancho,
                 alto));
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));//Usamos BoxLayout de forma vertical para colocar las adiciones
-        return  panel;
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //Usamos BoxLayout de forma vertical para colocar las adiciones
+        return panel;
     }
 }
