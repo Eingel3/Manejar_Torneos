@@ -1,4 +1,5 @@
 package com.gestiontorneos.gui.compartido;
+
 import com.gestiontorneos.model.torneo.Torneo;
 
 import javax.swing.*;
@@ -6,68 +7,107 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- * Representa la vista grafica de los torneos
+ * Panel gráfico encargado de mostrar una lista de torneos disponibles.
+ * <p>
+ * Cada torneo se representa mediante una tarjeta visual con información básica
+ * y un botón de detalles. El panel está preparado para que un controlador pueda
+ * registrar eventos sobre dichos botones.
+ * </p>
  *
- * Este panel dibuja una lista con todos los torneos. Al ser clickeados se pueden ver los detalles
+ * @see JPanel
+ * @see JButton
+ * @see ActionListener
  */
-
 public class PanelListaTorneos extends JPanel {
+
     private int cantidadTorneos;
     private ActionListener evento;
-    public PanelListaTorneos(){
+
+    /**
+     * Crea e inicializa el panel de lista de torneos.
+     * <p>
+     * Configura el layout, color de fondo, dimensiones y agrega datos de prueba
+     * para representar torneos en pantalla.
+     * </p>
+     */
+    public PanelListaTorneos() {
         //Ajustes del JPanel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //definimos el layout
         setBackground(Color.lightGray); //definimos el color de fondo
         setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho(),
-                PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
+                PanelInformacion.VENTANASINMENU.getAlto())); //Y las dimensiones
+
         cantidadTorneos = 3; //A futuro hay que reemplazar con una llamada a metodo obtenerCantidadTorneos();
 
         JButton detalles0 = this.agregarTorneoGUI("Torneo 1", "aaaa", "bbbb"); //agregamos una tarjeta de torneo
-        this.gestionarTorneosGUI();//llamamos a la funcion que gestiona la agregacion de torneos
+        this.gestionarTorneosGUI(); //llamamos a la funcion que gestiona la agregacion de torneos
     }
-    private void gestionarTorneosGUI(){ //esta funcion es de prueba por ahora
+
+    /**
+     * Agrega torneos de prueba al panel.
+     * <p>
+     * Este método está pensado como implementación temporal mientras se conecta
+     * la vista con datos reales provenientes del modelo o controlador.
+     * </p>
+     */
+    private void gestionarTorneosGUI() {
         //ciclo for para agregar todos los torneos
-        for(int i = 0; i < cantidadTorneos; i++){
+        for (int i = 0; i < cantidadTorneos; i++) {
             JButton detallesX = this.agregarTorneoGUI("Torneo " + (i + 1), "a", "b"); //agregamos los torneos
         }
     }
-    public JButton agregarTorneoGUI(String torneo, String fecha, String otroDato){
 
-
+    /**
+     * Crea una tarjeta visual para un torneo y la agrega al panel.
+     *
+     * @param torneo nombre del torneo.
+     * @param fecha fecha o periodo asociado al torneo.
+     * @param otroDato información adicional que se desea mostrar.
+     * @return botón de detalles asociado al torneo creado.
+     */
+    public JButton agregarTorneoGUI(String torneo, String fecha, String otroDato) {
         JPanel torneoGUI = new JPanel(); //Aquí es donde dejaremos todos los datos
         JButton detalles = new JButton("Detalles");
         detalles.setPreferredSize(new Dimension(100, 50));
-        torneoGUI.setLayout(new FlowLayout(FlowLayout.LEFT));//layout tipo Flow que agrega cada componente de izquierda a derecha
-        torneoGUI.setBorder(BorderFactory.createLineBorder(Color.GRAY));//le damos un borde
+
+        torneoGUI.setLayout(new FlowLayout(FlowLayout.LEFT)); //layout tipo Flow que agrega cada componente de izquierda a derecha
+        torneoGUI.setBorder(BorderFactory.createLineBorder(Color.GRAY)); //le damos un borde
         torneoGUI.setBackground(Color.PINK); //y un color de fondo
-        torneoGUI.setPreferredSize(new Dimension(500, 150));//Y su tamaño
+        torneoGUI.setPreferredSize(new Dimension(500, 150)); //Y su tamaño
+
         //Creamos los distintos labels para cada informacion que mostremos
         JLabel lblNombre = new JLabel(torneo);
         JLabel lblFecha = new JLabel(fecha);
         JLabel lblOtroDato = new JLabel(otroDato);
+
         //Ahora le asignamos una fuente y el tamaño a los labels
         lblNombre.setFont(new Font("Dialog", Font.BOLD, 18)); //este es mas grando
         lblFecha.setFont(new Font("Dialog", Font.BOLD, 14));
         lblOtroDato.setFont(new Font("Dialog", Font.BOLD, 14));
+
         //Y agregamos los labels a torneoGUI
         torneoGUI.add(lblNombre);
         torneoGUI.add(lblFecha);
         torneoGUI.add(lblOtroDato);
+
         //Y agregamos el JButton detalles
         torneoGUI.add(detalles);
-        this.add(torneoGUI);//añadimos al JPanel de PanelListaTorneos
+
+        this.add(torneoGUI); //añadimos al JPanel de PanelListaTorneos
         this.revalidate();
         this.repaint();
+
         return detalles; //Y finalmente retornamos el torneoGUI
     }
 
-
     /**
-     * Permite al controlador registrar un listener para los clics en "Detalles".
+     * Permite registrar un {@link ActionListener} para manejar los eventos de
+     * interacción con los botones de detalles.
+     *
+     * @param evento listener que será utilizado por el controlador.
      */
     public void agregarListener(ActionListener evento) {
         this.evento = evento;
     }
-
 }

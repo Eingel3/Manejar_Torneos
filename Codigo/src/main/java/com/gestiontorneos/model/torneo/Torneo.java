@@ -10,21 +10,22 @@ import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.time.LocalDate;
 
 public class Torneo {
 
     private String nombre;
     private Deporte deporte;
     private FormatoTorneo formato; //Puede ser LigaSimple, EliminacionDirecta, etc. — patrón Strategy
-    private String fechaInicio;
-    private String fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private List<Participante> participantes;
     private Calendario calendario;
     private Clasificacion clasificacion;
     private String estado; // "INSCRIPCION", "EN_CURSO" o "FINALIZADO"
 
     public Torneo(String nombre, Deporte deporte, FormatoTorneo formato,
-                  String fechaInicio, String fechaFin) { //Constructor para crear un torneo
+                  LocalDate fechaInicio, LocalDate fechaFin) { //Constructor para crear un torneo
         if (nombre == null || nombre.trim().isEmpty()) { //Validación de entradas
             throw new DatosInvalidosException("El nombre no puede estar vacío");
         }
@@ -33,6 +34,12 @@ public class Torneo {
         }
         if (formato == null) {
             throw new DatosInvalidosException("El formato no puede ser null");
+        }
+        if (fechaInicio == null || fechaFin == null) {
+            throw new DatosInvalidosException("Las fechas no pueden ser null");
+        }
+        if (fechaFin.isBefore(fechaInicio)) {
+            throw new DatosInvalidosException("La fecha de fin no puede ser anterior a la de inicio");
         }
 
         this.nombre = nombre.trim();
@@ -91,8 +98,8 @@ public class Torneo {
     public String getNombre() { return nombre; }
     public Deporte getDeporte() { return deporte; }
     public FormatoTorneo getFormato() { return formato; }
-    public String getFechaInicio() { return fechaInicio; }
-    public String getFechaFin() { return fechaFin; }
+    public LocalDate getFechaInicio() { return fechaInicio; }
+    public LocalDate getFechaFin() { return fechaFin; }
     public String getEstado() { return estado; }
     public Calendario getCalendario() { return calendario; }
     public Clasificacion getClasificacion() { return clasificacion; }
@@ -107,9 +114,13 @@ public class Torneo {
     }
 
     public void agregarPartido(Partido partido) {
-
+        calendario.agregarPartido(partido);
     }
     public void eliminarParticipante(Participante participante) {
-
+        if (participante == null) return;
+        if (!estado.equals("INSCRIPCION")) { //No se puede eliminar si el torneo ya empezó
+            throw new IllegalStateException("No se pueden eliminar participantes una vez iniciado el torneo");
+        }
+        participantes.remove(participante);
     }
 }

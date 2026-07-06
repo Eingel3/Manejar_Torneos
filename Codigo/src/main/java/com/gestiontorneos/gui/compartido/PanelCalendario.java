@@ -3,9 +3,14 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Representa la vista grafica del calendario
+ * Panel gráfico encargado de representar la vista del calendario de torneos.
+ * <p>
+ * Esta clase está pensada para mostrar los partidos, fechas o eventos
+ * programados dentro de la aplicación. Actualmente funciona como estructura
+ * base para futuras implementaciones visuales del calendario.
+ * </p>
  *
- * Este panel dibuja un calendario con todos los datos requeridos
+ * @see JPanel
  */
 
 public class PanelCalendario extends JPanel {

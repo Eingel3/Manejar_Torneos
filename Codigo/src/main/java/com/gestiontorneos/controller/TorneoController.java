@@ -1,4 +1,4 @@
-package com.gestiontorneos.controller;
+    package com.gestiontorneos.controller;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -57,13 +57,21 @@ public class TorneoController{
         }
 
         // Se crea el torneo
-        Torneo torneo = new Torneo(nombreTorneo, deporte, formato, fechaInicio, fechaFin);
+        try {
+            LocalDate inicio = LocalDate.parse(fechaInicio); //Convierte "2024-03-01" a LocalDate para que Torneo la entienda
+            LocalDate fin = LocalDate.parse(fechaFin);
 
-        torneos.add(torneo);
+            Torneo torneo = new Torneo(nombreTorneo, deporte, formato, inicio, fin);
+            torneos.add(torneo);
 
-        JButton detallesBoton = panelListaTorneos.agregarTorneoGUI(nombreTorneo, "Desde:  " + fechaInicio + "  \n" + "Hasta:  " + fechaFin, nombreDeporte);
+            JButton detallesBoton = panelListaTorneos.agregarTorneoGUI(nombreTorneo, "Desde: " + fechaInicio + "\nHasta: " + fechaFin, nombreDeporte);
 
-        return torneo;
+            return torneo;
+
+        } catch (Exception e) {
+            System.err.println("Error al crear torneo: " + e.getMessage());
+            return null;
+        }
     }
 
     //buscar torneo por su nombre
