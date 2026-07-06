@@ -144,21 +144,21 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
         switch (id) {
             case "Torneos": torneos.setVisible(true);
-            break;
+                break;
             case "Resultados": resultados.setVisible(true);
-            break;
+                break;
             case "Crear Torneo": crearTorneo.setVisible(true);
-            break;
+                break;
             case "Participantes": participantesOrganizador.setVisible(true);
-            break;
+                break;
             case "Partidos": partidosOrganizador.setVisible(true);
-            break;
+                break;
             case "Calendario": calendario.setVisible(true);
-            break;
+                break;
             case "Clasificacion": clasificacion.setVisible(true);
-            break;
+                break;
             case "Torneos Organizador": torneosOrganizador.setVisible(true);
-            break;
+                break;
             case "Futuros Eventos": eventos.setVisible(true);
                 break;
             case "Inicio": resultados.setVisible(true);
@@ -172,6 +172,10 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
     public void setDeporteController(DeporteController deporteController) {
         this.deporteController = deporteController;
+    }
+
+    public void actualizarTorneos(){
+        torneos.actualizarLista(torneoController.listaTorneos());
     }
 
     /**
@@ -203,7 +207,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         int mouseY = e.getY();
 
         //aqui hay que llamar a los controladores para manejar los eventos
-        
+
         repaint();
     }
 
@@ -250,4 +254,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      */
     @Override
     public void mouseExited(MouseEvent e) {}
+
+    public PanelCrearTorneo getCrearTorneo() {
+        return crearTorneo;
+    }
 }
