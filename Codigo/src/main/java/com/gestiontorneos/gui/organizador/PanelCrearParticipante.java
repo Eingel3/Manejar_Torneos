@@ -27,7 +27,64 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
     }
 
 
+    public JButton elegirTipoParticipante() {
+                JLabel lblTitulo = new JLabel("Crear Nuevo Participante");
+                lblTitulo.setFont(new Font("Dialog", Font.BOLD, 24));
+                lblTitulo.setForeground(Color.BLACK);
+                lblTitulo.setAlignmentX(CENTER_ALIGNMENT);
 
+                this.add(new JLabel("Indique si desea agregar un equipo o un jugador individual:"));
+                tipoParticipante = new JComboBox<>(new String[]{"Equipo", "Jugador Individual"});
+                this.add(tipoParticipante);
+
+                btnSiguiente = creadorBotones.crear("Siguiente");
+                this.add(btnSiguiente);
+                return btnSiguiente;
+    }
+    public void elegirNombreEquipo() {
+
+        this.add(new JLabel("Nombre del equipo:"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        this.add(txtNombreEquipo = new JTextField());
+        this.add(Box.createRigidArea(new Dimension(0, 60)));
+
+
+        this.add(btnCrear = creadorBotones.crear("Crear"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        this.add(btnCancelar = creadorBotones.crear("Cancelar"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+    }
+
+    public void elegirTorneo() {
+        this.add(new JLabel("Nombre del torneo en que participa:"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        this.add(txtNombreTorneo = new JTextField());
+        this.add(Box.createRigidArea(new Dimension(0, 60)));
+
+        this.add(btnCrear = creadorBotones.crear("Crear"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        this.add(btnCancelar = creadorBotones.crear("Cancelar"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+    }
+
+    public void agregarParticipante() {
+        this.add(new JLabel("Nombre del participante:"));
+        this.add(txtNombreParticipante = new JTextField());
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        this.add(new JLabel("Contacto del participante:"));
+        this.add(txtContacto = new JTextField());
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        this.add(btnCrear = creadorBotones.crear("Crear"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        this.add(btnCancelar = creadorBotones.crear("Cancelar"));
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+    }
 
     public JButton getBotonCrear() {
                 return btnCrear;
