@@ -22,6 +22,10 @@ public class PanelListaTorneos extends JPanel {
         setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
+
+        agregarTorneoGUI("Torneo 1", "01/07 - 10/07", "Futbol");
+        agregarTorneoGUI("Torneo 2", "05/07 - 15/07", "Basketball");
+        agregarTorneoGUI("Torneo 3", "10/07 - 20/07", "Tenis");
     }
 
 
