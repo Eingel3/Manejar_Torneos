@@ -18,21 +18,14 @@ import javax.swing.*;
 import java.awt.event.*;
 
 /**
- * Panel principal de la interfaz gráfica de la aplicación de gestión de torneos.
+ * Panel principal de la interfaz gráfica de la app que maneja torneos.
  * <p>
- * Esta clase coordina el menú lateral y las diferentes vistas internas de la
- * aplicación mediante un {@link CardLayout}. Permite alternar entre secciones
- * como calendario, clasificación, torneos, resultados, creación de torneos,
- * participantes, partidos y futuros eventos.
+ * Esta clase extiende {@link JPanel} e implementa {@link MouseListener} para
+ * capturar los clicks realizados por el usuario sobre la interfaz.
  * </p>
  * <p>
- * También implementa {@link MouseListener}, dejando preparados los métodos
- * necesarios para gestionar eventos del mouse sobre el panel principal.
+ * El panel principal contiene y coordina dos subpaneles:
  * </p>
- *
- * @see JPanel
- * @see MouseListener
- * @see CardLayout
  */
 public class VentanaPrincipal extends JPanel implements MouseListener {
 
@@ -41,7 +34,6 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     private PanelClasificacion clasificacion; //Instancia de segmento del panel correspondiente a la clasificacion
     private PanelListaTorneos torneos; //Instancia de segmento del panel correspondiente a la lista de los torneos
     private PanelResultados resultados; //Instancia de segmento del panel correspondiente a los resultados
-
     //Paneles unicamente para usuarios tipo organizador
     private PanelCrearTorneo crearTorneo; //Instancia de segmento del panel correspondiente a la opcion de crear torneos
     private PanelMisTorneos torneosOrganizador; ////Instancia de segmento del panel correspondiente a los torneos del organizador
@@ -58,9 +50,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     /**
      * Crea e inicializa la ventana principal de la aplicación.
      * <p>
-     * Configura el layout, tamaño, color de fondo y listener de mouse. También
-     * instancia los paneles principales, configura el contenedor con
-     * {@link CardLayout} y registra el controlador del menú lateral.
+     * Configura las dimensiones de la ventana, el color de fondo y registra el
+     * listener de mouse. Además, crea una instancia compartida del modelo
      * </p>
      */
     public VentanaPrincipal() {
@@ -70,24 +61,19 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
                 PanelInformacion.VENTANAPRINCIPAL.getAlto())); //Dimensiones del panel
         this.setBackground(Color.BLACK); //Color de fondo del panel
         this.addMouseListener(this); //Listener del panel
-
         newPanels(); //Inicializamos los paneles
-
         //Configuramos el menuLateral
         menuLateral.setBounds(0, 0,
                 PanelInformacion.MENULATERAL.getAncho(),
                 PanelInformacion.MENULATERAL.getAlto());
-
         //Ahora respecto al SubPanel
         subPanel.setLayout(cardLayout = new CardLayout());
         subPanel.setBackground(Color.BLACK);
         subPanel.setPreferredSize(new Dimension(
                 PanelInformacion.VENTANASINMENU.getAncho() - 15,
                 PanelInformacion.VENTANASINMENU.getAlto()));
-
         //Añadimos los paneles
         addPanels();
-
         //menuLateral.setVisible(true);
         //mostrarPanel("Torneos");
         //mostrarPanel("Clasificacion");
@@ -98,14 +84,10 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     }
 
     /**
-     * Crea las instancias de todos los paneles utilizados por la ventana
-     * principal.
-     * <p>
-     * Incluye paneles compartidos y paneles específicos para usuarios
-     * organizadores.
-     * </p>
+     * Metodo que crea todos los paneles que van a ser usados
+     *
      */
-    private void newPanels() {
+    private void newPanels(){
         subPanel = new JPanel();
         calendario = new PanelCalendario();
         clasificacion = new PanelClasificacion();
@@ -119,19 +101,12 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         eventos = new PanelFuturosEventos();
     }
 
-    /**
-     * Agrega el menú lateral y los paneles internos al contenedor principal.
-     * <p>
-     * Los paneles internos se registran dentro del {@link CardLayout} usando un
-     * identificador de texto.
-     * </p>
-     */
-    private void addPanels() {
-        this.add(menuLateral); //Agregamos el menu lateral
+    private void addPanels(){
+        this.add(menuLateral);//Agregamos el menu lateral
 
         //Agregamos al SubPanel todos los otros JPanels
         subPanel.add(calendario, "Calendario");
-        subPanel.add(clasificacion, "Clasificacion");
+        subPanel.add(clasificacion,  "Clasificacion");
         subPanel.add(torneos, "Torneos");
         subPanel.add(resultados,  "Resultados");
         subPanel.add(crearTorneo,  "Crear Torneo");
@@ -146,11 +121,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     }
 
     /**
-     * Muestra la interfaz gráfica dentro de un {@link JFrame}.
-     * <p>
-     * Configura la operación de cierre, agrega este panel a la ventana, ajusta
-     * su tamaño, centra la ventana y la hace visible.
-     * </p>
+     * Metodo usado exteriormente para ver la ventana.
+     * Crea un nuevo Jframe y agrega la VentanaPrincipal en el
      */
     public void mostrar() {
         JFrame frame = new JFrame();
@@ -163,9 +135,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     }
 
     /**
-     * Muestra uno de los paneles internos registrados en el {@link CardLayout}.
-     *
-     * @param id identificador del panel que se desea mostrar.
+     * Metodo usado para mostrar una de las pestañas
+     * @param id es la pestaña que se desea mostrar
      */
     public void mostrarPanel(String id) {
 
@@ -173,21 +144,21 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
         switch (id) {
             case "Torneos": torneos.setVisible(true);
-            break;
+                break;
             case "Resultados": resultados.setVisible(true);
-            break;
+                break;
             case "Crear Torneo": crearTorneo.setVisible(true);
-            break;
+                break;
             case "Participantes": participantesOrganizador.setVisible(true);
-            break;
+                break;
             case "Partidos": partidosOrganizador.setVisible(true);
-            break;
+                break;
             case "Calendario": calendario.setVisible(true);
-            break;
+                break;
             case "Clasificacion": clasificacion.setVisible(true);
-            break;
+                break;
             case "Torneos Organizador": torneosOrganizador.setVisible(true);
-            break;
+                break;
             case "Futuros Eventos": eventos.setVisible(true);
                 break;
             case "Inicio": resultados.setVisible(true);
@@ -195,32 +166,25 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         }
     }
 
-    /**
-     * Asigna el controlador de torneos utilizado por la ventana principal.
-     *
-     * @param torneoController controlador de torneos.
-     */
     public void setTorneoController(TorneoController torneoController) {
         this.torneoController = torneoController;
     }
 
-    /**
-     * Asigna el controlador de deportes utilizado por la ventana principal.
-     *
-     * @param deporteController controlador de deportes.
-     */
     public void setDeporteController(DeporteController deporteController) {
         this.deporteController = deporteController;
+    }
+
+    public void actualizarTorneos(){
+        torneos.actualizarLista(torneoController.listaTorneos());
     }
 
     /**
      * Dibuja los componentes gráficos del panel principal.
      * <p>
-     * Invoca a la implementación de {@link JPanel#paintComponent(Graphics)} para
-     * limpiar y repintar correctamente el componente.
+     * limpia el panel mediante la implementación de {@link JPanel}
      * </p>
      *
-     * @param g contexto gráfico utilizado para pintar el componente.
+     * @param g contexto gráfico utilizado para dibujar sobre el panel.
      */
     @Override
     public void paintComponent(Graphics g) {
@@ -228,13 +192,14 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     }
 
     /**
-     * Maneja el evento de click del mouse sobre la ventana principal.
+     * Maneja el evento de click del mouse sobre el panel principal.
      * <p>
-     * Actualmente obtiene las coordenadas del click y repinta la interfaz. Está
-     * preparado para delegar acciones a los controladores correspondientes.
+     * Obtiene las coordenadas del click y las delega a los subpaneles para que
+     * cada uno determine si debe reaccionar al evento. Finalmente, repinta el
+     * panel para reflejar posibles cambios visuales.
      * </p>
      *
-     * @param e evento de mouse recibido.
+     * @param e evento de mouse que contiene la posición del click.
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -289,4 +254,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      */
     @Override
     public void mouseExited(MouseEvent e) {}
+
+    public PanelCrearTorneo getCrearTorneo() {
+        return crearTorneo;
+    }
 }
