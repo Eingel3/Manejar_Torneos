@@ -104,4 +104,22 @@ public class PanelCrearTorneo extends JPanel {
         return txtDescripcion.getText().trim();
     }
 
+    public void limpiarFormulario() {
+        txtNombre.setText("");
+        txtFechaInicio.setText("");
+        txtFechaFin.setText("");
+        txtDeporte.setText("");
+        txtFormato.setText("");
+        txtDescripcion.setText("");
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public boolean confirmar(String pregunta){
+        int respuesta = JOptionPane.showConfirmDialog(this,pregunta,
+                "Advertencia", JOptionPane.YES_NO_OPTION);
+        return  respuesta == JOptionPane.YES_OPTION;
+    }
 }
