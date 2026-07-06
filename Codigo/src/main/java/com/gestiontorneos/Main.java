@@ -17,10 +17,14 @@ import java.awt.event.*;
 
 public class Main{
     public static void main(String[] args){
+
+
         VentanaPrincipal ventana = new VentanaPrincipal();
         TorneoController tc = new TorneoController();
         ventana.setTorneoController(tc);
         ventana.setDeporteController(new DeporteController());
+        ventana.getCrearTorneo().setTorneoController(tc);
+        ventana.getCrearTorneo().setVentanaPrincipal(ventana);
         ventana.mostrar();
     }
 }

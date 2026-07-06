@@ -3,6 +3,9 @@ package com.gestiontorneos.gui.organizador;
 import com.gestiontorneos.controller.TorneoController;
 import com.gestiontorneos.gui.VentanaPrincipal;
 import com.gestiontorneos.gui.compartido.PanelInformacion;
+import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
+import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
+import com.gestiontorneos.model.torneo.formato.LigaSimple;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,6 +58,15 @@ public class PanelCrearTorneo extends JPanel {
                 System.out.println("Campo vacio");
                 return;
             }else{
+                String seleccion = (String) Formato.getSelectedItem();
+                FormatoTorneo formato;
+                if (seleccion.equals("Liga Simple")) {
+                    formato = new LigaSimple();
+                } else {
+                    formato = new EliminacionDirecta();
+                }
+                torneoController.crearTorneo(getNombre(),getDeporte(), formato,getFechaInicio(),getFechaFin());
+                System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | Formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
                 return;
             }
 

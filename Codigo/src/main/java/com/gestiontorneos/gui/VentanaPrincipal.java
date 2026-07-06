@@ -250,4 +250,8 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
      */
     @Override
     public void mouseExited(MouseEvent e) {}
+
+    public PanelCrearTorneo getCrearTorneo() {
+        return crearTorneo;
+    }
 }
