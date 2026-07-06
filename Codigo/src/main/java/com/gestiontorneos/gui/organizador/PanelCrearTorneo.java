@@ -18,7 +18,7 @@ public class PanelCrearTorneo extends JPanel {
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
     private JTextField txtDeporte;
-    private JTextField txtFormato;
+    private JComboBox<String> Formato;
     private JTextField txtDescripcion;
     private JButton btnCrear;
     private JButton btnCancelar;
@@ -39,6 +39,8 @@ public class PanelCrearTorneo extends JPanel {
         this.ventanaPrincipal = vp;
     }
 
+
+
     public PanelCrearTorneo() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.LIGHT_GRAY);
@@ -46,6 +48,18 @@ public class PanelCrearTorneo extends JPanel {
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
         agregarComponentes();
+
+        btnCrear.addActionListener(e -> {
+
+            if(getNombre().isEmpty() || getDeporte().isEmpty()){
+                System.out.println("Campo vacio");
+                return;
+            }else{
+                return;
+            }
+
+
+        });
     }
 
 
@@ -73,8 +87,8 @@ public class PanelCrearTorneo extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
         this.add(new JLabel("Formato:"));
-        this.add(txtFormato = new JTextField());
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        Formato = new JComboBox<>(new String[]{"Eliminacion Directa", "Liga Simple"});
+        this.add(Formato);
 
         this.add(new JLabel("Descripcion:"));
         this.add(txtDescripcion = new JTextField());
@@ -115,7 +129,7 @@ public class PanelCrearTorneo extends JPanel {
     }
 
     public String getFormato() {
-        return (String) txtFormato.getText().trim();
+        return (String) Formato.getSelectedItem();
     }
 
     public String getDescripcion() {
@@ -127,7 +141,7 @@ public class PanelCrearTorneo extends JPanel {
         txtFechaInicio.setText("");
         txtFechaFin.setText("");
         txtDeporte.setText("");
-        txtFormato.setText("");
+        Formato.setSelectedIndex(0);
         txtDescripcion.setText("");
     }
 
