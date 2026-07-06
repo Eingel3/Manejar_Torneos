@@ -55,8 +55,8 @@ public class PanelCrearTorneo extends JPanel {
         btnCrear.addActionListener(e -> {
 
             if(getNombre().isEmpty() || getDeporte().isEmpty()){
+                mostrarMensaje("Complete nombre y deporte para crear torneo");
                 System.out.println("Campo vacio");
-                return;
             }else{
                 String seleccion = (String) Formato.getSelectedItem();
                 FormatoTorneo formato;
@@ -69,7 +69,9 @@ public class PanelCrearTorneo extends JPanel {
                 System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | Formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
                 mostrarMensaje("Torneo creado exitosamente!");
                 limpiarFormulario();
-                return;
+
+                ventanaPrincipal.actualizarTorneos();
+                ventanaPrincipal.mostrarPanel("Torneos");
             }
 
 
