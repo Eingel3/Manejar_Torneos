@@ -37,6 +37,7 @@ public class PanelCrearPartido extends JPanel {
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
         creadorBotones = new BotonSimple();
+        crearPartido();
     }
     public void crearPartido() {
         JLabel lblTitulo = new JLabel("Crear Nuevo Partido");
@@ -101,6 +102,9 @@ public class PanelCrearPartido extends JPanel {
         return txtNombreTorneo.getText().trim();
     }
 
+    public JButton getBotonSiguiente() {return btnSiguiente;
+    }
+
     public String getNombreParticipanteLocal() {
         return (String) txtNombreParticipanteLocal.getText().trim();
     }
@@ -119,11 +123,21 @@ public class PanelCrearPartido extends JPanel {
 
 
     public void limpiarFormulario() {
-        txtNombreParticipanteLocal.setText("");
-        txtNombreParticipanteVisitante.setText("");
-        tipoParticipante.setSelectedIndex(0);
-        txtNombreTorneo.setText("");
-        estadoPartido.setSelectedIndex(0);
+        if (tipoParticipante != null) {
+            tipoParticipante.setSelectedIndex(0);
+        }
+        if (estadoPartido != null) {
+            estadoPartido.setSelectedIndex(0);
+        }
+        if (txtNombreTorneo != null) {
+            txtNombreTorneo.setText("");
+        }
+        if (txtNombreParticipanteLocal != null) {
+            txtNombreParticipanteLocal.setText("");
+        }
+        if (txtNombreParticipanteVisitante != null) {
+            txtNombreParticipanteVisitante.setText("");
+        }
         this.revalidate();
         this.repaint();
     }
@@ -143,4 +157,15 @@ public class PanelCrearPartido extends JPanel {
                 "Advertencia", JOptionPane.YES_NO_OPTION);
         return  respuesta == JOptionPane.YES_OPTION;
     }
+
+    public JTextField getTxtNombreParticipanteLocal() {
+        return txtNombreParticipanteLocal;
+    }
+    public JTextField getTxtNombreParticipanteVisitante() {
+        return txtNombreParticipanteVisitante;
+    }
+    public JComboBox<String> getEstadoPartidoJCombo(){
+        return estadoPartido;
+    }
+
 }
