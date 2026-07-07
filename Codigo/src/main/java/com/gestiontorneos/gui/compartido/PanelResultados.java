@@ -266,4 +266,48 @@ public class PanelResultados extends JPanel {
         revalidate();
         repaint();
     }
+
+    public JLabel getNombreL() {
+        return nombreL;
+    }
+    public JLabel getDescripcionL() {
+        return descripcionL;
+    }
+    public JLabel getFechasL() {
+        return fechasL;
+    }
+    public JLabel getDeporteL() {
+        return deporteL;
+    }
+    public JLabel getTipoCompeticionL() {
+        return tipoCompeticionL;
+    }
+    public JLabel getGanadorL() {
+        return ganadorL;
+    }
+    public JLabel getParticipantesL() {
+        return participantesL;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public String getFechas() {
+        return fechas;
+    }
+    public String getDeporte() {
+        return deporte;
+    }
+    public String getTipoCompeticion() {
+        return tipoCompeticion;
+    }
+    public String getGanador() {
+        return ganador;
+    }
+    public String getParticipantes() {
+        return participantes;
+    }
+
 }
