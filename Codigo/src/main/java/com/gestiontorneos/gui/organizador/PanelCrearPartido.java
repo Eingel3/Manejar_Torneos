@@ -101,6 +101,9 @@ public class PanelCrearPartido extends JPanel {
         return txtNombreTorneo.getText().trim();
     }
 
+    public JButton getBotonSiguiente() {return btnSiguiente;
+    }
+
     public String getNombreParticipanteLocal() {
         return (String) txtNombreParticipanteLocal.getText().trim();
     }
