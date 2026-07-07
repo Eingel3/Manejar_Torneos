@@ -1,8 +1,5 @@
 package com.gestiontorneos.gui;
-import com.gestiontorneos.controller.CrearPartidoController;
-import com.gestiontorneos.controller.DeporteController;
-import com.gestiontorneos.controller.PanelMenuController;
-import com.gestiontorneos.controller.TorneoController;
+import com.gestiontorneos.controller.*;
 import com.gestiontorneos.gui.compartido.*;
 import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
@@ -73,9 +70,14 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
         //Añadimos los paneles
         addPanels();
-
         new PanelMenuController(menuLateral, this);
-        new CrearPartidoController(partidosOrganizador, torneoController);
+
+    }
+    public void inicializarControladores() {
+        if (torneoController != null) {
+            new CrearPartidoController(partidosOrganizador, torneoController);
+            configurarListenersTorneos();
+        }
     }
 
     /**
@@ -187,6 +189,16 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         torneos.actualizarLista(torneoController.listaTorneos());
     }
 
+    public PanelResultados getResultados() {
+        return resultados;
+    }
+    public PanelCrearPartido getPartidosOrganizador() {
+        return partidosOrganizador;
+    }
+    public void configurarListenersTorneos() {
+        ListaTorneosBotonDetallesController detallesCtrl = new ListaTorneosBotonDetallesController(this, torneoController);
+        torneos.agregarListener(detallesCtrl);
+    }
     /**
      * Dibuja los componentes gráficos del panel principal.
      * <p>

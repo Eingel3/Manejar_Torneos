@@ -7,12 +7,16 @@ public class Main{
     public static void main(String[] args){
 
 
-        VentanaPrincipal ventana = new VentanaPrincipal();
-        TorneoController tc = new TorneoController();
-        ventana.setTorneoController(tc);
-        ventana.setDeporteController(new DeporteController());
-        ventana.getCrearTorneo().setTorneoController(tc);
-        ventana.getCrearTorneo().setVentanaPrincipal(ventana);
-        ventana.mostrar();
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+        TorneoController torneoController = new TorneoController();
+        ventanaPrincipal.setTorneoController(torneoController);
+        DeporteController deporteController = new DeporteController();
+        ventanaPrincipal.setDeporteController(deporteController);
+        ventanaPrincipal.inicializarControladores();
+        ventanaPrincipal.getCrearTorneo().setTorneoController(torneoController);
+        ventanaPrincipal.getCrearTorneo().setVentanaPrincipal(ventanaPrincipal);
+        ventanaPrincipal.configurarListenersTorneos();
+        ventanaPrincipal.actualizarTorneos();
+        ventanaPrincipal.mostrar();
     }
 }
