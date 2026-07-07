@@ -123,13 +123,21 @@ public class PanelCrearPartido extends JPanel {
 
 
     public void limpiarFormulario() {
-        txtNombreParticipanteLocal.setText("");
-        txtNombreParticipanteVisitante.setText("");
         if (tipoParticipante != null) {
             tipoParticipante.setSelectedIndex(0);
         }
-        txtNombreTorneo.setText("");
-        estadoPartido.setSelectedIndex(0);
+        if (estadoPartido != null) {
+            estadoPartido.setSelectedIndex(0);
+        }
+        if (txtNombreTorneo != null) {
+            txtNombreTorneo.setText("");
+        }
+        if (txtNombreParticipanteLocal != null) {
+            txtNombreParticipanteLocal.setText("");
+        }
+        if (txtNombreParticipanteVisitante != null) {
+            txtNombreParticipanteVisitante.setText("");
+        }
         this.revalidate();
         this.repaint();
     }

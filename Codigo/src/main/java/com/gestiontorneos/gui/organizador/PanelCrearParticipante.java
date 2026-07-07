@@ -114,12 +114,28 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 return txtNombreEquipo.getText().trim();
     }
 
-    public void limpiarFormulario() {
-                txtNombreParticipante.setText("");
-                txtContacto.setText("");
-                tipoParticipante.setSelectedIndex(0);
-                txtNombreEquipo.setText("");
-                txtNombreTorneo.setText("");
+    public void limpiarFormulario() {;
+                if (tipoParticipante != null) {
+                    tipoParticipante.setSelectedIndex(0);
+                }
+                if (txtNombreEquipo != null) {
+                    txtNombreEquipo.setText("");
+                }
+                if (txtContacto != null) {
+                    txtContacto.setText("");
+                }
+                if (tipoParticipante != null) {
+                    tipoParticipante.setSelectedIndex(0);
+                }
+                if (txtNombreEquipo != null) {
+                    txtNombreEquipo.setText("");
+                }
+                if (txtContacto != null) {
+                    txtContacto.setText("");
+                }
+                if (txtNombreParticipante != null) {
+                    txtNombreParticipante.setText("");
+                }
                 this.revalidate();
                 this.repaint();
     }
@@ -138,5 +154,12 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 int respuesta = JOptionPane.showConfirmDialog(this,pregunta,
                         "Advertencia", JOptionPane.YES_NO_OPTION);
                 return  respuesta == JOptionPane.YES_OPTION;
+    }
+
+    public JTextField getTxtNombreParticipante() {
+        return txtNombreParticipante;
+    }
+    public JTextField getTxtContacto() {
+        return txtContacto;
     }
 }
