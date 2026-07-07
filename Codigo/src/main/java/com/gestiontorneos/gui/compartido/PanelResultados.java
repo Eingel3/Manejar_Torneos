@@ -262,52 +262,141 @@ public class PanelResultados extends JPanel {
         participantesL.setText(participantes);
     }
 
-    public void actualizarCambios(){
+    /**
+     * Fuerza la actualización visual del panel invocando {@code revalidate()} y {@code repaint()}.
+     * <p>
+     * Debe llamarse cada vez que se modifique la composición o los textos mostrados
+     * para reflejar los cambios en la interfaz.
+     * </p>
+     */
+    public void actualizarCambios() {
         revalidate();
         repaint();
     }
 
+    /**
+     * Devuelve el {@link JLabel} que muestra el nombre del torneo.
+     *
+     * @return el label del nombre.
+     */
     public JLabel getNombreL() {
         return nombreL;
     }
+
+    /**
+     * Devuelve el {@link JLabel} que muestra la descripción del torneo.
+     *
+     * @return el label de la descripción.
+     */
     public JLabel getDescripcionL() {
         return descripcionL;
     }
+
+    /**
+     * Devuelve el {@link JLabel} que muestra las fechas del torneo.
+     *
+     * @return el label de las fechas.
+     */
     public JLabel getFechasL() {
         return fechasL;
     }
+
+    /**
+     * Devuelve el {@link JLabel} que muestra el deporte del torneo.
+     *
+     * @return el label del deporte.
+     */
     public JLabel getDeporteL() {
         return deporteL;
     }
+
+    /**
+     * Devuelve el {@link JLabel} que muestra el tipo de competición.
+     *
+     * @return el label del tipo de competición.
+     */
     public JLabel getTipoCompeticionL() {
         return tipoCompeticionL;
     }
+
+    /**
+     * Devuelve el {@link JLabel} que muestra el ganador del torneo.
+     *
+     * @return el label del ganador.
+     */
     public JLabel getGanadorL() {
         return ganadorL;
     }
+
+    /**
+     * Devuelve el {@link JLabel} que muestra los participantes del torneo.
+     *
+     * @return el label de participantes.
+     */
     public JLabel getParticipantesL() {
         return participantesL;
     }
+
+    /**
+     * Obtiene el valor por defecto almacenado para el nombre del torneo.
+     *
+     * @return el nombre del torneo.
+     */
     public String getNombre() {
         return nombre;
     }
+
+    /**
+     * Obtiene el valor por defecto almacenado para la descripción del torneo.
+     *
+     * @return la descripción del torneo.
+     */
     public String getDescripcion() {
         return descripcion;
     }
+
+    /**
+     * Obtiene el valor por defecto almacenado para las fechas del torneo.
+     *
+     * @return las fechas del torneo.
+     */
     public String getFechas() {
         return fechas;
     }
+
+    /**
+     * Obtiene el valor por defecto almacenado para el deporte del torneo.
+     *
+     * @return el deporte del torneo.
+     */
     public String getDeporte() {
         return deporte;
     }
+
+    /**
+     * Obtiene el valor por defecto almacenado para el tipo de competición.
+     *
+     * @return el tipo de competición.
+     */
     public String getTipoCompeticion() {
         return tipoCompeticion;
     }
+
+    /**
+     * Obtiene el valor por defecto almacenado para el ganador del torneo.
+     *
+     * @return el ganador del torneo.
+     */
     public String getGanador() {
         return ganador;
     }
+
+    /**
+     * Obtiene el valor por defecto almacenado para los participantes del torneo.
+     *
+     * @return los participantes del torneo.
+     */
     public String getParticipantes() {
         return participantes;
     }
-
 }
