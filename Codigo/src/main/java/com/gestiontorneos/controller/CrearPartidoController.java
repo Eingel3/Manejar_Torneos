@@ -26,6 +26,19 @@ public class CrearPartidoController {
     /**
      * Lógica principal para crear un partido a partir de los datos ingresados.
      */
-    private void manejarEventos() {}
+    private void manejarEventos() {
+        panelCrearPartido.getBotonCrear().addActionListener(e -> crearPartido());
+        panelCrearPartido.vista.getBotonCancelar().addActionListener(e -> cancelar());
+        panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente())
+    }
 
+    private void crearPartido() {
+
+    }
+    private void cancelar() {
+
+    }
+    private void siguiente() {
+
+    }
 }
