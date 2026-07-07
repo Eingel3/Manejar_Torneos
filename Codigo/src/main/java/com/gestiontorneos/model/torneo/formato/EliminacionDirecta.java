@@ -123,4 +123,10 @@ public class EliminacionDirecta implements FormatoTorneo {
         }
         return partidos;
     }
+
+    @Override
+    public String toString() {
+        return "Eliminacion Directa:  En este formato, cada participante se enfrenta una vez contra todos los demás.\n" +
+                "La clasificación se actualiza con tres puntos por victoria y un punto para cada participante en caso de empate.";
+    }
 }

@@ -174,4 +174,9 @@ public class DobleEliminacion implements FormatoTorneo {
         }
         return partidos;
     }
+    @Override
+    public String toString() {
+        return "Doble Eliminacion:  En este formato, los participantes comienzan en el bracket de ganadores.\n" +
+                " * Al perder una vez pasan al bracket de perdedores y, si pierden nuevamente, quedan eliminados del torneo.";
+    }
 }

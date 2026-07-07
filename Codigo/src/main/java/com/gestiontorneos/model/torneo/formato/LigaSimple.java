@@ -86,4 +86,9 @@ public class LigaSimple implements FormatoTorneo {
     public Participante obtenerGanador(Calendario calendario, Clasificacion clasificacion) { //El ganador es quien tiene más puntos en la tabla
         return clasificacion.getLider();
     }
+    @Override
+    public String toString() {
+        return "Liga Simple: En este formato, cada participante se enfrenta una vez contra todos los demás.\n" +
+                " La clasificación se actualiza con tres puntos por victoria y un punto para cada participante en caso de empate.";
+    }
 }
