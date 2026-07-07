@@ -1,7 +1,8 @@
 package com.gestiontorneos.gui.compartido;
-
+import java.util.List;
 import com.gestiontorneos.gui.factory.PanelFactory;
 import com.gestiontorneos.gui.factory.PanelLateral;
+import com.gestiontorneos.model.partido.Partido;
 import com.gestiontorneos.model.torneo.Torneo;
 
 import javax.swing.*;
@@ -32,6 +33,8 @@ public class PanelResultados extends JPanel {
     private JPanel labelsPanel;
     private int anchoTitulosPanel;
     int anchoLabelsPanel;
+
+    private JTextArea partidosArea;
 
     JLabel nombreL;
     JLabel descripcionL;
@@ -196,6 +199,54 @@ public class PanelResultados extends JPanel {
 
         labelsPanel.add(participantesL);
 
+        actualizarCambios();
+    }
+
+    /**
+     * Metodo para agregar el area donde los partidos serán mostrados
+     * utiliza un scroll
+     */
+    private void agregarSeccionPartidos() {
+        JLabel tituloPartidos = new JLabel("Partidos:");
+        tituloPartidos.setFont(new Font("Dialog", Font.BOLD, 16));
+        titulosPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        titulosPanel.add(tituloPartidos);
+        //Creamos el area de texto donde se podran ver los partidos
+        partidosArea = new JTextArea(10, 30);
+        partidosArea.setEditable(false);
+        partidosArea.setLineWrap(true);
+        partidosArea.setWrapStyleWord(true);
+        //Y agregamos un scroll
+        JScrollPane scrollPartidos = new JScrollPane(partidosArea);
+        scrollPartidos.setPreferredSize(new Dimension(anchoLabelsPanel, 200));
+        labelsPanel.add(scrollPartidos);
+    }
+
+    /**
+     * Rellena el área de partidos con la información de cada partido.
+     * @param partidos lista de partidos del torneo
+     */
+    public void actualizarPartidos(List<Partido> partidos) {
+
+        if (partidosArea == null || partidos == null) return;
+        //En el String texto guardaremos el texto que se mostrará en el TextArea de los partidos
+        String texto = "";
+        for (int i = 0; i < partidos.size(); i++) {
+            Partido p = partidos.get(i);
+            //Añadimos información respecto a la ronda y quienes se enfrentan
+            texto += "Ronda " + p.getRonda() + ": "
+                    + p.getLocal().getNombre() + " vs " + p.getVisitante().getNombre() + "\n";
+
+            //Y agregamos información respecto a quién ganó
+            if (p.getResultado() != null) {
+                texto += "El individuo o equipo que ganó es: " + p.getGanador().getNombre();
+            } else {
+                texto += "Sin resultado";
+            }
+            // añadimos dos saltos de línea
+                texto += "\n" + "\n";
+        }
+        partidosArea.setText(texto);
         actualizarCambios();
     }
 
