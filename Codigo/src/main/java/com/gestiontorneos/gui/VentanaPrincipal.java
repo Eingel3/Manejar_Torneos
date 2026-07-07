@@ -1,6 +1,7 @@
 package com.gestiontorneos.gui;
 import com.gestiontorneos.controller.*;
 import com.gestiontorneos.gui.compartido.*;
+import com.gestiontorneos.gui.organizador.PanelCrearParticipante;
 import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
 import com.gestiontorneos.gui.organizador.PanelCrearPartido;
@@ -35,6 +36,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     private PanelFuturosEventos eventos; //Instancia de segmento del panel correspondiente a un panel que contiene la visualizacion de futuros eventos
     private JPanel subPanel;
     private CardLayout cardLayout;
+    private PanelCrearParticipante crearParticipante;
 
     private TorneoController torneoController;
     private DeporteController deporteController;
@@ -99,6 +101,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         menuLateral = new PanelMenu();
         eventos = new PanelFuturosEventos();
         panelInicio = new PanelInicio();
+        crearParticipante = new PanelCrearParticipante();
     }
 
     /**
@@ -120,6 +123,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.add(partidosOrganizador,  "Partidos");
         subPanel.add(eventos,  "Futuros Eventos");
         subPanel.add(panelInicio, "Inicio");
+        subPanel.add(crearParticipante, "Crear Participante");
 
         //Y añadimos el SubPanel
         this.add(subPanel);
@@ -147,24 +151,6 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
         cardLayout.show(subPanel, id);
 
-        switch (id) {
-            case "Torneos": torneos.setVisible(true);
-                break;
-            case "Resultados": resultados.setVisible(true);
-                break;
-            case "Crear Torneo": crearTorneo.setVisible(true);
-                break;
-            case "Participantes": participantesOrganizador.setVisible(true);
-                break;
-            case "Partidos": partidosOrganizador.setVisible(true);
-                break;
-            case "Clasificacion": clasificacion.setVisible(true);
-                break;
-            case "Futuros Eventos": eventos.setVisible(true);
-                break;
-            case "Inicio": panelInicio.setVisible(true);
-                break;
-        }
     }
 
     /**

@@ -21,13 +21,13 @@ import com.gestiontorneos.gui.factory.BotonSimple;
  */
 public class PanelMenu extends JPanel {
 
-    private JButton calendario;
     private JButton torneos;
     private JButton clasificaciones;
     private JButton partidos;
     private JButton inicio;
     private JButton futurosEventos;
     private JButton crearTorneo;
+    private JButton crearParticipante;
 
     /**
      * Crea e inicializa el menú lateral.
@@ -67,9 +67,6 @@ public class PanelMenu extends JPanel {
          * boton, lo agregamos al panel, agregamos un espaciado y creamos el
          * siguiente boton.
          */
-        calendario = crearBoton.crear("Calendario");
-        this.add(calendario);
-        add(Box.createRigidArea(new Dimension(0, 30)));
 
         torneos = crearBoton.crear("Torneos");
         this.add(torneos);
@@ -83,12 +80,16 @@ public class PanelMenu extends JPanel {
         this.add(partidos);
         add(Box.createRigidArea(new Dimension(0, 30)));
 
-        futurosEventos = crearBoton.crear("Futuros Eventos");
+        futurosEventos = crearBoton.crear("Futuros eventos");
         this.add(futurosEventos);
         add(Box.createRigidArea(new Dimension(0, 30)));
 
         crearTorneo = crearBoton.crear("Crear torneo");
         this.add(crearTorneo);
+        add(Box.createRigidArea(new Dimension(0, 30)));
+
+        crearParticipante = crearBoton.crear("Crear participante");
+        this.add(crearParticipante);
         add(Box.createRigidArea(new Dimension(0, 30)));
     }
 
@@ -105,9 +106,6 @@ public class PanelMenu extends JPanel {
             case "Inicio":
                 inicio.addActionListener(evento);
                 break;
-            case "Calendario":
-                calendario.addActionListener(evento);
-                break;
             case "Torneos":
                 torneos.addActionListener(evento);
                 break;
@@ -122,6 +120,9 @@ public class PanelMenu extends JPanel {
                 break;
             case "Crear Torneo":
                 crearTorneo.addActionListener(evento);
+                break;
+            case "Crear Participante":
+                crearParticipante.addActionListener(evento);
                 break;
             default:
                 throw new IllegalArgumentException("Botón desconocido: " + id);
