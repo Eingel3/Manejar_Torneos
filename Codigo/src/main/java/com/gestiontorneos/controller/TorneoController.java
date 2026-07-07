@@ -33,12 +33,6 @@ public class TorneoController{
     }
 
 
-
-    //--------------------------------------------------------------
-                            //TORNEOS
-    //--------------------------------------------------------------
-
-
     // Crear un torneo nuevo
     public Torneo crearTorneo(String nombreTorneo,
                               String nombreDeporte,
