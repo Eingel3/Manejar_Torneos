@@ -53,12 +53,22 @@ public class PanelListaTorneos extends JPanel {
 
     public void actualizarLista(List<Torneo> torneos) {
         this.removeAll();  // limpiar tarjetas viejas
-        for (Torneo t : torneos) {
-            agregarTorneoGUI(
-                    t.getNombre(),
-                    " " + t.getFechaInicio(), " " + t.getFechaFin(),
-                    t.getDeporte().getNombre()
-            );
+        //Verificamos si la lista de torneos es null o está vacía, en cuyo caso, ya que no hay torneos creamos el mensaje de bienvenida, si no, creamos la lista de torneos de forma normal
+        if (torneos == null || torneos.isEmpty()) {
+            // Volver a poner el contenido de bienvenida como en el constructor
+            this.add(new JLabel("¡Hola!, por ahora no hay torneos."));
+            this.add(Box.createRigidArea(new Dimension(0, 20)));
+            this.add(new JLabel("Sin embargo, aquí hay un ejemplo de un torneo."));
+            this.add(Box.createRigidArea(new Dimension(0, 20)));
+            agregarTorneoGUI("Nombre del torneo", "2001-02-02", "2002-06-06", "Dato/Descripcion del torneo");
+        } else {
+            for (Torneo t : torneos) {
+                agregarTorneoGUI(
+                        t.getNombre(),
+                        " " + t.getFechaInicio(), " " + t.getFechaFin(),
+                        t.getDeporte().getNombre()
+                );
+            }
         }
         this.revalidate();
         this.repaint();
@@ -123,7 +133,12 @@ public class PanelListaTorneos extends JPanel {
 
         // Guardamos la referencia al panel más reciente antes de añadir el boton de detalles
         this.panelReciente = torneoGUI;
-
+        //Identificar el boton con el nombre del torneo
+        detalles.setActionCommand(torneo);
+        // Agregar el listener externo si existe
+        if (evento != null) {
+            detalles.addActionListener(evento);
+        }
         //Y agregamos el JButton detalles
         torneoGUI.add(detalles);
 
