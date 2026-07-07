@@ -6,9 +6,12 @@ import com.gestiontorneos.gui.compartido.PanelInformacion;
 import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.torneo.formato.LigaSimple;
+import com.gestiontorneos.model.torneo.formato.DobleEliminacion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Representa la vista grafica del torneo
@@ -55,16 +58,37 @@ public class PanelCrearTorneo extends JPanel {
         btnCrear.addActionListener(e -> {
 
             if(getNombre().isEmpty() || getDeporte().isEmpty()){
-                mostrarMensaje("Complete nombre y deporte para crear torneo");
-                System.out.println("Campo vacio");
-            }else{
-                String seleccion = (String) formato.getSelectedItem();
-                FormatoTorneo formato;
-                if (seleccion.equals("Liga Simple")) {
+                mostrarMensaje("Llenar campos de Nombre y Deporte");
+                return;
+            }
+            LocalDate inicio, fin;
+            try {
+                inicio = LocalDate.parse(getFechaInicio());
+                fin = LocalDate.parse(getFechaFin());
+                //System.out.println("inicio: " + inicio);
+                //System.out.println("fin: " + fin);
+
+            } catch (DateTimeParseException ex) {
+                mostrarMensaje("Fecha no valida, Use yyyy-MM-dd");
+                return;
+            }
+            if (fin.isBefore(inicio)) {
+                mostrarMensaje("La fecha de fin no puede ser anterior a la de inicio");
+                return;
+            }
+            String seleccion = (String) formato.getSelectedItem();
+            FormatoTorneo formato;
+            switch (seleccion) {
+                case "Liga Simple":
                     formato = new LigaSimple();
-                } else {
+                    break;
+                case "Doble Eliminacion":
+                    formato = new DobleEliminacion();
+                    break;
+                default:
                     formato = new EliminacionDirecta();
-                }
+                    break;
+            }
                 torneoController.crearTorneo(getNombre(),getDeporte(), formato,getFechaInicio(),getFechaFin());
                 System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
                 mostrarMensaje("Torneo creado exitosamente!");
@@ -72,7 +96,7 @@ public class PanelCrearTorneo extends JPanel {
 
                 ventanaPrincipal.actualizarTorneos();
                 ventanaPrincipal.mostrarPanel("Torneos");
-            }
+
 
 
         });
@@ -103,7 +127,7 @@ public class PanelCrearTorneo extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
         this.add(new JLabel("formato:"));
-        formato = new JComboBox<>(new String[]{"Eliminacion Directa", "Liga Simple"});
+        formato = new JComboBox<>(new String[]{"Eliminacion Directa", "Liga Simple", "Doble Eliminacion"});
         this.add(formato);
 
         this.add(new JLabel("Descripcion:"));
