@@ -1,12 +1,13 @@
 package com.gestiontorneos.controller;
 import com.gestiontorneos.gui.organizador.PanelCrearPartido;
+import com.gestiontorneos.model.torneo.Torneo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * Controlador para la creación de partidos.
- * Conecta la vista {@link com.gestiontorneos.gui.organizador.PanelCrearPartido} con el modelo a través de {@link TorneoController}.
+ * Conecta el panelCrearPartido {@link com.gestiontorneos.gui.organizador.PanelCrearPartido} con el modelo a través de {@link TorneoController}.
  */
 
 public class CrearPartidoController {
@@ -15,7 +16,7 @@ public class CrearPartidoController {
     /**
      * Construye el controlador y asigna los listeners a los botones de la vista.
      *
-     * @param vista Panel de creación de partido.
+     * @param panelCrearPartido Panel de creación de partido.
      * @param torneoController Controlador que gestiona los torneos y partidos.
      */
     public CrearPartidoController(PanelCrearPartido panelCrearPartido, TorneoController torneoController) {
@@ -28,15 +29,25 @@ public class CrearPartidoController {
      */
     private void manejarEventos() {
         panelCrearPartido.getBotonCrear().addActionListener(e -> crearPartido());
-        panelCrearPartido.vista.getBotonCancelar().addActionListener(e -> cancelar());
+        panelCrearPartido.getBotonCancelar().addActionListener(e -> cancelar());
         panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente())
     }
 
     private void crearPartido() {
-
+        //Obtenemos cada una de las informaciones necesarias
+        String nombreTorneo = panelCrearPartido.getNombreTorneo();
+        String nombreLocal = panelCrearPartido.getNombreParticipanteLocal();
+        String nombreVisitante = panelCrearPartido.getNombreParticipanteVisitante();
+        String estadoSeleccionado = panelCrearPartido.getEstadoPartido();
+        //Verifcamos si el torneo existe
+        Torneo torneo = torneoController.buscarTorneo(nombreTorneo);
+        if (torneo == null) {
+            panelCrearPartido.mostrarMensaje("El torneo '" + nombreTorneo + "' no existe.");
+            return;
+        }
     }
     private void cancelar() {
-
+        panelCrearPartido.limpiarPanel();
     }
     private void siguiente() {
 
