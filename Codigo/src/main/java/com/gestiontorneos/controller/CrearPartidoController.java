@@ -32,7 +32,7 @@ public class CrearPartidoController {
     private void manejarEventos() {
         panelCrearPartido.getBotonCrear().addActionListener(e -> crearPartido());
         panelCrearPartido.getBotonCancelar().addActionListener(e -> cancelar());
-        panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente());
+        //panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente());
     }
 
     private void crearPartido() {

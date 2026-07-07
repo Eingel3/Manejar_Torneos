@@ -1,4 +1,5 @@
 package com.gestiontorneos.gui;
+import com.gestiontorneos.controller.CrearPartidoController;
 import com.gestiontorneos.controller.DeporteController;
 import com.gestiontorneos.controller.PanelMenuController;
 import com.gestiontorneos.controller.TorneoController;
@@ -74,6 +75,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         addPanels();
 
         new PanelMenuController(menuLateral, this);
+        new CrearPartidoController(partidosOrganizador, torneoController);
     }
 
     /**
