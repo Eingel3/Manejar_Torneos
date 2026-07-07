@@ -1,6 +1,7 @@
 package com.gestiontorneos.model.torneo;
 
 import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
 import com.gestiontorneos.model.excepciones.DatosInvalidosException;
 import com.gestiontorneos.model.participante.Participante;
 import com.gestiontorneos.model.partido.Calendario;
@@ -82,11 +83,21 @@ public class Torneo {
 
     /**
      * Inscribe un participante en el torneo.
+     * <p>
+     * Solo se permite agregar participantes mientras el torneo se encuentra en
+     * fase de inscripción. Además, el participante debe ser compatible con el tipo
+     * de participación del deporte asociado al torneo:
+     * </p>
+     * <ul>
+     *     <li>En torneos individuales no se permiten participantes con más de un integrante.</li>
+     *     <li>En torneos colectivos no se permiten participantes de un solo integrante.</li>
+     * </ul>
      *
      * @param participante participante que se desea agregar.
-     * @throws DatosInvalidosException si el participante es {@code null} o ya está inscrito.
-     * @throws IllegalStateException si el torneo ya no se encuentra en fase de inscripción.
-     */
+     * @throws DatosInvalidosException si el participante es {@code null}, si ya está inscrito
+     *                                 o si no coincide con el tipo de participación del deporte.
+     * @throws IllegalStateException s
+     * */
     public void agregarParticipante(Participante participante) { //Inscribe un participante al torneo
         if (participante == null) {
             throw new DatosInvalidosException("El participante no puede ser null");
@@ -96,6 +107,14 @@ public class Torneo {
         }
         if (participantes.contains(participante)) { //Usa el equals() de Participante para detectar duplicados
             throw new DatosInvalidosException("El participante ya está inscrito");
+        }
+        if (deporte.getTipoParticipacion() == TipoParticipacion.INDIVIDUAL
+                && participante.getCantidadIntegrantes() > 1) {
+            throw new DatosInvalidosException("Este torneo es individual, no se pueden inscribir equipos");
+        }
+        if (deporte.getTipoParticipacion() == TipoParticipacion.COLECTIVO
+                && participante.getCantidadIntegrantes() == 1) {
+            throw new DatosInvalidosException("Este torneo es colectivo, no se pueden inscribir jugadores individuales");
         }
         participantes.add(participante);
         clasificacion.registrarParticipante(participante); //Lo agrega a la tabla con 0 puntos
