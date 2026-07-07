@@ -37,6 +37,7 @@ public class PanelCrearPartido extends JPanel {
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
         creadorBotones = new BotonSimple();
+        crearPartido();
     }
     public void crearPartido() {
         JLabel lblTitulo = new JLabel("Crear Nuevo Partido");

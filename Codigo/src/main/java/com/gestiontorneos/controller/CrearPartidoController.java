@@ -5,6 +5,7 @@ import com.gestiontorneos.model.torneo.Torneo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Controlador para la creación de partidos.
@@ -31,7 +32,7 @@ public class CrearPartidoController {
     private void manejarEventos() {
         panelCrearPartido.getBotonCrear().addActionListener(e -> crearPartido());
         panelCrearPartido.getBotonCancelar().addActionListener(e -> cancelar());
-        panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente());
+        //panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente());
     }
 
     private void crearPartido() {
@@ -59,6 +60,30 @@ public class CrearPartidoController {
         }
         //Ahora hay que crear los participantes
         //Luego crear el partido
+
+        List<Participante> participantes = torneoController.listarParticipantes(nombreTorneo);
+        Participante local = null;
+        Participante visitante = null;
+        for (Participante p : participantes) {
+            if (p.getNombre().equalsIgnoreCase(nombreLocal)) local = p;
+            if (p.getNombre().equalsIgnoreCase(nombreVisitante)) visitante = p;
+        }
+        if (local == null) {
+            panelCrearPartido.mostrarMensaje("Participante local '" + nombreLocal + "' no existe en el torneo.");
+            return;
+        }
+        if (visitante == null) {
+            panelCrearPartido.mostrarMensaje("Participante visitante '" + nombreVisitante + "' no existe en el torneo.");
+            return;
+        }
+        // Crear el partido usando TorneoController
+        boolean exito = torneoController.crearPartido(local, visitante, nombreTorneo, 1);
+        if (exito) {
+            panelCrearPartido.mostrarMensaje("Partido creado exitosamente!");
+            panelCrearPartido.limpiarFormulario();
+        } else {
+            panelCrearPartido.mostrarMensaje("Error al crear el partido.");
+        }
 
     }
     private void cancelar() {
