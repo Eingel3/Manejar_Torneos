@@ -42,9 +42,11 @@ public class PanelListaTorneos extends JPanel {
                 PanelInformacion.VENTANASINMENU.getAlto()));//Y las dimensiones
         this.add(Box.createRigidArea(new Dimension(0, 10))); //Agregamos un espacio arriba
 
-        agregarTorneoGUI("Torneo 1", "01/07 - 10/07", "Futbol");
-        agregarTorneoGUI("Torneo 2", "05/07 - 15/07", "Basketball");
-        agregarTorneoGUI("Torneo 3", "10/07 - 20/07", "Tenis");
+        this.add(new JLabel("¡Hola!, por ahora no hay torneos."));
+        this.add(Box.createRigidArea(new Dimension(0, 20)));
+        this.add(new JLabel("Sin embargo, aquí hay un ejemplo de un torneo."));
+        this.add(Box.createRigidArea(new Dimension(0, 20)));
+        agregarTorneoGUI("Nombre del torneo", "2001-02-02", "2002-06-06", "Dato/Descripcion del torneo");
     }
 
 
@@ -54,7 +56,7 @@ public class PanelListaTorneos extends JPanel {
         for (Torneo t : torneos) {
             agregarTorneoGUI(
                     t.getNombre(),
-                    t.getFechaInicio() + " - " + t.getFechaFin(),
+                    " " + t.getFechaInicio(), " " + t.getFechaFin(),
                     t.getDeporte().getNombre()
             );
         }
@@ -63,28 +65,15 @@ public class PanelListaTorneos extends JPanel {
     }
 
     /**
-     * Agrega torneos de prueba al panel.
-     * <p>
-     * Este método está pensado como implementación temporal mientras se conecta
-     * la vista con datos reales provenientes del modelo o controlador.
-     * </p>
-     */
-    private void gestionarTorneosGUI() {
-        //ciclo for para agregar todos los torneos
-        for (int i = 0; i < cantidadTorneos; i++) {
-            JButton detallesX = this.agregarTorneoGUI("Torneo " + (i + 1), "a", "b"); //agregamos los torneos
-        }
-    }
-
-    /**
      * Crea una tarjeta visual para un torneo y la agrega al panel.
      *
      * @param torneo nombre del torneo.
-     * @param fecha fecha o periodo asociado al torneo.
+     * @param fechaInicio fecha de inicio del torneo.
+     * @param fechaFin fecha de termino del torneo.
      * @param otroDato información adicional que se desea mostrar.
      * @return botón de detalles asociado al torneo creado.
      */
-    public JButton agregarTorneoGUI(String torneo, String fecha, String otroDato){
+    public JButton agregarTorneoGUI(String torneo, String fechaInicio, String fechaFin, String otroDato){
 
         PanelTarjeta creadorTarjeta = new PanelTarjeta();
         JPanel torneoGUI = creadorTarjeta.crear(500, 150); //Aquí es donde dejaremos todos los datos
@@ -95,21 +84,42 @@ public class PanelListaTorneos extends JPanel {
 
         //Creamos los distintos labels para cada informacion que mostremos
         JLabel lblNombre = new JLabel(torneo);
-        JLabel lblFecha = new JLabel(fecha);
+        JLabel lblFechaInicio = new JLabel("                            " + fechaInicio);
+        JLabel lblFechaIniciomsj = new JLabel("Fecha de inicio del torneo: ");
+        JLabel lblFechaFin = new JLabel("                            " + fechaFin);
+        JLabel lblFechaFinmsj = new JLabel("Fecha de fin del torneo: ");
         JLabel lblOtroDato = new JLabel(otroDato);
 
+        //Creamos un JPanel para las fechas
+        JPanel fechas = creadorTarjeta.crear(200, 140);
+        fechas.setLayout(new BoxLayout(fechas, BoxLayout.Y_AXIS));
+        fechas.setBorder(null);
+
         //Ahora le asignamos una fuente y el tamaño a los labels
-        lblNombre.setFont(new Font("Dialog", Font.BOLD, 18)); //este es mas grando
-        lblFecha.setFont(new Font("Dialog", Font.BOLD, 14));
-        lblOtroDato.setFont(new Font("Dialog", Font.BOLD, 14));
+        lblNombre.setFont(new Font("Dialog", Font.BOLD, 24)); //este es mas grando
+        lblFechaInicio.setFont(new Font("Dialog", Font.BOLD, 14));
+        lblFechaFin.setFont(new Font("Dialog", Font.BOLD, 14));
+        lblOtroDato.setFont(new Font("Dialog", Font.PLAIN, 14));
+        lblFechaIniciomsj.setFont(new Font("Dialog", Font.PLAIN, 16));
+        lblFechaFinmsj.setFont(new Font("Dialog", Font.PLAIN, 16));
+
+        //Agregamos las fechas
+        fechas.add(Box.createRigidArea(new Dimension(0, 30)));
+        fechas.add(lblFechaIniciomsj);
+        fechas.add(Box.createRigidArea(new Dimension(0, 10))); //Luego, agregamos un espacio entre este label y el siguiente
+        fechas.add(lblFechaInicio);
+        fechas.add(Box.createRigidArea(new Dimension(0, 10)));
+        fechas.add(lblFechaFinmsj);
+        fechas.add(Box.createRigidArea(new Dimension(0, 10)));
+        fechas.add(lblFechaFin);
 
         //Y agregamos los labels a torneoGUI
         torneoGUI.add(lblNombre);
-        torneoGUI.add(Box.createRigidArea(new Dimension(180, 10))); //Luego, agregamos un espacio entre este label y el siguiente
-        torneoGUI.add(lblFecha);
-        torneoGUI.add(Box.createRigidArea(new Dimension(180, 10))); //Luego, agregamos un espacio entre este label y el siguiente
+        torneoGUI.add(Box.createRigidArea(new Dimension(80, 0))); //Luego, agregamos un espacio entre este label y el siguiente
+        torneoGUI.add(fechas);
+        torneoGUI.add(Box.createRigidArea(new Dimension(80, 0))); //Luego, agregamos un espacio entre las fechas y el siguiente label
         torneoGUI.add(lblOtroDato);
-        torneoGUI.add(Box.createRigidArea(new Dimension(180, 10))); //Luego, agregamos un espacio entre este label y el siguiente
+        torneoGUI.add(Box.createRigidArea(new Dimension(100, 0))); //Luego, agregamos un espacio entre este label y el boton de detalles
 
         // Guardamos la referencia al panel más reciente antes de añadir el boton de detalles
         this.panelReciente = torneoGUI;
