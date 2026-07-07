@@ -1,6 +1,7 @@
 package com.gestiontorneos.model.deporte;
 
 import com.gestiontorneos.model.excepciones.DatosInvalidosException;
+import java.util.Objects;
 
 /**
  * Representa un deporte disponible para la creación de torneos.
@@ -66,5 +67,40 @@ public class Deporte {
     @Override
     public String toString() { //toString para mostrar el nombre del deporte
         return nombre;
+    }
+// ... existing code ...
+    /**
+     * Compara este deporte con otro objeto para determinar si representan el mismo
+     * deporte.
+     * <p>
+     * Dos deportes se consideran iguales cuando el objeto recibido también es una
+     * instancia de {@code Deporte} y ambos tienen el mismo nombre.
+     * </p>
+     *
+     * @param o objeto con el que se desea comparar este deporte.
+     * @return {@code true} si el objeto recibido es un {@code Deporte} con el mismo
+     *         nombre; {@code false} en caso contrario.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Deporte)) {
+            return false;
+        }
+        Deporte otro = (Deporte) o;
+        return this.nombre.equals(otro.nombre);
+    }
+
+    /**
+     * Calcula el código hash del deporte a partir de su nombre.
+     * <p>
+     * Este método es coherente con {@link #equals(Object)}, ya que ambos utilizan
+     * el nombre como criterio de identidad del deporte.
+     * </p>
+     *
+     * @return código hash generado a partir del nombre del deporte.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre);
     }
 }
