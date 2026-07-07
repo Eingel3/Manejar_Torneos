@@ -1,5 +1,6 @@
 package com.gestiontorneos.controller;
 import com.gestiontorneos.gui.organizador.PanelCrearPartido;
+import com.gestiontorneos.model.participante.Participante;
 import com.gestiontorneos.model.torneo.Torneo;
 
 import java.awt.event.ActionEvent;
@@ -30,7 +31,7 @@ public class CrearPartidoController {
     private void manejarEventos() {
         panelCrearPartido.getBotonCrear().addActionListener(e -> crearPartido());
         panelCrearPartido.getBotonCancelar().addActionListener(e -> cancelar());
-        panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente())
+        panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente());
     }
 
     private void crearPartido() {
@@ -39,12 +40,26 @@ public class CrearPartidoController {
         String nombreLocal = panelCrearPartido.getNombreParticipanteLocal();
         String nombreVisitante = panelCrearPartido.getNombreParticipanteVisitante();
         String estadoSeleccionado = panelCrearPartido.getEstadoPartido();
+        //Verificamos si los datos han sido ingresados correctamente
+        if (nombreTorneo.isEmpty() || nombreLocal.isEmpty() || nombreVisitante.isEmpty()) {
+            panelCrearPartido.mostrarMensaje("Todos los campos deben estar completos.");
+            return;
+        }
+
+        if (nombreLocal.equalsIgnoreCase(nombreVisitante)) {
+            panelCrearPartido.mostrarMensaje("El participante local y el visitante no pueden ser el mismo.");
+            return;
+        }
+
         //Verifcamos si el torneo existe
         Torneo torneo = torneoController.buscarTorneo(nombreTorneo);
         if (torneo == null) {
             panelCrearPartido.mostrarMensaje("El torneo '" + nombreTorneo + "' no existe.");
             return;
         }
+        //Ahora hay que crear los participantes
+        //Luego crear el partido
+
     }
     private void cancelar() {
         panelCrearPartido.limpiarPanel();
