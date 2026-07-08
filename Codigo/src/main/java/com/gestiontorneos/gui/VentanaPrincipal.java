@@ -39,6 +39,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     private CardLayout cardLayout;
     private PanelCrearParticipante crearParticipante;
     private PanelRegistrarResultado registrarResultado;
+    private PanelBracket panelBracket;
 
     private TorneoController torneoController;
     private DeporteController deporteController;
@@ -107,6 +108,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         panelInicio = new PanelInicio();
         crearParticipante = new PanelCrearParticipante();
         registrarResultado = new PanelRegistrarResultado();
+        panelBracket = new PanelBracket();
     }
 
     /**
@@ -130,6 +132,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.add(panelInicio, "Inicio");
         subPanel.add(crearParticipante, "Crear Participante");
         subPanel.add(registrarResultado, "Registrar Resultado");
+        subPanel.add(panelBracket, "Bracket");
 
         //Y añadimos el SubPanel
         this.add(subPanel);
@@ -188,8 +191,16 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         return partidosOrganizador;
     }
     public void configurarListenersTorneos() {
-        ListaTorneosBotonDetallesController detallesCtrl = new ListaTorneosBotonDetallesController(this, torneoController);
-        torneos.agregarListener(detallesCtrl);
+        ListaTorneosBotonesController botonesCtrl = new ListaTorneosBotonesController(this, torneoController);
+        torneos.agregarListener(botonesCtrl);
+    }
+
+    /**
+     * Getter del PanelBracket
+     * @return panelBracket quien es el PanelBracket de this
+     */
+    public PanelBracket getPanelBracket() {
+        return panelBracket;
     }
     /**
      * Dibuja los componentes gráficos del panel principal.
