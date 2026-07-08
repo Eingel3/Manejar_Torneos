@@ -88,9 +88,10 @@ public class PanelListaTorneos extends JPanel {
         PanelTarjeta creadorTarjeta = new PanelTarjeta();
         JPanel torneoGUI = creadorTarjeta.crear(500, 150); //Aquí es donde dejaremos todos los datos
 
-        //Creamos el boton de detalles
+        //Creamos el boton de detalles y del bracket
         BotonSimple creadorBoton = new BotonSimple();
         JButton detalles = creadorBoton.crear("Detalles");
+        JButton bracket =  creadorBoton.crear("Bracket");
 
         //Creamos los distintos labels para cada informacion que mostremos
         JLabel lblNombre = new JLabel(torneo);
@@ -135,11 +136,15 @@ public class PanelListaTorneos extends JPanel {
         this.panelReciente = torneoGUI;
         //Identificar el boton con el nombre del torneo
         detalles.setActionCommand(torneo);
+        //Identificar mediante bracket + nombre torneo
+        bracket.setActionCommand("bracket" + torneo);
         // Agregar el listener externo si existe
         if (evento != null) {
             detalles.addActionListener(evento);
+            bracket.addActionListener(evento);
         }
-        //Y agregamos el JButton detalles
+        //Y agregamos los JButton detalles y bracket
+        torneoGUI.add(bracket);
         torneoGUI.add(detalles);
 
         this.add(torneoGUI); //añadimos al JPanel de PanelListaTorneos
