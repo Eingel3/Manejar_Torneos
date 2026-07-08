@@ -90,6 +90,15 @@ public class CrearParticipanteController {
                     configurarBotonSiguiente();
                 }
             } else {
+                if (panel.confirmar("¿Desea generar el calendario del torneo ahora?")) {
+                    boolean calendarioOk = torneoController.generarCalendario(nombreTorneo);
+                    if (calendarioOk) {
+                        int total = torneoController.cantidadPartidos(nombreTorneo);
+                        panel.mostrarMensaje("Calendario generado: " + total + " partidos.");
+                    } else {
+                        panel.mostrarMensaje("No se pudo generar el calendario (se requieren al menos 2 participantes, o ya fue generado).");
+                    }
+                }
                 panel.limpiarPanel();
                 panel.elegirTipoParticipante();
                 configurarBotonSiguiente();
