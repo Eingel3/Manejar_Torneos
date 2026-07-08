@@ -97,24 +97,30 @@ public class TorneoController{
 
     //registrar a los participantes de un torneo
     public boolean registrarParticipante(String nombreTorneo, Participante participante){
-
         Torneo torneo = buscarTorneo(nombreTorneo);
-
-        if ( torneo != null ){
-            torneo.agregarParticipante(participante);
-            return true;
+        if (torneo != null){
+            try {
+                torneo.agregarParticipante(participante);
+                return true;
+            } catch (Exception e) {
+                System.err.println("Error al registrar participante: " + e.getMessage());
+                return false;
+            }
         }
         return false;
-
     }
 
     //eliminar participantes
     public boolean eliminarParticipante(String nombreTorneo, Participante participante){
         Torneo torneo = buscarTorneo(nombreTorneo);
-
         if (torneo != null){
-            torneo.eliminarParticipante(participante);
-            return true;
+            try {
+                torneo.eliminarParticipante(participante);
+                return true;
+            } catch (Exception e) {
+                System.err.println("Error al eliminar participante: " + e.getMessage());
+                return false;
+            }
         }
         System.out.println("Fallo en EliminarParticipante");
         return false;
