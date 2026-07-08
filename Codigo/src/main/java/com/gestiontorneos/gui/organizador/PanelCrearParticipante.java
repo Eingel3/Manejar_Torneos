@@ -5,12 +5,15 @@ import com.gestiontorneos.gui.factory.BotonSimple;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PanelCrearParticipante extends javax.swing.JPanel {
     private JTextField txtNombreParticipante;
     private JTextField txtContacto;
     private JComboBox<String> tipoParticipante;
     private JTextField txtNombreEquipo;
+    private JTextField txtIntegrantes;
     private JTextField txtNombreTorneo;
     private JButton btnCrear;
     private JButton btnCancelar;
@@ -49,18 +52,21 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 return btnSiguiente;
     }
     public void elegirNombreEquipo() {
-
         this.add(new JLabel("Nombre del equipo:"));
         this.add(Box.createRigidArea(new Dimension(0, 10)));
         txtNombreEquipo = new JTextField();
         txtNombreEquipo.setMaximumSize(new Dimension(300, 30));
         this.add(txtNombreEquipo);
+        this.add(Box.createRigidArea(new Dimension(0, 20)));
+
+        this.add(new JLabel("Integrantes (separados por coma):"));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        txtIntegrantes = new JTextField();
+        txtIntegrantes.setMaximumSize(new Dimension(300, 30));
+        this.add(txtIntegrantes);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
         this.revalidate();
         this.repaint();
-
-
-
     }
 
     public void elegirTorneo() {
@@ -131,6 +137,21 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 return txtNombreEquipo.getText().trim();
     }
 
+    public List<String> getIntegrantes() {
+        if (txtIntegrantes == null || txtIntegrantes.getText().trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+        String[] partes = txtIntegrantes.getText().split(",");
+        List<String> lista = new ArrayList<>();
+        for (String parte : partes) {
+            String trimmed = parte.trim();
+            if (!trimmed.isEmpty()) {
+                lista.add(trimmed);
+            }
+        }
+        return lista;
+    }
+
     public void limpiarFormulario() {;
                 if (tipoParticipante != null) {
                     tipoParticipante.setSelectedIndex(0);
@@ -149,6 +170,9 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 }
                 if (txtContacto != null) {
                     txtContacto.setText("");
+                }
+                if (txtIntegrantes != null) {
+                    txtIntegrantes.setText("");
                 }
                 if (txtNombreParticipante != null) {
                     txtNombreParticipante.setText("");
