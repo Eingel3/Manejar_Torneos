@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
+import com.gestiontorneos.model.partido.Resultado;
 import com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.deporte.Deporte;
@@ -145,16 +146,29 @@ public class TorneoController{
         return false;
     }
 
-    public void eliminarPartido(){
+    public boolean registrarResultadoPartido(String nombreTorneo, int indicePartido, int puntosLocal, int puntosVisitante){
+        Torneo torneo = buscarTorneo(nombreTorneo);
+
+        if (torneo == null) {
+            System.out.println("No se encontró torneo con el nombre de: " + nombreTorneo );
+            return false;
+        }
+        List<Partido> pendientes = torneo.getCalendario().getPendientes();
+        if (indicePartido < 0 || indicePartido >= pendientes.size()) {
+            System.out.println("Índice de partido inválido");
+            return false;
+        }
+        Partido partido = pendientes.get(indicePartido);
+        Resultado resultado = new Resultado(puntosLocal, puntosVisitante);
+
+        try {
+            torneo.registrarResultado(partido, resultado);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al registrar resultado: " + e.getMessage());
+            return false;
+        }
+
 
     }
-
-    public void buscarPartido(){
-
-    }
-
-    public void listaPartidos(){
-
-    }
-
 }
