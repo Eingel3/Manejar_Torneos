@@ -35,55 +35,81 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 lblTitulo.setAlignmentX(CENTER_ALIGNMENT);
 
                 this.add(new JLabel("Indique si desea agregar un equipo o un jugador individual:"));
+                this.add(Box.createRigidArea(new Dimension(0, 10)));
                 tipoParticipante = new JComboBox<>(new String[]{"Equipo", "Jugador Individual"});
+                tipoParticipante.setMaximumSize(new Dimension(300, 30));
                 this.add(tipoParticipante);
+                this.add(Box.createRigidArea(new Dimension(0, 30)));
 
                 btnSiguiente = creadorBotones.crear("Siguiente");
+                btnSiguiente.setMaximumSize(new Dimension(200, 40));
                 this.add(btnSiguiente);
                 return btnSiguiente;
     }
     public void elegirNombreEquipo() {
 
         this.add(new JLabel("Nombre del equipo:"));
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
-        this.add(txtNombreEquipo = new JTextField());
-        this.add(Box.createRigidArea(new Dimension(0, 60)));
-
-
-        this.add(btnCrear = creadorBotones.crear("Crear"));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        txtNombreEquipo = new JTextField();
+        txtNombreEquipo.setMaximumSize(new Dimension(300, 30));
+        this.add(txtNombreEquipo);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
-        this.add(btnCancelar = creadorBotones.crear("Cancelar"));
+
+        btnCrear = creadorBotones.crear("Crear");
+        btnCrear.setMaximumSize(new Dimension(200, 40));
+        this.add(btnCrear);
+        this.add(Box.createRigidArea(new Dimension(0, 15)));
+
+        btnCancelar = creadorBotones.crear("Cancelar");
+        btnCancelar.setMaximumSize(new Dimension(200, 40));
+        this.add(btnCancelar);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
     }
 
     public void elegirTorneo() {
         this.add(new JLabel("Nombre del torneo en que participa:"));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        txtNombreTorneo = new JTextField();
+        txtNombreTorneo.setMaximumSize(new Dimension(300, 30));
+        this.add(txtNombreTorneo);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
-        this.add(txtNombreTorneo = new JTextField());
-        this.add(Box.createRigidArea(new Dimension(0, 60)));
 
-        this.add(btnCrear = creadorBotones.crear("Crear"));
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        btnCrear = creadorBotones.crear("Crear");
+        btnCrear.setMaximumSize(new Dimension(200, 40));
+        this.add(btnCrear);
+        this.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        this.add(btnCancelar = creadorBotones.crear("Cancelar"));
+        btnCancelar = creadorBotones.crear("Cancelar");
+        btnCancelar.setMaximumSize(new Dimension(200, 40));
+        this.add(btnCancelar);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
     }
 
     public void agregarParticipante() {
         this.add(new JLabel("Nombre del participante:"));
-        this.add(txtNombreParticipante = new JTextField());
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        txtNombreParticipante = new JTextField();
+        txtNombreParticipante.setMaximumSize(new Dimension(300, 30));
+        this.add(txtNombreParticipante);
+        this.add(Box.createRigidArea(new Dimension(0, 20)));
 
         this.add(new JLabel("Contacto del participante:"));
-        this.add(txtContacto = new JTextField());
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        txtContacto = new JTextField();
+        txtContacto.setMaximumSize(new Dimension(300, 30));
+        this.add(txtContacto);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
-        this.add(btnCrear = creadorBotones.crear("Crear"));
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        btnCrear = creadorBotones.crear("Crear");
+        btnCrear.setMaximumSize(new Dimension(200, 40));
+        this.add(btnCrear);
+        this.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        this.add(btnCancelar = creadorBotones.crear("Cancelar"));
+        btnCancelar = creadorBotones.crear("Cancelar");
+        btnCancelar.setMaximumSize(new Dimension(200, 40));
+        this.add(btnCancelar);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
     }
 
