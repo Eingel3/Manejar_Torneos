@@ -28,6 +28,7 @@ public class PanelMenu extends JPanel {
     private JButton futurosEventos;
     private JButton crearTorneo;
     private JButton crearParticipante;
+    private JButton registrarResultado;
 
     /**
      * Crea e inicializa el menú lateral.
@@ -91,6 +92,10 @@ public class PanelMenu extends JPanel {
         crearParticipante = crearBoton.crear("Crear participante");
         this.add(crearParticipante);
         add(Box.createRigidArea(new Dimension(0, 30)));
+
+        registrarResultado = crearBoton.crear("Registrar resultado");
+        this.add(registrarResultado);
+        add(Box.createRigidArea(new Dimension(0, 30)));
     }
 
     /**
@@ -123,6 +128,9 @@ public class PanelMenu extends JPanel {
                 break;
             case "Crear Participante":
                 crearParticipante.addActionListener(evento);
+                break;
+            case "Registrar Resultado":
+                registrarResultado.addActionListener(evento);
                 break;
             default:
                 throw new IllegalArgumentException("Botón desconocido: " + id);

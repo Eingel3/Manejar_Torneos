@@ -5,6 +5,7 @@ import com.gestiontorneos.gui.organizador.PanelCrearParticipante;
 import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
 import com.gestiontorneos.gui.organizador.PanelCrearPartido;
+import com.gestiontorneos.gui.organizador.PanelRegistrarResultado;
 
 import java.awt.*;
 import javax.swing.*;
@@ -37,6 +38,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     private JPanel subPanel;
     private CardLayout cardLayout;
     private PanelCrearParticipante crearParticipante;
+    private PanelRegistrarResultado registrarResultado;
 
     private TorneoController torneoController;
     private DeporteController deporteController;
@@ -78,6 +80,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     public void inicializarControladores() {
         if (torneoController != null) {
             new CrearPartidoController(partidosOrganizador, torneoController);
+            new ResultadoController(registrarResultado, torneoController);
             configurarListenersTorneos();
         }
     }
@@ -102,6 +105,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         eventos = new PanelFuturosEventos();
         panelInicio = new PanelInicio();
         crearParticipante = new PanelCrearParticipante();
+        registrarResultado = new PanelRegistrarResultado();
     }
 
     /**
@@ -124,6 +128,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         subPanel.add(eventos,  "Futuros Eventos");
         subPanel.add(panelInicio, "Inicio");
         subPanel.add(crearParticipante, "Crear Participante");
+        subPanel.add(registrarResultado, "Registrar Resultado");
 
         //Y añadimos el SubPanel
         this.add(subPanel);
