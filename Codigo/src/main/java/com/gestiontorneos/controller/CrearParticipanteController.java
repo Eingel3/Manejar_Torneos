@@ -21,6 +21,9 @@ public class CrearParticipanteController {
 
 
     private void manejarEventos() {
+        configurarBotonSiguiente();
+    }
+    private void configurarBotonSiguiente() {
         panel.getBotonSiguiente().addActionListener(e -> {
             String tipo = panel.getTipoParticipante();
             panel.limpiarPanel();
@@ -31,7 +34,7 @@ public class CrearParticipanteController {
             }
             panel.elegirTorneo();
             panel.getBotonCrear().addActionListener(ev -> crearParticipante());
-            panel.getBotonCancelar().addActionListener(ev-> cancelar());
+            panel.getBotonCancelar().addActionListener(ev -> cancelar());
         });
     }
 
@@ -65,6 +68,7 @@ public class CrearParticipanteController {
             panel.mostrarMensaje("Participante registrado exitosamente!");
             panel.limpiarPanel();
             panel.elegirTipoParticipante();
+            configurarBotonSiguiente();
         } else {
             panel.mostrarMensaje("Error al registrar participante.");
         }
@@ -74,6 +78,7 @@ public class CrearParticipanteController {
     public void cancelar(){
         panel.limpiarPanel();
         panel.elegirTipoParticipante();
+        configurarBotonSiguiente();
     }
 
 

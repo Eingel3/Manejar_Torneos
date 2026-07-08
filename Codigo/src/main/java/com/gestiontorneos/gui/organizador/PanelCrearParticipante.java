@@ -44,6 +44,8 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 btnSiguiente = creadorBotones.crear("Siguiente");
                 btnSiguiente.setMaximumSize(new Dimension(200, 40));
                 this.add(btnSiguiente);
+                this.revalidate();
+                this.repaint();
                 return btnSiguiente;
     }
     public void elegirNombreEquipo() {
@@ -54,6 +56,8 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
         txtNombreEquipo.setMaximumSize(new Dimension(300, 30));
         this.add(txtNombreEquipo);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
+        this.revalidate();
+        this.repaint();
 
 
 
@@ -76,6 +80,8 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
         btnCancelar.setMaximumSize(new Dimension(200, 40));
         this.add(btnCancelar);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
+        this.revalidate();
+        this.repaint();
     }
 
     public void agregarParticipante() {
@@ -92,7 +98,8 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
         txtContacto.setMaximumSize(new Dimension(300, 30));
         this.add(txtContacto);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
-
+        this.revalidate();
+        this.repaint();
 
     }
 
