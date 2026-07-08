@@ -178,6 +178,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     public PanelResultados getResultados() {
         return resultados;
     }
+    public PanelClasificacion getClasificacion() {return clasificacion;}
     public PanelCrearPartido getPartidosOrganizador() {
         return partidosOrganizador;
     }
