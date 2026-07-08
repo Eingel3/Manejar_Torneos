@@ -23,7 +23,7 @@ public class CrearParticipanteController {
     private void manejarEventos() {
         configurarBotonSiguiente();
     }
-    private void configurarBotonSiguiente() {
+    public void configurarBotonSiguiente() {
         panel.getBotonSiguiente().addActionListener(e -> {
             String tipo = panel.getTipoParticipante();
             panel.limpiarPanel();

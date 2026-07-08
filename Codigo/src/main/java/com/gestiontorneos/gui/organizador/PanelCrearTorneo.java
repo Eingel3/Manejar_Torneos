@@ -111,6 +111,7 @@ public class PanelCrearTorneo extends JPanel {
                 limpiarFormulario();
                 ventanaPrincipal.actualizarTorneos();
                 ventanaPrincipal.getCrearParticipante().configurarModoCreacionRapida(getNombre(), total);
+                ventanaPrincipal.refrescarBotonSiguienteParticipante();
                 ventanaPrincipal.mostrarPanel("Crear Participante");
             } catch (NumberFormatException e2) {
                 mostrarMensaje("Ingrese un número válido.");
