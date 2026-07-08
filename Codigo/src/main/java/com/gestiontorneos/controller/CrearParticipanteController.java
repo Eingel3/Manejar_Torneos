@@ -5,7 +5,6 @@ import com.gestiontorneos.model.participante.Equipo;
 import com.gestiontorneos.model.participante.JugadorIndividual;
 import com.gestiontorneos.model.excepciones.DatosInvalidosException;
 
-import javax.swing.*;
 import java.util.List;
 
 public class CrearParticipanteController {
@@ -13,53 +12,33 @@ public class CrearParticipanteController {
     private PanelCrearParticipante panel;
     private TorneoController torneoController;
 
-
-    public CrearParticipanteController(PanelCrearParticipante panel, TorneoController torneoController){
+    public CrearParticipanteController(PanelCrearParticipante panel, TorneoController torneoController) {
         this.panel = panel;
         this.torneoController = torneoController;
         manejarEventos();
     }
 
-
     private void manejarEventos() {
-        configurarBotonSiguiente();
+        panel.getBotonCrear().addActionListener(e -> crearParticipante());
+        panel.getBotonCancelar().addActionListener(e -> cancelar());
     }
-    private void configurarBotonSiguiente() {
-        panel.getBotonSiguiente().addActionListener(e -> {
-            String tipo = panel.getTipoParticipante();
-            panel.limpiarPanel();
-            if (tipo.equals("Equipo")) {
-                panel.elegirNombreEquipo();
-            } else {
-                panel.agregarParticipante();
-            }
-            panel.elegirTorneo();
-            panel.getBotonCrear().addActionListener(ev -> crearParticipante());
-            panel.getBotonCancelar().addActionListener(ev -> cancelar());
-        });
-    }
-
 
     private void crearParticipante() {
         String nombreTorneo = panel.getNombreTorneo();
-        String tipo = panel.getTipoParticipante();
         if (nombreTorneo.isEmpty()) {
             panel.mostrarMensaje("Ingrese el nombre del torneo.");
             return;
         }
+
         boolean exito;
         try {
-            if (tipo.equals("Equipo")) {
+            if (panel.esEquipo()) {
                 String nombreEquipo = panel.getNombreEquipo();
                 if (nombreEquipo.isEmpty()) {
                     panel.mostrarMensaje("Ingrese el nombre del equipo.");
                     return;
                 }
                 List<String> integrantes = panel.getIntegrantes();
-                if (integrantes.isEmpty()) {
-                    panel.mostrarMensaje("El equipo debe tener al menos un integrante.");
-                    return;
-                }
                 Equipo equipo = new Equipo(nombreEquipo, "", integrantes);
                 exito = torneoController.registrarParticipante(nombreTorneo, equipo);
             } else {
@@ -76,22 +55,16 @@ public class CrearParticipanteController {
             panel.mostrarMensaje(ex.getMessage());
             return;
         }
+
         if (exito) {
             panel.mostrarMensaje("Participante registrado exitosamente!");
-            panel.limpiarPanel();
-            panel.elegirTipoParticipante();
-            configurarBotonSiguiente();
+            panel.limpiarFormulario();
         } else {
             panel.mostrarMensaje("Error al registrar participante.");
         }
     }
 
-
-    public void cancelar(){
-        panel.limpiarPanel();
-        panel.elegirTipoParticipante();
-        configurarBotonSiguiente();
+    public void cancelar() {
+        panel.limpiarFormulario();
     }
-
-
 }

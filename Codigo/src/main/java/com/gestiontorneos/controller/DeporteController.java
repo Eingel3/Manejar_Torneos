@@ -23,9 +23,8 @@ public class DeporteController {
         return null;
     }
 
-    //por mientras coloco tipo individual para no complicar, despues sera a eleccion del organizador
-    public Deporte crearDeporte(String nombre){
-            Deporte deporte = new Deporte(nombre, TipoParticipacion.INDIVIDUAL);
+    public Deporte crearDeporte(String nombre, TipoParticipacion tipoParticipacion){
+            Deporte deporte = new Deporte(nombre, tipoParticipacion);
         deportes.add(deporte);
         return deporte;
     }

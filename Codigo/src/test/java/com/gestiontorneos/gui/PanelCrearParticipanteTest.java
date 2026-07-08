@@ -20,33 +20,28 @@ public class PanelCrearParticipanteTest {
     }
 
     @Test
-    @DisplayName("elegirTipoParticipante debe agregar un combo y retornar botón Siguiente")
-    void testElegirTipoParticipante() {
-        JButton siguiente = panel.elegirTipoParticipante();
-        assertNotNull(siguiente);
-        assertEquals("Siguiente", siguiente.getText());
-        // El combo debe existir
+    @DisplayName("mostrarFormularioCompleto debe agregar todos los campos")
+    void testMostrarFormularioCompleto() {
         Component[] comps = panel.getComponents();
-        boolean comboEncontrado = false;
+        boolean tieneTextField = false;
+        boolean tieneBotonCrear = false;
+        boolean tieneBotonCancelar = false;
         for (Component c : comps) {
-            if (c instanceof JComboBox) comboEncontrado = true;
+            if (c instanceof JTextField) tieneTextField = true;
+            if (c instanceof JButton) {
+                String text = ((JButton) c).getText();
+                if ("Crear".equals(text)) tieneBotonCrear = true;
+                if ("Cancelar".equals(text)) tieneBotonCancelar = true;
+            }
         }
-        assertTrue(comboEncontrado, "Debe existir el JComboBox de tipo de participante");
-    }
-
-    @Test
-    @DisplayName("getTipoParticipante debe devolver la selección correcta")
-    void testGetTipoParticipante() {
-        panel.elegirTipoParticipante();
-        // Por defecto está "Equipo"
-        assertEquals("Equipo", panel.getTipoParticipante());
+        assertTrue(tieneTextField, "Debe tener campos de texto");
+        assertTrue(tieneBotonCrear, "Debe tener boton Crear");
+        assertTrue(tieneBotonCancelar, "Debe tener boton Cancelar");
     }
 
     @Test
     @DisplayName("limpiarFormulario debe borrar los campos de texto")
     void testLimpiarFormulario() {
-        // Primero agregamos campos
-        panel.agregarParticipante();
         panel.getTxtNombreParticipante().setText("Juan");
         panel.getTxtContacto().setText("email");
         panel.limpiarFormulario();

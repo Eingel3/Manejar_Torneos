@@ -3,6 +3,7 @@ package com.gestiontorneos.gui.organizador;
 import com.gestiontorneos.controller.TorneoController;
 import com.gestiontorneos.gui.VentanaPrincipal;
 import com.gestiontorneos.gui.compartido.PanelInformacion;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
 import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.torneo.formato.LigaSimple;
@@ -25,6 +26,7 @@ public class PanelCrearTorneo extends JPanel {
     private JTextField txtFechaFin;
     private JTextField txtDeporte;
     private JComboBox<String> formato;
+    private JComboBox<String> tipoParticipacion;
     private JTextField txtDescripcion;
     private JButton btnCrear;
     private JButton btnCancelar;
@@ -89,7 +91,7 @@ public class PanelCrearTorneo extends JPanel {
                     formato = new EliminacionDirecta();
                     break;
             }
-                torneoController.crearTorneo(getNombre(),getDeporte(), formato,getFechaInicio(),getFechaFin());
+                torneoController.crearTorneo(getNombre(),getDeporte(), formato,getFechaInicio(),getFechaFin(), getTipoParticipacionEnum());
                 System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
                 mostrarMensaje("Torneo creado exitosamente!");
                 limpiarFormulario();
@@ -124,6 +126,11 @@ public class PanelCrearTorneo extends JPanel {
 
         this.add(new JLabel("Deporte:"));
         this.add(txtDeporte = new JTextField());
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        this.add(new JLabel("Tipo de participacion:"));
+        tipoParticipacion = new JComboBox<>(new String[]{"Individual", "Colectivo"});
+        this.add(tipoParticipacion);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
         this.add(new JLabel("formato:"));
@@ -176,11 +183,20 @@ public class PanelCrearTorneo extends JPanel {
         return txtDescripcion.getText().trim();
     }
 
+    public TipoParticipacion getTipoParticipacionEnum() {
+        String seleccion = (String) tipoParticipacion.getSelectedItem();
+        if ("Colectivo".equals(seleccion)) {
+            return TipoParticipacion.COLECTIVO;
+        }
+        return TipoParticipacion.INDIVIDUAL;
+    }
+
     public void limpiarFormulario() {
         txtNombre.setText("");
         txtFechaInicio.setText("");
         txtFechaFin.setText("");
         txtDeporte.setText("");
+        tipoParticipacion.setSelectedIndex(0);
         formato.setSelectedIndex(0);
         txtDescripcion.setText("");
     }

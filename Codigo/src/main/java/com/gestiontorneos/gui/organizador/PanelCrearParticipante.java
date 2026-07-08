@@ -11,13 +11,11 @@ import java.util.List;
 public class PanelCrearParticipante extends javax.swing.JPanel {
     private JTextField txtNombreParticipante;
     private JTextField txtContacto;
-    private JComboBox<String> tipoParticipante;
     private JTextField txtNombreEquipo;
     private JTextField txtIntegrantes;
     private JTextField txtNombreTorneo;
     private JButton btnCrear;
     private JButton btnCancelar;
-    private JButton btnSiguiente;
     private BotonSimple creadorBotones;
 
     public PanelCrearParticipante() {
@@ -27,55 +25,51 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
         creadorBotones = new BotonSimple();
-        elegirTipoParticipante();
+        mostrarFormularioCompleto();
     }
 
+    public void mostrarFormularioCompleto() {
+        JLabel lblTitulo = new JLabel("Crear Nuevo Participante");
+        lblTitulo.setFont(new Font("Dialog", Font.BOLD, 24));
+        lblTitulo.setForeground(Color.BLACK);
+        lblTitulo.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(lblTitulo);
+        this.add(Box.createRigidArea(new Dimension(0, 20)));
 
-    public JButton elegirTipoParticipante() {
-                JLabel lblTitulo = new JLabel("Crear Nuevo Participante");
-                lblTitulo.setFont(new Font("Dialog", Font.BOLD, 24));
-                lblTitulo.setForeground(Color.BLACK);
-                lblTitulo.setAlignmentX(CENTER_ALIGNMENT);
-
-                this.add(new JLabel("Indique si desea agregar un equipo o un jugador individual:"));
-                this.add(Box.createRigidArea(new Dimension(0, 10)));
-                tipoParticipante = new JComboBox<>(new String[]{"Equipo", "Jugador Individual"});
-                tipoParticipante.setMaximumSize(new Dimension(300, 30));
-                this.add(tipoParticipante);
-                this.add(Box.createRigidArea(new Dimension(0, 30)));
-
-                btnSiguiente = creadorBotones.crear("Siguiente");
-                btnSiguiente.setMaximumSize(new Dimension(200, 40));
-                this.add(btnSiguiente);
-                this.revalidate();
-                this.repaint();
-                return btnSiguiente;
-    }
-    public void elegirNombreEquipo() {
         this.add(new JLabel("Nombre del equipo:"));
         this.add(Box.createRigidArea(new Dimension(0, 10)));
         txtNombreEquipo = new JTextField();
         txtNombreEquipo.setMaximumSize(new Dimension(300, 30));
         this.add(txtNombreEquipo);
-        this.add(Box.createRigidArea(new Dimension(0, 20)));
+        this.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        this.add(new JLabel("Integrantes (separados por coma):"));
+        this.add(new JLabel("Integrantes del equipo (separados por coma):"));
         this.add(Box.createRigidArea(new Dimension(0, 10)));
         txtIntegrantes = new JTextField();
         txtIntegrantes.setMaximumSize(new Dimension(300, 30));
         this.add(txtIntegrantes);
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
-        this.revalidate();
-        this.repaint();
-    }
+        this.add(Box.createRigidArea(new Dimension(0, 15)));
 
-    public void elegirTorneo() {
+        this.add(new JLabel("Nombre del participante (si es individual):"));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        txtNombreParticipante = new JTextField();
+        txtNombreParticipante.setMaximumSize(new Dimension(300, 30));
+        this.add(txtNombreParticipante);
+        this.add(Box.createRigidArea(new Dimension(0, 15)));
+
+        this.add(new JLabel("Contacto del participante:"));
+        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        txtContacto = new JTextField();
+        txtContacto.setMaximumSize(new Dimension(300, 30));
+        this.add(txtContacto);
+        this.add(Box.createRigidArea(new Dimension(0, 15)));
+
         this.add(new JLabel("Nombre del torneo en que participa:"));
         this.add(Box.createRigidArea(new Dimension(0, 10)));
         txtNombreTorneo = new JTextField();
         txtNombreTorneo.setMaximumSize(new Dimension(300, 30));
         this.add(txtNombreTorneo);
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
+        this.add(Box.createRigidArea(new Dimension(0, 20)));
 
         btnCrear = creadorBotones.crear("Crear");
         btnCrear.setMaximumSize(new Dimension(200, 40));
@@ -90,51 +84,28 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
         this.repaint();
     }
 
-    public void agregarParticipante() {
-        this.add(new JLabel("Nombre del participante:"));
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
-        txtNombreParticipante = new JTextField();
-        txtNombreParticipante.setMaximumSize(new Dimension(300, 30));
-        this.add(txtNombreParticipante);
-        this.add(Box.createRigidArea(new Dimension(0, 20)));
-
-        this.add(new JLabel("Contacto del participante:"));
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
-        txtContacto = new JTextField();
-        txtContacto.setMaximumSize(new Dimension(300, 30));
-        this.add(txtContacto);
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
-        this.revalidate();
-        this.repaint();
-
-    }
-
     public JButton getBotonCrear() {
-                return btnCrear;
+        return btnCrear;
     }
 
     public JButton getBotonCancelar() {
-                return btnCancelar;
+        return btnCancelar;
     }
 
     public String getNombreTorneo() {
-                return txtNombreTorneo.getText().trim();
+        return txtNombreTorneo.getText().trim();
     }
 
     public String getContacto() {
-                return txtContacto.getText().trim();
+        return txtContacto.getText().trim();
     }
 
     public String getNombreParticipante() {
-                return (String) txtNombreParticipante.getText().trim();
-    }
-
-    public String getTipoParticipante() {
-                return (String) tipoParticipante.getSelectedItem();
+        return txtNombreParticipante.getText().trim();
     }
 
     public String getNombreEquipo() {
-                return txtNombreEquipo.getText().trim();
+        return txtNombreEquipo.getText().trim();
     }
 
     public List<String> getIntegrantes() {
@@ -152,33 +123,28 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
         return lista;
     }
 
-    public void limpiarFormulario() {;
-                if (tipoParticipante != null) {
-                    tipoParticipante.setSelectedIndex(0);
-                }
-                if (txtNombreEquipo != null) {
-                    txtNombreEquipo.setText("");
-                }
-                if (txtContacto != null) {
-                    txtContacto.setText("");
-                }
-                if (tipoParticipante != null) {
-                    tipoParticipante.setSelectedIndex(0);
-                }
-                if (txtNombreEquipo != null) {
-                    txtNombreEquipo.setText("");
-                }
-                if (txtContacto != null) {
-                    txtContacto.setText("");
-                }
-                if (txtIntegrantes != null) {
-                    txtIntegrantes.setText("");
-                }
-                if (txtNombreParticipante != null) {
-                    txtNombreParticipante.setText("");
-                }
-                this.revalidate();
-                this.repaint();
+    public boolean esEquipo() {
+        return !getIntegrantes().isEmpty();
+    }
+
+    public void limpiarFormulario() {
+        if (txtNombreEquipo != null) {
+            txtNombreEquipo.setText("");
+        }
+        if (txtIntegrantes != null) {
+            txtIntegrantes.setText("");
+        }
+        if (txtNombreParticipante != null) {
+            txtNombreParticipante.setText("");
+        }
+        if (txtContacto != null) {
+            txtContacto.setText("");
+        }
+        if (txtNombreTorneo != null) {
+            txtNombreTorneo.setText("");
+        }
+        this.revalidate();
+        this.repaint();
     }
 
     public void limpiarPanel() {
@@ -188,22 +154,20 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
     }
 
     public void mostrarMensaje(String mensaje) {
-                JOptionPane.showMessageDialog(this, mensaje);
+        JOptionPane.showMessageDialog(this, mensaje);
     }
 
-    public boolean confirmar(String pregunta){
-                int respuesta = JOptionPane.showConfirmDialog(this,pregunta,
-                        "Advertencia", JOptionPane.YES_NO_OPTION);
-                return  respuesta == JOptionPane.YES_OPTION;
+    public boolean confirmar(String pregunta) {
+        int respuesta = JOptionPane.showConfirmDialog(this, pregunta,
+                "Advertencia", JOptionPane.YES_NO_OPTION);
+        return respuesta == JOptionPane.YES_OPTION;
     }
 
     public JTextField getTxtNombreParticipante() {
         return txtNombreParticipante;
     }
+
     public JTextField getTxtContacto() {
         return txtContacto;
-    }
-    public JButton getBotonSiguiente(){
-        return btnSiguiente;
     }
 }

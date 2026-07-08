@@ -8,6 +8,7 @@ import com.gestiontorneos.model.partido.Resultado;
 import com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.deporte.Deporte;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
 import com.gestiontorneos.model.participante.Participante;
 import com.gestiontorneos.model.partido.Partido;
 
@@ -23,14 +24,10 @@ public class TorneoController{
     private DeporteController deporteController;
 
     //aca guarda los torneos con persistencia
-    private PersistenciaController persistenciaController;
-
-
 
     public TorneoController(){
         this.torneos = new ArrayList<>();
         this.deporteController = new DeporteController();
-        this.persistenciaController = new PersistenciaController();
     }
 
 
@@ -39,14 +36,15 @@ public class TorneoController{
                               String nombreDeporte,
                               FormatoTorneo formato,
                               String fechaInicio,
-                              String fechaFin) {
+                              String fechaFin,
+                              TipoParticipacion tipoParticipacion) {
 
         // Buscar si el deporte ya existe
         Deporte deporte = deporteController.buscarDeporte(nombreDeporte);
 
-        // Si no existe, se crea
+        // Si no existe, se crea con el tipo de participacion indicado
         if (deporte == null) {
-            deporte = deporteController.crearDeporte(nombreDeporte);
+            deporte = deporteController.crearDeporte(nombreDeporte, tipoParticipacion);
         }
 
         // Se crea el torneo
