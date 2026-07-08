@@ -24,6 +24,7 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
                 PanelInformacion.VENTANASINMENU.getAncho(),
                 PanelInformacion.VENTANASINMENU.getAlto()));
         creadorBotones = new BotonSimple();
+        elegirTipoParticipante();
     }
 
 
@@ -161,5 +162,8 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
     }
     public JTextField getTxtContacto() {
         return txtContacto;
+    }
+    public JButton getBotonSiguiente(){
+        return btnSiguiente;
     }
 }

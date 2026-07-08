@@ -81,6 +81,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         if (torneoController != null) {
             new CrearPartidoController(partidosOrganizador, torneoController);
             new ResultadoController(registrarResultado, torneoController);
+            new CrearParticipanteController(crearParticipante, torneoController);
             configurarListenersTorneos();
         }
     }
