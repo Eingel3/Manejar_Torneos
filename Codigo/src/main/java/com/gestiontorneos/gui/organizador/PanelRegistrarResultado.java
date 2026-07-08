@@ -92,6 +92,19 @@ public class PanelRegistrarResultado extends JPanel {
         }
     }
 
+    public void setTorneoController(TorneoController torneoController) {
+        this.torneoController = torneoController;
+        cargarTorneos();
+    }
+
+
+    public void cargarTorneos() {
+        comboTorneos.removeAllItems();
+        if (torneoController == null) return;
+        for (Torneo t : torneoController.listaTorneos()) {
+            comboTorneos.addItem(t.getNombre());
+        }
+    }
 
 
 
@@ -170,6 +183,10 @@ public class PanelRegistrarResultado extends JPanel {
         this.removeAll();
         this.revalidate();
         this.repaint();
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
     }
 
 

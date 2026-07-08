@@ -25,4 +25,72 @@ public class ResultadoController {
         manejarEventos();
     }
 
+    private void manejarEventos() {
+        panelRegistrarResultado.getBotonRegistrar().addActionListener(e -> registrarResultado());
+        panelRegistrarResultado.getBotonCancelar().addActionListener(e -> cancelar());
+    }
+
+
+    /**
+     * Registra el resultado del partido seleccionado.
+     * <p>
+     * Valida que todos los campos estén completos, que los puntajes sean números
+     * válidos, y que se haya seleccionado un partido. Luego llama al
+     * {@link TorneoController} para procesar el registro.
+     * </p>
+     */
+    private void registrarResultado() {
+        String nombreTorneo = panelRegistrarResultado.getNombreTorneo();
+        int indicePartido = panelRegistrarResultado.getIndicePartido();
+        String puntosLocalStr = panelRegistrarResultado.getPuntosLocal();
+        String puntosVisitanteStr = panelRegistrarResultado.getPuntosVisitante();
+
+        if (nombreTorneo == null || nombreTorneo.isEmpty()) {
+            panelRegistrarResultado.mostrarMensaje("Seleccione un torneo.");
+            return;
+        }
+
+        if (indicePartido < 0) {
+            panelRegistrarResultado.mostrarMensaje("Seleccione un partido pendiente.");
+            return;
+        }
+
+        if (puntosLocalStr.isEmpty() || puntosVisitanteStr.isEmpty()) {
+            panelRegistrarResultado.mostrarMensaje("Ingrese los puntajes del local y del visitante.");
+            return;
+        }
+
+        int puntosLocal;
+        int puntosVisitante;
+        try {
+            puntosLocal = Integer.parseInt(puntosLocalStr);
+            puntosVisitante = Integer.parseInt(puntosVisitanteStr);
+        } catch (NumberFormatException ex) {
+            panelRegistrarResultado.mostrarMensaje("Los puntajes deben ser números enteros.");
+            return;
+        }
+
+        if (puntosLocal < 0 || puntosVisitante < 0) {
+            panelRegistrarResultado.mostrarMensaje("Los puntajes no pueden ser negativos.");
+            return;
+        }
+
+        boolean exito = torneoController.registrarResultadoPartido(nombreTorneo, indicePartido, puntosLocal, puntosVisitante);
+        if (exito) {
+            panelRegistrarResultado.mostrarMensaje("Resultado registrado exitosamente!");
+            panelRegistrarResultado.limpiarFormulario();
+            panelRegistrarResultado.cargarPartidosPendientes();
+        } else {
+            panelRegistrarResultado.mostrarMensaje("Error al registrar resultado");
+        }
+    }
+
+    /**
+     * Limpia el formulario y recarga los torneos disponibles.
+     */
+    private void cancelar() {
+        panelRegistrarResultado.limpiarFormulario();
+        panelRegistrarResultado.cargarTorneos();
+    }
+
 }
