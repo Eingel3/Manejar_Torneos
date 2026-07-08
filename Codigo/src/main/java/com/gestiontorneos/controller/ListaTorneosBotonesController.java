@@ -1,6 +1,7 @@
 package com.gestiontorneos.controller;
 
 import com.gestiontorneos.gui.VentanaPrincipal;
+import com.gestiontorneos.gui.compartido.PanelBracket;
 import com.gestiontorneos.gui.compartido.PanelResultados;
 import com.gestiontorneos.model.participante.Participante;
 import com.gestiontorneos.model.partido.Partido;
@@ -10,17 +11,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class ListaTorneosBotonDetallesController implements ActionListener {
+public class ListaTorneosBotonesController implements ActionListener {
     private VentanaPrincipal ventanaPrincipal;
     private TorneoController torneoController;
 
-    public ListaTorneosBotonDetallesController(VentanaPrincipal ventanaPrincipal, TorneoController torneoController) {
+    public ListaTorneosBotonesController(VentanaPrincipal ventanaPrincipal, TorneoController torneoController) {
         this.ventanaPrincipal = ventanaPrincipal;
         this.torneoController = torneoController;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String actionCommand = e.getActionCommand();
+        if (actionCommand.startsWith("bracket")){
+            String nombreTorneo = actionCommand.split("bracket")[1];
+            Torneo torneo = torneoController.buscarTorneo(nombreTorneo);
+            if (torneo == null) return;
+            else{
+                PanelBracket panelBracket = ventanaPrincipal.getPanelBracket();
+                panelBracket.actualizarBracket(torneo);
+                ventanaPrincipal.mostrarPanel("Bracket");
+            }
+            return;
+        }
         String nombreTorneo = e.getActionCommand();
         Torneo torneo = torneoController.buscarTorneo(nombreTorneo);
         if (torneo == null) return;

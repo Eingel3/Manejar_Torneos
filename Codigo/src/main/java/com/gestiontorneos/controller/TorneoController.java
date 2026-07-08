@@ -132,6 +132,28 @@ public class TorneoController{
         return new ArrayList<>();
     }
 
+    public boolean generarCalendario(String nombreTorneo){
+        Torneo torneo = buscarTorneo(nombreTorneo);
+        if(torneo == null){
+            return false;
+        }else{
+            try{
+                torneo.generarCalendario();
+                return true;
+            }catch(Exception e){
+                System.err.println("Error al generar calendario " + e.getMessage());
+                return false;
+            }
+        }
+    }
+
+    public int cantidadPartidos(String nombreTorneo) {
+        Torneo torneo = buscarTorneo(nombreTorneo);
+        if (torneo == null) {
+            return 0;
+        }
+        return torneo.getCalendario().getPartidos().size();
+    }
 
 
 
