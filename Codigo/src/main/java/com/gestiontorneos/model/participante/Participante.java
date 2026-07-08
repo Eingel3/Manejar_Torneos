@@ -79,6 +79,14 @@ public abstract class Participante {
      */
     public abstract int getCantidadIntegrantes();
 
+
+    /**
+     * Obtiene un string con el tipo de participante.
+     *
+     * @return string con el tipo de participante.
+     */
+    public abstract String getTipo();
+
     /**
      * Devuelve una representación textual del participante.
      *

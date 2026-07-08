@@ -30,4 +30,15 @@ public class JugadorIndividual extends Participante {
     public int getCantidadIntegrantes() {
         return 1;
     }
+
+
+    /**
+     * Obtiene un string con el tipo de participante.
+     *
+     * @return string con el tipo de participante.
+     */
+    @Override
+    public String getTipo(){
+        return "Individual";
+    }
 }

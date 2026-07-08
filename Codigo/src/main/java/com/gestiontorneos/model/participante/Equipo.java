@@ -46,6 +46,15 @@ public class Equipo extends Participante {
     public int getCantidadIntegrantes() {
         return integrantes.size();
     }
+    /**
+     * Obtiene el tipo de participante como "Equipo".
+     *
+     * @return string con el tipo de participante.
+     */
+    @Override
+    public String getTipo() {
+        return "Equipo";
+    }
 
     /**
      * Obtiene la lista de integrantes del equipo como una lista de solo lectura.
