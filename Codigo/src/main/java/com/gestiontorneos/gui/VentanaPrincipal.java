@@ -80,7 +80,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     }
     public void inicializarControladores() {
         if (torneoController != null) {
-            new CrearPartidoController(partidosOrganizador, torneoController);
+           // new CrearPartidoController(partidosOrganizador, torneoController); Desactivado porque la creación de partidos maualemente rompía torneos de eliminación
             new ResultadoController(registrarResultado, torneoController);
             new CrearParticipanteController(crearParticipante, torneoController);
             configurarListenersTorneos();
