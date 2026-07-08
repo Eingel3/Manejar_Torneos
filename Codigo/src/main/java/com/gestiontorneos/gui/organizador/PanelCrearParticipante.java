@@ -17,6 +17,13 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
     private JButton btnSiguiente;
     private BotonSimple creadorBotones;
 
+    private String nombreTorneoAsignado;
+    private int totalParticipantes;
+    private int participantesCreados;
+    private JLabel lblContador;
+
+
+
     public PanelCrearParticipante() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.LIGHT_GRAY);
@@ -27,6 +34,40 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
         elegirTipoParticipante();
     }
 
+
+    public void configurarModoCreacionRapida(String nombreTorneo, int total) {
+        this.nombreTorneoAsignado = nombreTorneo;
+        this.totalParticipantes = total;
+        this.participantesCreados = 0;
+        limpiarPanel();
+        elegirTipoParticipante();
+    }
+
+    public boolean isModoCreacionRapida() {
+        return nombreTorneoAsignado != null;
+    }
+
+    public String getNombreTorneoAsignado() {
+        return nombreTorneoAsignado;
+    }
+
+    public void incrementarContador() {
+        participantesCreados++;
+    }
+    public boolean isCompleto() {
+        return participantesCreados >= totalParticipantes;
+    }
+    public int getParticipantesCreados() {
+        return participantesCreados;
+    }
+    public int getTotalParticipantes() {
+        return totalParticipantes;
+    }
+    public void cancelarModoCreacionRapida() {
+        nombreTorneoAsignado = null;
+        totalParticipantes = 0;
+        participantesCreados = 0;
+    }
 
     public JButton elegirTipoParticipante() {
                 JLabel lblTitulo = new JLabel("Crear Nuevo Participante");

@@ -147,6 +147,13 @@ public class TorneoController{
         }
     }
 
+    public int cantidadPartidos(String nombreTorneo) {
+        Torneo torneo = buscarTorneo(nombreTorneo);
+        if (torneo == null) {
+            return 0;
+        }
+        return torneo.getCalendario().getPartidos().size();
+    }
 
 
 

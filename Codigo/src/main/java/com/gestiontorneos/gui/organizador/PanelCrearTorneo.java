@@ -7,7 +7,7 @@ import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.torneo.formato.LigaSimple;
 import com.gestiontorneos.model.torneo.formato.DobleEliminacion;
-
+import com.gestiontorneos.model.torneo.Torneo;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
@@ -56,8 +56,7 @@ public class PanelCrearTorneo extends JPanel {
         agregarComponentes();
 
         btnCrear.addActionListener(e -> {
-
-            if(getNombre().isEmpty() || getDeporte().isEmpty()){
+            if (getNombre().isEmpty() || getDeporte().isEmpty()) {
                 mostrarMensaje("Llenar campos de Nombre y Deporte");
                 return;
             }
@@ -65,9 +64,6 @@ public class PanelCrearTorneo extends JPanel {
             try {
                 inicio = LocalDate.parse(getFechaInicio());
                 fin = LocalDate.parse(getFechaFin());
-                //System.out.println("inicio: " + inicio);
-                //System.out.println("fin: " + fin);
-
             } catch (DateTimeParseException ex) {
                 mostrarMensaje("Fecha no valida, Use yyyy-MM-dd");
                 return;
@@ -77,28 +73,51 @@ public class PanelCrearTorneo extends JPanel {
                 return;
             }
             String seleccion = (String) formato.getSelectedItem();
-            FormatoTorneo formato;
+            FormatoTorneo formatoTorneo;
             switch (seleccion) {
                 case "Liga Simple":
-                    formato = new LigaSimple();
+                    formatoTorneo = new LigaSimple();
                     break;
                 case "Doble Eliminacion":
-                    formato = new DobleEliminacion();
+                    formatoTorneo = new DobleEliminacion();
                     break;
                 default:
-                    formato = new EliminacionDirecta();
+                    formatoTorneo = new EliminacionDirecta();
                     break;
             }
-                torneoController.crearTorneo(getNombre(),getDeporte(), formato,getFechaInicio(),getFechaFin());
-                System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
-                mostrarMensaje("Torneo creado exitosamente!");
+            Torneo torneo = torneoController.crearTorneo(getNombre(), getDeporte(), formatoTorneo, getFechaInicio(), getFechaFin());
+            if (torneo == null) {
+                mostrarMensaje("Error al crear el torneo.");
+                return;
+            }
+            System.out.println("Torneo creado: " + getNombre() + " | Deporte: " + getDeporte() + " | formato: " + getFormato() + " | Inicio: " + getFechaInicio() + " | Fin: " + getFechaFin());
+            String input = JOptionPane.showInputDialog(this, "Torneo creado exitosamente!\n¿Cuántos participantes tendrá el torneo?");
+            if (input == null || input.trim().isEmpty()) {
+                mostrarMensaje("Se creó el torneo sin asignar participantes.");
                 limpiarFormulario();
-
                 ventanaPrincipal.actualizarTorneos();
                 ventanaPrincipal.mostrarPanel("Torneos");
-
-
-
+                return;
+            }
+            try {
+                int total = Integer.parseInt(input.trim());
+                if (total <= 0) {
+                    mostrarMensaje("Ingrese un número mayor a 0.");
+                    limpiarFormulario();
+                    ventanaPrincipal.actualizarTorneos();
+                    ventanaPrincipal.mostrarPanel("Torneos");
+                    return;
+                }
+                limpiarFormulario();
+                ventanaPrincipal.actualizarTorneos();
+                ventanaPrincipal.getCrearParticipante().configurarModoCreacionRapida(getNombre(), total);
+                ventanaPrincipal.mostrarPanel("Crear Participante");
+            } catch (NumberFormatException e2) {
+                mostrarMensaje("Ingrese un número válido.");
+                limpiarFormulario();
+                ventanaPrincipal.actualizarTorneos();
+                ventanaPrincipal.mostrarPanel("Torneos");
+            }
         });
     }
 

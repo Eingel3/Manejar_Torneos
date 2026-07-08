@@ -271,4 +271,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     public PanelCrearTorneo getCrearTorneo() {
         return crearTorneo;
     }
+    public PanelCrearParticipante getCrearParticipante() {
+        return crearParticipante;
+    }
 }

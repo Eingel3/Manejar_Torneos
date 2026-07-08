@@ -12,12 +12,12 @@ public class CrearParticipanteController {
     private PanelCrearParticipante panel;
     private TorneoController torneoController;
 
-
     public CrearParticipanteController(PanelCrearParticipante panel, TorneoController torneoController){
         this.panel = panel;
         this.torneoController = torneoController;
         manejarEventos();
     }
+
 
 
     private void manejarEventos() {
@@ -38,13 +38,16 @@ public class CrearParticipanteController {
         });
     }
 
+
+
     private void crearParticipante() {
-        String nombreTorneo = panel.getNombreTorneo();
-        String tipo = panel.getTipoParticipante();
-        if (nombreTorneo.isEmpty()) {
-            panel.mostrarMensaje("Ingrese el nombre del torneo.");
-            return;
+        String nombreTorneo;
+        if (panel.isModoCreacionRapida()) {
+            nombreTorneo = panel.getNombreTorneoAsignado();
+        } else {
+            nombreTorneo = panel.getNombreTorneo();
         }
+        String tipo = panel.getTipoParticipante();
         boolean exito;
         if (tipo.equals("Equipo")) {
             String nombreEquipo = panel.getNombreEquipo();
@@ -66,9 +69,31 @@ public class CrearParticipanteController {
         }
         if (exito) {
             panel.mostrarMensaje("Participante registrado exitosamente!");
-            panel.limpiarPanel();
-            panel.elegirTipoParticipante();
-            configurarBotonSiguiente();
+            if (panel.isModoCreacionRapida()) {
+                panel.incrementarContador();
+                if (panel.isCompleto()) {
+                    boolean calendarioOk = torneoController.generarCalendario(nombreTorneo);
+                    if (calendarioOk) {
+                        int total = torneoController.cantidadPartidos(nombreTorneo);
+                        panel.mostrarMensaje("Se crearon todos los participantes!\n" +
+                                "Calendario generado: " + total + " partidos.");
+                    } else {
+                        panel.mostrarMensaje("Participantes creados, pero hubo un error al generar el calendario.");
+                    }
+                    panel.cancelarModoCreacionRapida();
+                    panel.limpiarPanel();
+                    panel.elegirTipoParticipante();
+                    configurarBotonSiguiente();
+                } else {
+                    panel.limpiarPanel();
+                    panel.elegirTipoParticipante();
+                    configurarBotonSiguiente();
+                }
+            } else {
+                panel.limpiarPanel();
+                panel.elegirTipoParticipante();
+                configurarBotonSiguiente();
+            }
         } else {
             panel.mostrarMensaje("Error al registrar participante.");
         }
