@@ -31,6 +31,7 @@ public class CrearParticipanteController {
             }
             panel.elegirTorneo();
             panel.getBotonCrear().addActionListener(ev -> crearParticipante());
+            panel.getBotonCancelar().addActionListener(ev-> cancelar());
         });
     }
 
@@ -69,6 +70,11 @@ public class CrearParticipanteController {
         }
     }
 
+
+    public void cancelar(){
+        panel.limpiarPanel();
+        panel.elegirTipoParticipante();
+    }
 
 
 }

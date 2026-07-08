@@ -56,15 +56,6 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
 
-        btnCrear = creadorBotones.crear("Crear");
-        btnCrear.setMaximumSize(new Dimension(200, 40));
-        this.add(btnCrear);
-        this.add(Box.createRigidArea(new Dimension(0, 15)));
-
-        btnCancelar = creadorBotones.crear("Cancelar");
-        btnCancelar.setMaximumSize(new Dimension(200, 40));
-        this.add(btnCancelar);
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
 
     }
 
@@ -102,15 +93,7 @@ public class PanelCrearParticipante extends javax.swing.JPanel {
         this.add(txtContacto);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
-        btnCrear = creadorBotones.crear("Crear");
-        btnCrear.setMaximumSize(new Dimension(200, 40));
-        this.add(btnCrear);
-        this.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        btnCancelar = creadorBotones.crear("Cancelar");
-        btnCancelar.setMaximumSize(new Dimension(200, 40));
-        this.add(btnCancelar);
-        this.add(Box.createRigidArea(new Dimension(0, 30)));
     }
 
     public JButton getBotonCrear() {
