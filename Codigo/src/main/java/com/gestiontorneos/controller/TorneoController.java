@@ -38,10 +38,7 @@ public class TorneoController{
      */
     private DeporteController deporteController;
 
-    /**
-     * Controlador encargado de guardar la información de los torneos.
-     */
-    private PersistenciaController persistenciaController;
+    //aca guarda los torneos con persistencia
 
     /**
      * Construye un controlador de torneos.
@@ -53,7 +50,6 @@ public class TorneoController{
     public TorneoController(){
         this.torneos = new ArrayList<>();
         this.deporteController = new DeporteController();
-        this.persistenciaController = new PersistenciaController();
     }
 
     /**
@@ -80,12 +76,15 @@ public class TorneoController{
                               String fechaFin,
                               TipoParticipacion tipoParticipacion) {
 
+        // Buscar si el deporte ya existe
         Deporte deporte = deporteController.buscarDeporte(nombreDeporte);
 
+        // Si no existe, se crea con el tipo de participacion indicado
         if (deporte == null) {
             deporte = deporteController.crearDeporte(nombreDeporte, tipoParticipacion);
         }
 
+        // Se crea el torneo
         try {
             LocalDate inicio = LocalDate.parse(fechaInicio);
             LocalDate fin = LocalDate.parse(fechaFin);

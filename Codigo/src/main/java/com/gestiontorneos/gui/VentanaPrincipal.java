@@ -7,6 +7,7 @@ import com.gestiontorneos.gui.organizador.PanelParticipantes;
 import com.gestiontorneos.gui.organizador.PanelCrearPartido;
 import com.gestiontorneos.gui.organizador.PanelRegistrarResultado;
 import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.model.partido.Partido;
 import com.gestiontorneos.model.torneo.Torneo;
 import java.util.List;
 
@@ -89,6 +90,58 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
             crearParticipanteController = new CrearParticipanteController(crearParticipante, torneoController);
             configurarListenersTorneos();
         }
+    }
+
+
+    public void actualizarPanelInicio() {
+        if (torneoController == null) return;
+        List<Torneo> lista = torneoController.listaTorneos();
+
+        JPanel bienvenida = new JPanel();
+        bienvenida.add(new JLabel("Bienvenido a Gestión de Torneos"));
+        panelInicio.setBienvenida(bienvenida);
+        JPanel torneoCard = new JPanel();
+
+        //ultimo torneo
+        if (!lista.isEmpty()) {
+            Torneo t = lista.get(lista.size() - 1);
+            torneoCard.add(new JLabel(t.getNombre() + " | " + t.getDeporte().getNombre() + " | " + t.getEstado()));
+        } else {
+            torneoCard.add(new JLabel("No hay torneos creados"));
+        }
+        panelInicio.setTorneoReciente(torneoCard);
+
+        //evento futuro
+        JPanel futuroCard = new JPanel();
+        if (!lista.isEmpty()) {
+            Torneo t = lista.get(lista.size() - 1);
+            List<Partido> pendientes = t.getCalendario().getPendientes();
+            if (!pendientes.isEmpty()) {
+                Partido p = pendientes.get(0);
+                futuroCard.add(new JLabel(p.getLocal().getNombre() + " vs " + p.getVisitante().getNombre()));
+            } else {
+                futuroCard.add(new JLabel("No hay partidos pendientes"));
+            }
+        } else {
+            futuroCard.add(new JLabel("Sin eventos"));
+        }
+        panelInicio.setFuturoEvento(futuroCard);
+
+        //lider
+        JPanel leaderCard = new JPanel();
+        if (!lista.isEmpty()) {
+            Participante lider = lista.get(lista.size() - 1).getClasificacion().getLider();
+            if (lider != null) {
+                leaderCard.add(new JLabel("Líder: " + lider.getNombre()));
+            } else {
+                leaderCard.add(new JLabel("Sin líder definido"));
+            }
+        } else {
+            leaderCard.add(new JLabel("Sin clasificación"));
+        }
+        panelInicio.setPuesto1(leaderCard);
+
+
     }
 
     /**
@@ -308,4 +361,29 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         if (crearParticipanteController != null) {
             crearParticipanteController.configurarBotonSiguiente();
         }
-    }}
+    }
+
+    public void actualizarFuturosEventos(){
+        if (torneoController == null) return;
+        List<Torneo> lista = torneoController.listaTorneos();
+
+        int idxTorneo = 0;
+        int idxPartido = 0;
+
+        for (Torneo t : lista) {
+            if ("INSCRIPCION".equals(t.getEstado()) || "EN_CURSO".equals(t.getEstado())) {
+                String datos = t.getNombre() + " | " + t.getDeporte().getNombre() + " | " + t.getEstado();
+                eventos.setFuturoTorneo(idxTorneo, datos);
+                idxTorneo++;
+            }
+            List<Partido> pendientes = t.getCalendario().getPendientes();
+            for (Partido p : pendientes) {
+                String datos = t.getNombre() + ": " + p.getLocal().getNombre() + " vs " + p.getVisitante().getNombre();
+                eventos.setFuturoPartido(idxPartido, datos);
+                idxPartido++;
+            }
+
+        }
+
+    }
+}

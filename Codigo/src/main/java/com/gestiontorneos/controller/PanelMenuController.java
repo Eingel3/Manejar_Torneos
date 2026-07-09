@@ -50,7 +50,10 @@ public class PanelMenuController {
      * </p>
      */
     private void manejarEventos() {
-        menu.agregarListener("Inicio", e -> ventanaPrincipal.mostrarPanel("Inicio"));
+        menu.agregarListener("Inicio", e -> {
+            ventanaPrincipal.actualizarPanelInicio();
+            ventanaPrincipal.mostrarPanel("Inicio");
+        });
         menu.agregarListener("Torneos", e -> ventanaPrincipal.mostrarPanel("Torneos"));
         menu.agregarListener("Clasificaciones", e -> {
             List<Torneo> lista = ventanaPrincipal.getTorneoController().listaTorneos();
@@ -60,8 +63,10 @@ public class PanelMenuController {
             }
             ventanaPrincipal.mostrarPanel("Clasificacion");
         });
-        menu.agregarListener("Futuros Eventos", e -> ventanaPrincipal.mostrarPanel("Futuros Eventos"));
-        menu.agregarListener("Crear Torneo", e -> ventanaPrincipal.mostrarPanel("Crear Torneo"));
+        menu.agregarListener("Futuros Eventos", e -> {
+            ventanaPrincipal.actualizarFuturosEventos();
+            ventanaPrincipal.mostrarPanel("Futuros Eventos");
+        });        menu.agregarListener("Crear Torneo", e -> ventanaPrincipal.mostrarPanel("Crear Torneo"));
         menu.agregarListener("Crear Participante", e -> ventanaPrincipal.mostrarPanel("Crear Participante"));
         menu.agregarListener("Registrar Resultado", e -> {
             ventanaPrincipal.getRegistrarResultado().cargarTorneos();

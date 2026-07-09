@@ -142,4 +142,3 @@ Existen estas líneas de código (líneas 58-62) que realizan acciones perteneci
 - Funcionalidad de persistencia: Respecto a los objetivos que no logramos cumplir debido a una falta de tiempo está la función de persistencia. Persistencia tenía el objetivo de guardar los torneos y partidos creados, para que, al abrir la aplicación de nuevo ellos persistieran, sin embargo, debido al atraso que tuvimos con otras funciones no pudimos implementarlo.
 - Otras funcionalidades que no se llegaron a implementar: Se creó un JPanel de futuros eventos destinado a proveer una lista corta de algunos torneos y partidos que pasarán en un futuro cercano, sin embargo, actualmente no es funcional ya que la parte del controller no ha sido hecha.
 - 
-
