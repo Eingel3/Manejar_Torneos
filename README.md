@@ -37,7 +37,7 @@ El organizador puede:
  Un usuario común y el organizador pueden:
   Acceder a una lista con todos los torneos que existen, acceder a los detalles de dicho torneo
 
-##Patrones de diseño utilizados 
+## Patrones de diseño utilizados 
 
 ### Strategy
 Utilizado en las clases que implementan la interfaz formato: LigaSimple, EliminacionDirecta, DobleEliminacion
@@ -100,7 +100,7 @@ Es utilizado en PanelInformacion
 Este patrón garantiza la existencia de una única instancia de PanelInformacion, y, por consiguiente, facilita la modificación de sus atributos.
 Actualmente PanelInformacion se utiliza para determinar los tamaños de las pestañas y de la interfaz gráfica en general.
 
-##Decisiones claves tomadas durante el proyecto.
+## Decisiones claves tomadas durante el proyecto.
 
 Durante el proyecto hemos enfrentado varios desafíos, entre ellos:
 
