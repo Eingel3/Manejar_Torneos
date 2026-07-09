@@ -35,6 +35,18 @@ class TorneoControllerTest {
     }
 
     @Test
+    void testCrearMultiplesTorneos() {
+        controller.crearTorneo("T1", "Futbol", new LigaSimple(),
+                "2026-08-01", "2026-08-30", TipoParticipacion.COLECTIVO);
+        controller.crearTorneo("T2", "Tenis", new EliminacionDirecta(),
+                "2026-09-01", "2026-09-15", TipoParticipacion.INDIVIDUAL);
+        assertEquals(2, controller.listaTorneos().size());
+    }
+
+
+    // ===== buscarTorneo =====
+
+    @Test
     void testBuscarTorneoExistente() {
         controller.crearTorneo(
                 "Copa Verano",
@@ -50,5 +62,28 @@ class TorneoControllerTest {
         assertEquals("Copa Verano", encontrado.getNombre());
     }
 
+    @Test
+    void testBuscarTorneoInexistente() {
+        Torneo encontrado = controller.buscarTorneo("No Existe");
+        assertNull(encontrado);
+    }
+
+    // ===== eliminarTorneo =====
+
+    @Test
+    void testEliminarTorneoExistente() {
+        controller.crearTorneo("ParaEliminar", "Futbol", new LigaSimple(),
+                "2026-08-01", "2026-08-30", TipoParticipacion.COLECTIVO);
+        boolean eliminado = controller.eliminarTorneo("ParaEliminar");
+        assertTrue(eliminado);
+        assertNull(controller.buscarTorneo("ParaEliminar"));
+        assertEquals(0, controller.listaTorneos().size());
+    }
+
+    @Test
+    void testEliminarTorneoInexistente() {
+        boolean eliminado = controller.eliminarTorneo("Fantasma");
+        assertFalse(eliminado);
+    }
     
 }
