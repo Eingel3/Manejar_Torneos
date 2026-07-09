@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PanelmenuTest {
+public class PanelMenuTest {
     private PanelMenu menu;
 
     @BeforeEach
