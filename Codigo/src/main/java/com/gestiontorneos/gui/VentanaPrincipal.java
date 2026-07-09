@@ -364,7 +364,26 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     }
 
     public void actualizarFuturosEventos(){
-        
-    }
+        if (torneoController == null) return;
+        List<Torneo> lista = torneoController.listaTorneos();
 
+        int idxTorneo = 0;
+        int idxPartido = 0;
+
+        for (Torneo t : lista) {
+            if ("INSCRIPCION".equals(t.getEstado()) || "EN_CURSO".equals(t.getEstado())) {
+                String datos = t.getNombre() + " | " + t.getDeporte().getNombre() + " | " + t.getEstado();
+                eventos.setFuturoTorneo(idxTorneo, datos);
+                idxTorneo++;
+            }
+            List<Partido> pendientes = t.getCalendario().getPendientes();
+            for (Partido p : pendientes) {
+                String datos = t.getNombre() + ": " + p.getLocal().getNombre() + " vs " + p.getVisitante().getNombre();
+                eventos.setFuturoPartido(idxPartido, datos);
+                idxPartido++;
+            }
+
+        }
+
+    }
 }
