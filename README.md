@@ -27,6 +27,19 @@ https://canva.link/x6ek7qdzdzhf240
   Gson	2.10.1	Serialización/deserialización JSON
   exec-maven-plugin	3.1.0	Ejecutar el proyecto desde Maven
 
+
+
+## Estructura del proyecto: 
+
+### Clases de la parte GUI:
+
+<img width="6000" height="3375" alt="ParteGUI" src="https://github.com/user-attachments/assets/c7be7eff-cdc2-4279-8286-8633711ee8aa" />
+
+## Clases de la parte Controller:
+
+<img width="6000" height="3375" alt="ParteController" src="https://github.com/user-attachments/assets/779ffd12-3225-453a-b452-0251f0b9c084" />
+
+
 ## Instrucciones de uso:
 
 Usted puede tomar el rol de dos tipos de usuarios distintos: Organizador o usuario común.
