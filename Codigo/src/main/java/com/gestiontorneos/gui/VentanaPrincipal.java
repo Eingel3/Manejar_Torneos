@@ -6,6 +6,9 @@ import com.gestiontorneos.gui.organizador.PanelCrearTorneo;
 import com.gestiontorneos.gui.organizador.PanelParticipantes;
 import com.gestiontorneos.gui.organizador.PanelCrearPartido;
 import com.gestiontorneos.gui.organizador.PanelRegistrarResultado;
+import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.model.torneo.Torneo;
+import java.util.List;
 
 import java.awt.*;
 import javax.swing.*;
@@ -184,6 +187,15 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     public void actualizarTorneos(){
         torneos.actualizarLista(torneoController.listaTorneos());
     }
+
+    public void actualizarClasificacion(Torneo torneo) {
+        if (torneo != null && torneo.getClasificacion() != null) {
+            List<Participante> tabla = torneo.getClasificacion().getTablaOrdenada();
+            clasificacion.actualizarClasificacion(tabla, torneo.getClasificacion());
+        }
+    }
+
+    public TorneoController getTorneoController() { return torneoController; }
 
     public PanelResultados getResultados() {
         return resultados;
