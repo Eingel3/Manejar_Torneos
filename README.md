@@ -39,6 +39,9 @@ https://canva.link/x6ek7qdzdzhf240
 
 <img width="6000" height="3375" alt="ParteController" src="https://github.com/user-attachments/assets/779ffd12-3225-453a-b452-0251f0b9c084" />
 
+## Clases de la parte de lógica / model
+<img width="6000" height="3375" alt="ParteModel" src="https://github.com/user-attachments/assets/ac8468a8-3e9c-45f0-b976-ac67bdeb905d" />
+
 
 ## Instrucciones de uso:
 
