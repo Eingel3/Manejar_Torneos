@@ -249,14 +249,27 @@ public class TorneoController{
     }
 
     /**
-     * Crea manualmente un partido dentro de un torneo.
+     * Crea un partido asociado a un torneo existente.
+     * <p>
+     * Este método permite construir un enfrentamiento entre dos participantes y
+     * agregarlo al torneo indicado. Aunque originalmente podía servir como apoyo
+     * para una creación manual de partidos, la versión final del sistema establece
+     * que todo enfrentamiento debe pertenecer obligatoriamente a un torneo.
+     * </p>
+     * <p>
+     * La idea de crear partidos amistosos o independientes fue descartada, ya que
+     * el modelo actual organiza los partidos dentro del contexto competitivo de un
+     * torneo y su calendario. Por ello, este método se conserva como una utilidad
+     * interna o base futura para agregar partidos siempre vinculados a un torneo
+     * válido.
+     * </p>
      *
      * @param local participante local del partido.
      * @param visitante participante visitante del partido.
      * @param nombreTorneo nombre del torneo al que pertenece el partido.
      * @param ronda número de ronda del partido.
-     * @return {@code true} si el partido fue creado correctamente;
-     *         {@code false} si el torneo no existe.
+     * @return {@code true} si el partido fue creado y agregado correctamente al torneo;
+     *         {@code false} si el torneo indicado no existe.
      */
     public boolean crearPartido(Participante local, Participante visitante, String nombreTorneo, int ronda){
         Torneo torneo = buscarTorneo(nombreTorneo);
