@@ -27,6 +27,16 @@ https://canva.link/x6ek7qdzdzhf240
   Gson	2.10.1	Serialización/deserialización JSON
   exec-maven-plugin	3.1.0	Ejecutar el proyecto desde Maven
 
+##Instrucciones de uso:
+
+Usted puede tomar el rol de dos tipos de usuarios distintos: Organizador o usuario común.
+
+El organizador puede:
+    Crear nuevos torneos, designar los participantes, indicar quién ha ganado cada partido
+
+ Un usuario común y el organizador pueden:
+  Acceder a una lista con todos los torneos que existen, acceder a los detalles de dicho torneo
+
 ##Patrones de diseño utilizados 
 
 ### Strategy
@@ -92,3 +102,12 @@ Actualmente PanelInformacion se utiliza para determinar los tamaños de las pest
 
 ##Decisiones claves tomadas durante el proyecto.
 
+Durante el proyecto hemos enfrentado varios desafíos, entre ellos:
+
+ - Deseabamos implementar una funcio¿ón de "Persistencia", que permitiría guardar los torneos creados y los cambios hechos al usar la aplicación, sin embargo, debido a desafíos de tiempo y luego de hablar con el ayudante designado a ayudarnos (Bryan Eliseo Aguirre Fuentes) decidimos centrarnos en las funcionalidades gráficas y de creación de torneos y participantes en vez de esa función.
+
+ - Como se mencionó anteriormente, no se implementó por completo el patrón de diseño MVC, esta decisión fue tomada ya que deseabamos terminar con todas las funcionalidades escenciales primero, y, el mezclar en ciertas partes la parte del controller y la parte gráfica nos permitía avanzar más rápidamente, por ello, decidimos priorizar el tener un proyecto más completo y funcional por sobre mantener la pureza del patrón de diseño MVC.
+
+ - Decidimos crear varias clases distintas para un correcto encapsulamiento y una correcta división de responsabilidades, sin embargo, ello también provocó que la creación del diagrama UML sea más desafiante, por ello, hemos decidido dividir nuestro diagrama UML en varias partes, priorizando una mejor comprensión de este.
+
+ - Para esta aplicación decidimos que existirían dos usuarios distintos, un usuario regular y un usuario tipo organizador, sin embargo, dentro del código no hemos implementado formas de separar estos dos tipos de usuarios debido a que ello no representaba una función principal y, como lo hablamos con Bryan Eliseo Aguirre Fuentes, aquella función representaba una complejidad mayor y decidimos centrarnos en otras funciones.
