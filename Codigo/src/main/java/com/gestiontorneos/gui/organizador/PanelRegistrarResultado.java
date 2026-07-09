@@ -10,19 +10,73 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Panel gráfico encargado de registrar resultados de partidos pendientes.
+ * <p>
+ * Esta vista permite seleccionar un torneo, escoger uno de sus partidos pendientes
+ * e ingresar los puntos obtenidos por el participante local y el participante
+ * visitante.
+ * </p>
+ * <p>
+ * La clase funciona como vista dentro del flujo de registro de resultados. No
+ * procesa directamente la lógica del torneo, sino que obtiene datos desde la
+ * interfaz y los deja disponibles para que el controlador correspondiente los
+ * valide y registre.
+ * </p>
+ *
+ * @see JPanel
+ * @see TorneoController
+ * @see Partido
+ * @see Torneo
+ */
 public class PanelRegistrarResultado extends JPanel {
 
+    /**
+     * Lista desplegable con los torneos disponibles.
+     */
     private JComboBox<String> comboTorneos;
+
+    /**
+     * Lista desplegable con los partidos pendientes del torneo seleccionado.
+     */
     private JComboBox<String> comboPartidos;
+
+    /**
+     * Campo de texto para ingresar los puntos del participante local.
+     */
     private JTextField txtPuntosLocal;
+
+    /**
+     * Campo de texto para ingresar los puntos del participante visitante.
+     */
     private JTextField txtPuntosVisitante;
+
+    /**
+     * Botón utilizado para confirmar el registro del resultado.
+     */
     private JButton btnRegistrar;
+
+    /**
+     * Botón utilizado para cancelar o limpiar la operación actual.
+     */
     private JButton btnCancelar;
+
+    /**
+     * Fábrica utilizada para crear botones con el estilo visual de la aplicación.
+     */
     private BotonSimple creadorBotones;
+
+    /**
+     * Controlador de torneos desde el cual se obtienen los torneos y partidos.
+     */
     private TorneoController torneoController;
 
     /**
-     * Crea el panel de registro de resultados.
+     * Crea e inicializa el panel de registro de resultados.
+     * <p>
+     * Configura el layout vertical, color de fondo, tamaño preferido y fábrica de
+     * botones. Luego construye el formulario mediante {@link #crearFormulario()}.
+     * </p>
      */
     public PanelRegistrarResultado() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -34,8 +88,14 @@ public class PanelRegistrarResultado extends JPanel {
         crearFormulario();
     }
 
-
-
+    /**
+     * Crea los componentes visuales del formulario.
+     * <p>
+     * Incluye las listas desplegables para torneos y partidos, los campos de puntos
+     * y los botones de registrar y cancelar. Además, configura el combo de torneos
+     * para recargar los partidos pendientes cuando cambia la selección.
+     * </p>
+     */
     private void crearFormulario() {
         JLabel lblTitulo = new JLabel("Registrar Resultado de Partido");
         lblTitulo.setFont(new Font("Dialog", Font.BOLD, 24));
@@ -76,6 +136,13 @@ public class PanelRegistrarResultado extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 30)));
     }
 
+    /**
+     * Carga en el combo de partidos los partidos pendientes del torneo seleccionado.
+     * <p>
+     * Si no existe un controlador asignado, no hay torneo seleccionado o el torneo
+     * no se encuentra, el método termina sin modificar el flujo de la aplicación.
+     * </p>
+     */
     public void cargarPartidosPendientes() {
         comboPartidos.removeAllItems();
         if (torneoController == null) return;
@@ -92,35 +159,47 @@ public class PanelRegistrarResultado extends JPanel {
         }
     }
 
+    /**
+     * Asigna el controlador de torneos utilizado por el panel.
+     * <p>
+     * Después de asignarlo, carga automáticamente la lista de torneos disponibles.
+     * </p>
+     *
+     * @param torneoController controlador de torneos.
+     */
     public void setTorneoController(TorneoController torneoController) {
         this.torneoController = torneoController;
         cargarTorneos();
     }
 
-
+    /**
+     * Carga en el combo de torneos todos los torneos registrados en el controlador.
+     * <p>
+     * Si no hay controlador asignado, el método no realiza ninguna acción.
+     * </p>
+     */
     public void cargarTorneos() {
         comboTorneos.removeAllItems();
         if (torneoController == null) return;
+
         for (Torneo t : torneoController.listaTorneos()) {
             comboTorneos.addItem(t.getNombre());
         }
     }
 
-
-
     /**
      * Obtiene el nombre del torneo seleccionado.
      *
-     * @return nombre del torneo.
+     * @return nombre del torneo seleccionado, o {@code null} si no hay selección.
      */
     public String getNombreTorneo() {
         return (String) comboTorneos.getSelectedItem();
     }
 
     /**
-     * Obtiene el índice del partido seleccionado en la lista de pendientes.
+     * Obtiene el índice del partido seleccionado dentro de la lista de pendientes.
      *
-     * @return índice del partido.
+     * @return índice del partido seleccionado; puede ser {@code -1} si no hay selección.
      */
     public int getIndicePartido() {
         return comboPartidos.getSelectedIndex();
@@ -129,7 +208,7 @@ public class PanelRegistrarResultado extends JPanel {
     /**
      * Obtiene los puntos ingresados para el participante local.
      *
-     * @return texto del campo de puntos local.
+     * @return texto del campo de puntos local sin espacios al inicio o al final.
      */
     public String getPuntosLocal() {
         return txtPuntosLocal.getText().trim();
@@ -138,46 +217,52 @@ public class PanelRegistrarResultado extends JPanel {
     /**
      * Obtiene los puntos ingresados para el participante visitante.
      *
-     * @return texto del campo de puntos visitante.
+     * @return texto del campo de puntos visitante sin espacios al inicio o al final.
      */
     public String getPuntosVisitante() {
         return txtPuntosVisitante.getText().trim();
     }
 
     /**
-     * Obtiene el botón de registrar.
+     * Obtiene el botón usado para registrar el resultado.
      *
-     * @return botón registrar.
+     * @return botón de registro.
      */
     public JButton getBotonRegistrar() {
         return btnRegistrar;
     }
 
     /**
-     * Obtiene el botón de cancelar.
+     * Obtiene el botón usado para cancelar la operación.
      *
-     * @return botón cancelar.
+     * @return botón de cancelación.
      */
     public JButton getBotonCancelar() {
         return btnCancelar;
     }
 
     /**
-     * Limpia todos los campos del formulario.
+     * Limpia los campos de puntos y reinicia la selección de partidos si existe
+     * al menos un partido disponible.
      */
     public void limpiarFormulario() {
         txtPuntosLocal.setText("");
         txtPuntosVisitante.setText("");
+
         if (comboPartidos.getItemCount() > 0) {
             comboPartidos.setSelectedIndex(0);
         }
+
         this.revalidate();
         this.repaint();
     }
 
-
     /**
-     * Limpia el panel completo.
+     * Limpia completamente el panel eliminando todos sus componentes.
+     * <p>
+     * Este método deja el panel vacío y actualiza la vista. Si se desea volver a
+     * mostrar el formulario, será necesario reconstruir los componentes.
+     * </p>
      */
     public void limpiarPanel() {
         this.removeAll();
@@ -185,11 +270,12 @@ public class PanelRegistrarResultado extends JPanel {
         this.repaint();
     }
 
+    /**
+     * Muestra un mensaje informativo al usuario mediante un cuadro de diálogo.
+     *
+     * @param mensaje texto que será mostrado.
+     */
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
-
-
-
-
 }
