@@ -4,6 +4,7 @@ import com.gestiontorneos.model.torneo.Torneo;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.torneo.formato.LigaSimple;
 import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,8 @@ class TorneoControllerTest {
                 "Futbol",
                  new LigaSimple(),
                 "2026-08-01",
-                "2026-08-30"
+                "2026-08-30",
+                TipoParticipacion.COLECTIVO
         );
 
         assertNotNull(torneo);
@@ -39,7 +41,8 @@ class TorneoControllerTest {
                 "Tenis",
                 new EliminacionDirecta(),
                 "2026-09-01",
-                "2026-09-15"
+                "2026-09-15",
+                TipoParticipacion.INDIVIDUAL
         );
 
         Torneo encontrado = controller.buscarTorneo("Copa Verano");

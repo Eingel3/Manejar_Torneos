@@ -3,6 +3,7 @@ package com.gestiontorneos.gui.organizador;
 import com.gestiontorneos.controller.TorneoController;
 import com.gestiontorneos.gui.VentanaPrincipal;
 import com.gestiontorneos.gui.compartido.PanelInformacion;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
 import com.gestiontorneos.model.torneo.formato.EliminacionDirecta;
 import com.gestiontorneos.model.torneo.formato.FormatoTorneo;
 import com.gestiontorneos.model.torneo.formato.LigaSimple;
@@ -25,6 +26,7 @@ public class PanelCrearTorneo extends JPanel {
     private JTextField txtFechaFin;
     private JTextField txtDeporte;
     private JComboBox<String> formato;
+    private JComboBox<String> tipoParticipacion;
     private JTextField txtDescripcion;
     private JButton btnCrear;
     private JButton btnCancelar;
@@ -85,7 +87,7 @@ public class PanelCrearTorneo extends JPanel {
                     formatoTorneo = new EliminacionDirecta();
                     break;
             }
-            Torneo torneo = torneoController.crearTorneo(getNombre(), getDeporte(), formatoTorneo, getFechaInicio(), getFechaFin());
+            Torneo torneo = torneoController.crearTorneo(getNombre(), getDeporte(), formatoTorneo, getFechaInicio(), getFechaFin(), getTipoParticipacionEnum());
             if (torneo == null) {
                 mostrarMensaje("Error al crear el torneo.");
                 return;
@@ -108,9 +110,10 @@ public class PanelCrearTorneo extends JPanel {
                     ventanaPrincipal.mostrarPanel("Torneos");
                     return;
                 }
+                String nombreTorneo = getNombre();
                 limpiarFormulario();
                 ventanaPrincipal.actualizarTorneos();
-                ventanaPrincipal.getCrearParticipante().configurarModoCreacionRapida(getNombre(), total);
+                ventanaPrincipal.getCrearParticipante().configurarModoCreacionRapida(nombreTorneo, total);
                 ventanaPrincipal.refrescarBotonSiguienteParticipante();
                 ventanaPrincipal.mostrarPanel("Crear Participante");
             } catch (NumberFormatException e2) {
@@ -144,6 +147,11 @@ public class PanelCrearTorneo extends JPanel {
 
         this.add(new JLabel("Deporte:"));
         this.add(txtDeporte = new JTextField());
+        this.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        this.add(new JLabel("Tipo de participacion:"));
+        tipoParticipacion = new JComboBox<>(new String[]{"Individual", "Colectivo"});
+        this.add(tipoParticipacion);
         this.add(Box.createRigidArea(new Dimension(0, 30)));
 
         this.add(new JLabel("formato:"));
@@ -196,11 +204,20 @@ public class PanelCrearTorneo extends JPanel {
         return txtDescripcion.getText().trim();
     }
 
+    public TipoParticipacion getTipoParticipacionEnum() {
+        String seleccion = (String) tipoParticipacion.getSelectedItem();
+        if ("Colectivo".equals(seleccion)) {
+            return TipoParticipacion.COLECTIVO;
+        }
+        return TipoParticipacion.INDIVIDUAL;
+    }
+
     public void limpiarFormulario() {
         txtNombre.setText("");
         txtFechaInicio.setText("");
         txtFechaFin.setText("");
         txtDeporte.setText("");
+        tipoParticipacion.setSelectedIndex(0);
         formato.setSelectedIndex(0);
         txtDescripcion.setText("");
     }

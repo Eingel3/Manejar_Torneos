@@ -50,6 +50,10 @@ public class CrearParticipanteController {
             nombreTorneo = panel.getNombreTorneo();
         }
         String tipo = panel.getTipoParticipante();
+        if (nombreTorneo == null || nombreTorneo.isEmpty()) {
+            panel.mostrarMensaje("Ingrese el nombre del torneo.");
+            return;
+        }
         boolean exito;
         try {
             if (tipo.equals("Equipo")) {
