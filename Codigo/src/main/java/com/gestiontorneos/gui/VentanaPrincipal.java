@@ -197,6 +197,10 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
     public TorneoController getTorneoController() { return torneoController; }
 
+    public PanelRegistrarResultado getRegistrarResultado(){
+        return registrarResultado;
+    }
+
     public PanelResultados getResultados() {
         return resultados;
     }

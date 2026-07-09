@@ -24,9 +24,12 @@ public class PanelMenuController {
                 ventanaPrincipal.actualizarClasificacion(ultimo);
             }
             ventanaPrincipal.mostrarPanel("Clasificacion");
-        });        menu.agregarListener("Futuros Eventos", e -> ventanaPrincipal.mostrarPanel("Futuros Eventos"));
+        });
+        menu.agregarListener("Futuros Eventos", e -> ventanaPrincipal.mostrarPanel("Futuros Eventos"));
         menu.agregarListener("Crear Torneo", e -> ventanaPrincipal.mostrarPanel("Crear Torneo"));
         menu.agregarListener("Crear Participante", e -> ventanaPrincipal.mostrarPanel("Crear Participante"));
-        menu.agregarListener("Registrar Resultado", e -> ventanaPrincipal.mostrarPanel("Registrar Resultado"));
-    }
+        menu.agregarListener("Registrar Resultado", e -> {
+            ventanaPrincipal.getRegistrarResultado().cargarTorneos();
+            ventanaPrincipal.mostrarPanel("Registrar Resultado");
+        });    }
 }

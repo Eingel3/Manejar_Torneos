@@ -22,6 +22,7 @@ public class ResultadoController {
     public ResultadoController(PanelRegistrarResultado panelRegistrarResultado, TorneoController torneoController) {
         this.panelRegistrarResultado = panelRegistrarResultado;
         this.torneoController = torneoController;
+        panelRegistrarResultado.setTorneoController(torneoController);
         manejarEventos();
     }
 
