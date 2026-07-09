@@ -90,7 +90,16 @@ class TorneoControllerTest {
         assertFalse(eliminado);
     }
 
-    // ===== listaTorneos =====
+    @Test
+    void testEliminarParticipante() {
+        controller.crearTorneo("Futbol", "Futbol", new LigaSimple(),
+                "2026-08-01", "2026-08-30", TipoParticipacion.COLECTIVO);
+        Equipo equipo = new Equipo("Los Leones", "contacto@leo.com", Arrays.asList("Juan", "Pedro"));
+        controller.registrarParticipante("Futbol", equipo);
+        boolean eliminado = controller.eliminarParticipante("Futbol", equipo);
+        assertTrue(eliminado);
+        assertEquals(0, controller.listarParticipantes("Futbol").size());
+    }
 
     @Test
     void testListaTorneosVacia() {
@@ -143,5 +152,20 @@ class TorneoControllerTest {
         int cantidad = controller.cantidadPartidos("Futbol");
         assertTrue(cantidad > 0);
     }
+
+    @Test
+    void testCrearPartido() {
+        controller.crearTorneo("Futbol", "Futbol", new LigaSimple(),
+                "2026-08-01", "2026-08-30", TipoParticipacion.COLECTIVO);
+        Equipo e1 = new Equipo("A", "a@a.com", Arrays.asList("J1"));
+        Equipo e2 = new Equipo("B", "b@b.com", Arrays.asList("J2"));
+        controller.registrarParticipante("Futbol", e1);
+        controller.registrarParticipante("Futbol", e2);
+        boolean creado = controller.crearPartido(e1, e2, "Futbol", 1);
+        assertTrue(creado);
+    }
+
+
+
 
 }
