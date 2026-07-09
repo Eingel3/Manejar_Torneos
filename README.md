@@ -140,4 +140,6 @@ Durante el proyecto hemos enfrentado varios desafíos, entre ellos:
 Existen estas líneas de código (líneas 58-62) que realizan acciones pertenecientes a la parte del controller, por ello, el uso de este patrón no está completamente implementado actualmente, y, como grupo, para poder mejorar la calidad del código deberíamos de aplicar completamente este patrón de diseño, sin embargo, debido a la falta de tiempo hemos decidido priorizar otros objetivos, que se detallarán más adelante. Por ello. en general, nuestro manejo de los tiempos para la creación del proyecto no ha sido la mejor, y, no hemos podido cumplir con todos los objetivos que nos planteamos en un inicio.
 
 - Funcionalidad de persistencia: Respecto a los objetivos que no logramos cumplir debido a una falta de tiempo está la función de persistencia. Persistencia tenía el objetivo de guardar los torneos y partidos creados, para que, al abrir la aplicación de nuevo ellos persistieran, sin embargo, debido al atraso que tuvimos con otras funciones no pudimos implementarlo.
+- Otras funcionalidades que no se llegaron a implementar: Se creó un JPanel de futuros eventos destinado a proveer una lista corta de algunos torneos y partidos que pasarán en un futuro cercano, sin embargo, actualmente no es funcional ya que la parte del controller no ha sido hecha.
+- 
 
