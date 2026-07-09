@@ -27,7 +27,7 @@ https://canva.link/x6ek7qdzdzhf240
   Gson	2.10.1	Serialización/deserialización JSON
   exec-maven-plugin	3.1.0	Ejecutar el proyecto desde Maven
 
-##Instrucciones de uso:
+## Instrucciones de uso:
 
 Usted puede tomar el rol de dos tipos de usuarios distintos: Organizador o usuario común.
 
