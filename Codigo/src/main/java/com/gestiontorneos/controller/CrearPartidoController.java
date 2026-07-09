@@ -1,4 +1,5 @@
 package com.gestiontorneos.controller;
+
 import com.gestiontorneos.gui.organizador.PanelCrearPartido;
 import com.gestiontorneos.model.participante.Participante;
 import com.gestiontorneos.model.torneo.Torneo;
@@ -8,26 +9,47 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
- * Controlador para la creación de partidos.
- * Conecta el panelCrearPartido {@link com.gestiontorneos.gui.organizador.PanelCrearPartido} con el modelo a través de {@link TorneoController}.
+ * Controlador encargado de gestionar la creación manual de partidos.
+ * <p>
+ * Esta clase conecta la vista {@link PanelCrearPartido} con la lógica del
+ * {@link TorneoController}. Su responsabilidad principal es obtener los datos
+ * introducidos por el usuario, validarlos y solicitar la creación del partido
+ * dentro del torneo correspondiente.
+ * </p>
  */
-
 public class CrearPartidoController {
-    private PanelCrearPartido panelCrearPartido;
-    private TorneoController torneoController;
+
     /**
-     * Construye el controlador y asigna los listeners a los botones de la vista.
+     * Panel gráfico utilizado para introducir los datos del partido.
+     */
+    private PanelCrearPartido panelCrearPartido;
+
+    /**
+     * Controlador que administra los torneos, participantes y partidos.
+     */
+    private TorneoController torneoController;
+
+    /**
+     * Construye un controlador para la creación de partidos.
+     * <p>
+     * Al crearse, configura los eventos de los botones del panel.
+     * </p>
      *
-     * @param panelCrearPartido Panel de creación de partido.
-     * @param torneoController Controlador que gestiona los torneos y partidos.
+     * @param panelCrearPartido panel de creación de partido.
+     * @param torneoController controlador que gestiona los torneos.
      */
     public CrearPartidoController(PanelCrearPartido panelCrearPartido, TorneoController torneoController) {
         this.panelCrearPartido = panelCrearPartido;
         this.torneoController = torneoController;
         manejarEventos();
     }
+
     /**
-     * Lógica principal para crear un partido a partir de los datos ingresados.
+     * Configura los eventos de la interfaz gráfica.
+     * <p>
+     * Asocia el botón de creación con el método {@link #crearPartido()} y el botón
+     * de cancelación con el método {@link #cancelar()}.
+     * </p>
      */
     private void manejarEventos() {
         panelCrearPartido.getBotonCrear().addActionListener(e -> crearPartido());
@@ -35,13 +57,21 @@ public class CrearPartidoController {
         //panelCrearPartido.getBotonSiguiente().addActionListener(e -> siguiente());
     }
 
+    /**
+     * Crea un partido a partir de los datos ingresados en el formulario.
+     * <p>
+     * El método valida que el torneo exista, que los participantes estén registrados
+     * en dicho torneo y que el participante local no sea el mismo que el visitante.
+     * Si todas las validaciones son correctas, solicita al {@link TorneoController}
+     * la creación del partido.
+     * </p>
+     */
     private void crearPartido() {
-        //Obtenemos cada una de las informaciones necesarias
         String nombreTorneo = panelCrearPartido.getNombreTorneo();
         String nombreLocal = panelCrearPartido.getNombreParticipanteLocal();
         String nombreVisitante = panelCrearPartido.getNombreParticipanteVisitante();
         String estadoSeleccionado = panelCrearPartido.getEstadoPartido();
-        //Verificamos si los datos han sido ingresados correctamente
+
         if (nombreTorneo.isEmpty() || nombreLocal.isEmpty() || nombreVisitante.isEmpty()) {
             panelCrearPartido.mostrarMensaje("Todos los campos deben estar completos.");
             return;
@@ -52,14 +82,11 @@ public class CrearPartidoController {
             return;
         }
 
-        //Verifcamos si el torneo existe
         Torneo torneo = torneoController.buscarTorneo(nombreTorneo);
         if (torneo == null) {
             panelCrearPartido.mostrarMensaje("El torneo '" + nombreTorneo + "' no existe.");
             return;
         }
-        //Ahora hay que crear los participantes
-        //Luego crear el partido
 
         List<Participante> participantes = torneoController.listarParticipantes(nombreTorneo);
         Participante local = null;
@@ -76,7 +103,7 @@ public class CrearPartidoController {
             panelCrearPartido.mostrarMensaje("Participante visitante '" + nombreVisitante + "' no existe en el torneo.");
             return;
         }
-        // Crear el partido usando TorneoController
+
         boolean exito = torneoController.crearPartido(local, visitante, nombreTorneo, 1);
         if (exito) {
             panelCrearPartido.mostrarMensaje("Partido creado exitosamente!");
@@ -84,11 +111,18 @@ public class CrearPartidoController {
         } else {
             panelCrearPartido.mostrarMensaje("Error al crear el partido.");
         }
-
     }
+
+    /**
+     * Cancela la creación del partido y limpia el panel.
+     */
     private void cancelar() {
         panelCrearPartido.limpiarPanel();
     }
+
+    /**
+     * Método reservado para implementar una navegación futura dentro del formulario.
+     */
     private void siguiente() {
 
     }

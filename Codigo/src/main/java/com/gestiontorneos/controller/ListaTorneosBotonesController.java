@@ -11,15 +11,47 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * Controlador encargado de gestionar las acciones de los botones asociados
+ * a la lista de torneos.
+ * <p>
+ * Dependiendo del comando recibido, permite mostrar el bracket de un torneo
+ * o cargar su información completa en el panel de resultados.
+ * </p>
+ */
 public class ListaTorneosBotonesController implements ActionListener {
+
+    /**
+     * Ventana principal de la aplicación, utilizada para cambiar entre paneles.
+     */
     private VentanaPrincipal ventanaPrincipal;
+
+    /**
+     * Controlador que administra la información de los torneos.
+     */
     private TorneoController torneoController;
 
+    /**
+     * Construye el controlador de botones para la lista de torneos.
+     *
+     * @param ventanaPrincipal ventana principal de la aplicación.
+     * @param torneoController controlador que gestiona los torneos.
+     */
     public ListaTorneosBotonesController(VentanaPrincipal ventanaPrincipal, TorneoController torneoController) {
         this.ventanaPrincipal = ventanaPrincipal;
         this.torneoController = torneoController;
     }
 
+    /**
+     * Ejecuta la acción correspondiente al botón presionado.
+     * <p>
+     * Si el comando inicia con {@code bracket}, se muestra el panel del bracket
+     * del torneo. En caso contrario, se interpreta el comando como el nombre de
+     * un torneo y se cargan sus datos en el panel de resultados.
+     * </p>
+     *
+     * @param e evento generado por el botón presionado.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
@@ -40,24 +72,18 @@ public class ListaTorneosBotonesController implements ActionListener {
 
         PanelResultados resultados = ventanaPrincipal.getResultados();
 
-        //Nombre
         resultados.actualizarNombre(torneo.getNombre());
 
-        //Descripcion
         String descripcion = "Formato: " + torneo.getFormato().toString()
                 + " | Estado: " + torneo.getEstado();
         resultados.actualizarDescripcion(descripcion);
 
-        //Fechas
         resultados.actualizarFechas("Fecha de inicio:   " + torneo.getFechaInicio() + "    Fecha de fin:     " + torneo.getFechaFin());
 
-        //Deporte
         resultados.actualizarDeporte(torneo.getDeporte().getNombre());
 
-        //Tipo de competicion
         resultados.actualizarTipoCompeticion(torneo.getFormato().toString());
 
-        //Ganador
         String ganador = "Por definir";
         if ("FINALIZADO".equals(torneo.getEstado())) {
             Participante lider = torneo.getClasificacion().getLider();
@@ -67,9 +93,7 @@ public class ListaTorneosBotonesController implements ActionListener {
         }
         resultados.actualizarGanador(ganador);
 
-
         List<Participante> participantes = torneo.getParticipantes();
-        //crear una lista de solo los nombres
         String[] nombres = new String[participantes.size()];
         for (int i = 0; i < participantes.size(); i++) {
             nombres[i] = participantes.get(i).getNombre();
@@ -77,11 +101,9 @@ public class ListaTorneosBotonesController implements ActionListener {
         String listaParticipantes = String.join(", ", nombres);
         resultados.actualizarParticipantes(listaParticipantes);
 
-        //partidos
         List<Partido> partidos = torneo.getCalendario().getPartidos();
         resultados.actualizarPartidos(partidos);
 
-        //direccionar al panel de resultados
         ventanaPrincipal.mostrarPanel("Resultados");
     }
 }
