@@ -94,11 +94,34 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
     public void actualizarPanelInicio() {
         if (torneoController == null) return;
-
+        List<Torneo> lista = torneoController.listaTorneos();
 
         JPanel bienvenida = new JPanel();
         bienvenida.add(new JLabel("Bienvenido a Gestión de Torneos"));
         panelInicio.setBienvenida(bienvenida);
+        JPanel torneoCard = new JPanel();
+
+        //ultimo torneo
+        if (!lista.isEmpty()) {
+            Torneo t = lista.get(lista.size() - 1);
+            torneoCard.add(new JLabel(t.getNombre() + " | " + t.getDeporte().getNombre() + " | " + t.getEstado()));
+        } else {
+            torneoCard.add(new JLabel("No hay torneos creados"));
+        }
+        panelInicio.setTorneoReciente(torneoCard);
+
+        JPanel leaderCard = new JPanel();
+        if (!lista.isEmpty()) {
+            Participante lider = lista.get(lista.size() - 1).getClasificacion().getLider();
+            if (lider != null) {
+                leaderCard.add(new JLabel("Líder: " + lider.getNombre()));
+            } else {
+                leaderCard.add(new JLabel("Sin líder definido"));
+            }
+        } else {
+            leaderCard.add(new JLabel("Sin clasificación"));
+        }
+        panelInicio.setPuesto1(leaderCard);
 
 
     }
