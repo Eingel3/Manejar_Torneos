@@ -361,4 +361,10 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         if (crearParticipanteController != null) {
             crearParticipanteController.configurarBotonSiguiente();
         }
-    }}
+    }
+
+    public void actualizarFuturosEventos(){
+        
+    }
+
+}
