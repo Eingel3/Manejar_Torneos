@@ -33,15 +33,23 @@ https://canva.link/x6ek7qdzdzhf240
 
 ### Clases de la parte GUI:
 
-<img width="6000" height="3375" alt="ParteGUI" src="https://github.com/user-attachments/assets/c7be7eff-cdc2-4279-8286-8633711ee8aa" />
+<img width="6000" height="3375" alt="ParteGUI" src="https://github.com/user-attachments/assets/b97464b6-1622-493f-875d-81c1bad64ae2" />
+
 
 ## Clases de la parte Controller:
+<img width="6000" height="3375" alt="ParteController" src="https://github.com/user-attachments/assets/45290ce1-4ec9-4f3a-a2e3-e4a345ea8028" />
 
-<img width="6000" height="3375" alt="ParteController" src="https://github.com/user-attachments/assets/779ffd12-3225-453a-b452-0251f0b9c084" />
 
 ## Clases de la parte de lógica / model
-<img width="6000" height="3375" alt="ParteModel" src="https://github.com/user-attachments/assets/ac8468a8-3e9c-45f0-b976-ac67bdeb905d" />
+<img width="6000" height="3375" alt="ParteModel" src="https://github.com/user-attachments/assets/6c6013a8-9144-40d8-bfe7-4654803b898f" />
 
+
+
+## Diagrama UML
+
+<img width="6000" height="3375" alt="UMLTorneos" src="https://github.com/user-attachments/assets/9ec3d67a-1343-46ab-a849-a285b4c07371" />
+Link en canvas: 
+https://canva.link/qv7r6xhfn5s8qdy
 
 ## Instrucciones de uso:
 
@@ -94,15 +102,6 @@ Este patrón de diseño es muy útil, ya que, asegura una correcta encapsulació
   - Permite editar una de las partes sin necesidad de editar todo el código
   - Asegura que a futuro sea más fácil modificar el código
 
-Sin embargo, en nuestro actual proyecto existe una mezclade responsabilidades, por ejemplo, dentro de PanelCrearTorneo:
-        btnCrear.addActionListener(e -> {
-            if (getNombre().isEmpty() || getDeporte().isEmpty()) {
-                mostrarMensaje("Llenar campos de Nombre y Deporte");
-                return;
-            }
-
-Existen estas líneas de código (líneas 58-62) que realizan acciones pertenecientes a la parte del controller, por ello, el uso de este patrón no está completamente implementado actualmente, y, como grupo, para poder mejorar la calidad del código deberíamos de aplicar completamente este patrón de diseño, sin embargo, debido a la falta de tiempo hemos decidido priorizar otros objetivos, que se detallarán más adelante.
-
 
 ### 4. Observer Pattern
 
@@ -128,4 +127,17 @@ Durante el proyecto hemos enfrentado varios desafíos, entre ellos:
 
  - Para esta aplicación decidimos que existirían dos usuarios distintos, un usuario regular y un usuario tipo organizador, sin embargo, dentro del código no hemos implementado formas de separar estos dos tipos de usuarios debido a que ello no representaba una función principal y, como lo hablamos con Bryan Eliseo Aguirre Fuentes, aquella función representaba una complejidad mayor y decidimos centrarnos en otras funciones.
 
+   ## Autocrítica:
+
  - Un error de comunicación causó que se implementara un sistema para añadir partidos simples, es decir no pertenecientes a torneos, ya que se interpretó que el organizador debía poder crear cada partido manualmente indicando los participantes que se enfrentaban. Sin embargo, el diseño del modelo contempla que sea el propio sistema quien genere los partidos automáticamente a partir del formato del torneo (liga simple, eliminación directa o doble eliminación), dado que en los formatos de eliminación cada ronda depende directamente de los resultados de la ronda anterior, por lo que crear partidos de forma manual e independiente rompía la lógica de generación y avance de rondas. Al detectar esta incompatibilidad, se consideró aprovechar el código ya escrito para implementar un sistema de partidos amistosos, que fue descartado debido a que tanto en la interfaz como en la lógica interna para ver un enfrentamiento es necesario haber accedido anteriormente a su respectivo torneo. Finalmente  se optó por desactivar dicha funcionalidad de la interfaz gráfica, conservando el código ya implementado para una futura actualización, y se priorizó el flujo ya funcional de generación automática de partidos a partir de los participantes inscritos.
+ - El  MVC Pattern tiene una implementacion parcial: En nuestro actual proyecto existe una mezclade responsabilidades, por ejemplo, dentro de PanelCrearTorneo:
+        btnCrear.addActionListener(e -> {
+            if (getNombre().isEmpty() || getDeporte().isEmpty()) {
+                mostrarMensaje("Llenar campos de Nombre y Deporte");
+                return;
+            }
+
+Existen estas líneas de código (líneas 58-62) que realizan acciones pertenecientes a la parte del controller, por ello, el uso de este patrón no está completamente implementado actualmente, y, como grupo, para poder mejorar la calidad del código deberíamos de aplicar completamente este patrón de diseño, sin embargo, debido a la falta de tiempo hemos decidido priorizar otros objetivos, que se detallarán más adelante. Por ello. en general, nuestro manejo de los tiempos para la creación del proyecto no ha sido la mejor, y, no hemos podido cumplir con todos los objetivos que nos planteamos en un inicio.
+
+- Funcionalidad de persistencia: Respecto a los objetivos que no logramos cumplir debido a una falta de tiempo está la función de persistencia. Persistencia tenía el objetivo de guardar los torneos y partidos creados, para que, al abrir la aplicación de nuevo ellos persistieran, sin embargo, debido al atraso que tuvimos con otras funciones no pudimos implementarlo.
+
