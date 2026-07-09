@@ -15,7 +15,10 @@ public class PanelMenuController {
         manejarEventos();
     }
     private void manejarEventos() {
-        menu.agregarListener("Inicio", e -> ventanaPrincipal.mostrarPanel("Inicio"));
+        menu.agregarListener("Inicio", e -> {
+            ventanaPrincipal.actualizarPanelInicio();
+            ventanaPrincipal.mostrarPanel("Inicio");
+        });
         menu.agregarListener("Torneos", e -> ventanaPrincipal.mostrarPanel("Torneos"));
         menu.agregarListener("Clasificaciones", e -> {
             List<Torneo> lista = ventanaPrincipal.getTorneoController().listaTorneos();
