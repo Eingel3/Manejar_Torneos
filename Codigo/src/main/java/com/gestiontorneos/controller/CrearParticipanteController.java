@@ -9,22 +9,61 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controlador encargado de gestionar la creación de participantes dentro de un torneo.
+ * <p>
+ * Esta clase conecta la vista {@link PanelCrearParticipante} con la lógica de torneos
+ * proporcionada por {@link TorneoController}. Permite registrar participantes individuales
+ * o equipos, validar los datos ingresados por el usuario y, si corresponde, generar
+ * automáticamente el calendario del torneo.
+ * </p>
+ */
 public class CrearParticipanteController {
 
+    /**
+     * Panel gráfico desde el cual el usuario introduce la información del participante.
+     */
     private PanelCrearParticipante panel;
+
+    /**
+     * Controlador principal encargado de gestionar los torneos y sus participantes.
+     */
     private TorneoController torneoController;
 
+    /**
+     * Construye un controlador para crear participantes.
+     * <p>
+     * Al inicializarse, registra los eventos necesarios en los botones del panel.
+     * </p>
+     *
+     * @param panel panel de creación de participantes.
+     * @param torneoController controlador que administra los torneos.
+     */
     public CrearParticipanteController(PanelCrearParticipante panel, TorneoController torneoController){
         this.panel = panel;
         this.torneoController = torneoController;
         manejarEventos();
     }
 
-
-
+    /**
+     * Configura los eventos iniciales del panel.
+     * <p>
+     * Actualmente se encarga de configurar el botón "Siguiente", que permite avanzar
+     * en el formulario según el tipo de participante seleccionado.
+     * </p>
+     */
     private void manejarEventos() {
         configurarBotonSiguiente();
     }
+
+    /**
+     * Configura la acción del botón "Siguiente".
+     * <p>
+     * Dependiendo de si el usuario seleccionó un equipo o un participante individual,
+     * prepara el formulario correspondiente. También registra los eventos del botón
+     * para crear el participante y del botón para cancelar la operación.
+     * </p>
+     */
     public void configurarBotonSiguiente() {
         panel.getBotonSiguiente().addActionListener(e -> {
             String tipo = panel.getTipoParticipante();
@@ -40,8 +79,19 @@ public class CrearParticipanteController {
         });
     }
 
-
-
+    /**
+     * Crea y registra un participante en el torneo seleccionado.
+     * <p>
+     * El método valida los datos ingresados por el usuario, distingue entre la creación
+     * de un equipo y la creación de un jugador individual, y posteriormente delega el
+     * registro al {@link TorneoController}.
+     * </p>
+     * <p>
+     * Si el panel se encuentra en modo de creación rápida, el método también controla
+     * el contador de participantes creados y genera el calendario automáticamente cuando
+     * se completa la cantidad requerida.
+     * </p>
+     */
     private void crearParticipante() {
         String nombreTorneo;
         if (panel.isModoCreacionRapida()) {
@@ -124,12 +174,16 @@ public class CrearParticipanteController {
         }
     }
 
-
+    /**
+     * Cancela el proceso actual de creación de participante.
+     * <p>
+     * Limpia el panel, vuelve a mostrar la selección del tipo de participante y
+     * configura nuevamente el botón "Siguiente".
+     * </p>
+     */
     public void cancelar(){
         panel.limpiarPanel();
         panel.elegirTipoParticipante();
         configurarBotonSiguiente();
     }
-
-
 }

@@ -11,6 +11,7 @@ import com.gestiontorneos.model.deporte.Deporte;
 import com.gestiontorneos.model.deporte.TipoParticipacion;
 import com.gestiontorneos.model.participante.Participante;
 import com.gestiontorneos.model.partido.Partido;
+import com.gestiontorneos.model.deporte.TipoParticipacion;
 
 import javax.swing.*;
 
@@ -23,6 +24,7 @@ public class TorneoController{
     //sirve para utilizar deportes existentes, eliminando la necesidad de crearlo de cero
     private DeporteController deporteController;
 
+    //aca guarda los torneos con persistencia
 
 
 

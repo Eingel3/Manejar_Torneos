@@ -9,7 +9,7 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PaneltarjetaTest {
+public class PanelTarjetaTest {
     private PanelTarjeta factory;
 
     @BeforeEach
