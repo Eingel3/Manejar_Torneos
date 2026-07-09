@@ -23,7 +23,6 @@ public class PanelMenu extends JPanel {
 
     private JButton torneos;
     private JButton clasificaciones;
-    private JButton partidos;
     private JButton inicio;
     private JButton futurosEventos;
     private JButton crearTorneo;
@@ -77,10 +76,6 @@ public class PanelMenu extends JPanel {
         this.add(clasificaciones);
         add(Box.createRigidArea(new Dimension(0, 30)));
 
-        partidos = crearBoton.crear("Partidos");
-        this.add(partidos);
-        add(Box.createRigidArea(new Dimension(0, 30)));
-
         futurosEventos = crearBoton.crear("Futuros eventos");
         this.add(futurosEventos);
         add(Box.createRigidArea(new Dimension(0, 30)));
@@ -116,9 +111,6 @@ public class PanelMenu extends JPanel {
                 break;
             case "Clasificaciones":
                 clasificaciones.addActionListener(evento);
-                break;
-            case "Partidos":
-                partidos.addActionListener(evento);
                 break;
             case "Futuros Eventos":
                 futurosEventos.addActionListener(evento);

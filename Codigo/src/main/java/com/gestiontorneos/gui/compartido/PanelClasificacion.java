@@ -1,6 +1,9 @@
 package com.gestiontorneos.gui.compartido;
 
 import com.gestiontorneos.gui.factory.PanelTarjeta;
+import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.model.torneo.Clasificacion;
+import java.util.List;
 
 import javax.swing.*;
 import java.awt.*;
@@ -182,11 +185,27 @@ public class PanelClasificacion extends JPanel {
      * @param dato5 quinto dato asociado al participante.
      */
     public void setPuesto3(String nombrePuesto, String dato1, String dato2, String dato3, String dato4, String dato5) {
-        nombrePuesto2.setText(nombrePuesto);
-        dato1Puesto2.setText(dato1);
-        dato2Puesto2.setText(dato2);
-        dato3Puesto2.setText(dato3);
-        dato4Puesto2.setText(dato4);
-        dato5Puesto2.setText(dato5);
+        nombrePuesto3.setText(nombrePuesto);
+        dato1Puesto3.setText(dato1);
+        dato2Puesto3.setText(dato2);
+        dato3Puesto3.setText(dato3);
+        dato4Puesto3.setText(dato4);
+        dato5Puesto3.setText(dato5);
+    }
+    public void actualizarClasificacion(List<Participante> tablaOrdenada, Clasificacion clasificacion) {
+        if (tablaOrdenada.size() >= 1) {
+            Participante p1 = tablaOrdenada.get(0);
+            setPuesto1(p1.getNombre(), "Puntos: " + clasificacion.getPuntos(p1), "Tipo: " + (p1.getTipo()), "", "", "");
+        }
+        if (tablaOrdenada.size() >= 2) {
+            Participante p2 = tablaOrdenada.get(1);
+            setPuesto2(p2.getNombre(), "Puntos: " + clasificacion.getPuntos(p2), "Tipo: " + (p2.getTipo()), "", "", "");
+        }
+        if (tablaOrdenada.size() >= 3) {
+            Participante p3 = tablaOrdenada.get(2);
+            setPuesto3(p3.getNombre(), "Puntos: " + clasificacion.getPuntos(p3), "Tipo: " + (p3.getTipo()), "", "", "");
+        }
+        revalidate();
+        repaint();
     }
 }

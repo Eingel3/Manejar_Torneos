@@ -43,6 +43,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
 
     private TorneoController torneoController;
     private DeporteController deporteController;
+    private CrearParticipanteController crearParticipanteController;
 
     /**
      * Crea e inicializa la ventana principal de la aplicación.
@@ -80,9 +81,9 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     }
     public void inicializarControladores() {
         if (torneoController != null) {
-            new CrearPartidoController(partidosOrganizador, torneoController);
+           // new CrearPartidoController(partidosOrganizador, torneoController); Desactivado porque la creación de partidos maualemente rompía torneos de eliminación
             new ResultadoController(registrarResultado, torneoController);
-            new CrearParticipanteController(crearParticipante, torneoController);
+            crearParticipanteController = new CrearParticipanteController(crearParticipante, torneoController);
             configurarListenersTorneos();
         }
     }
@@ -187,6 +188,7 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     public PanelResultados getResultados() {
         return resultados;
     }
+    public PanelClasificacion getClasificacion() {return clasificacion;}
     public PanelCrearPartido getPartidosOrganizador() {
         return partidosOrganizador;
     }
@@ -285,4 +287,9 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
     public PanelCrearParticipante getCrearParticipante() {
         return crearParticipante;
     }
-}
+
+    public void refrescarBotonSiguienteParticipante() {
+        if (crearParticipanteController != null) {
+            crearParticipanteController.configurarBotonSiguiente();
+        }
+    }}

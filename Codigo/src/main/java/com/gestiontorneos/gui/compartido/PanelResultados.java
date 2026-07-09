@@ -72,6 +72,7 @@ public class PanelResultados extends JPanel {
         iniciarAtributos();
         iniciarEstructura();
         iniciarLabels();
+        agregarSeccionPartidos();
     }
 
     /**
