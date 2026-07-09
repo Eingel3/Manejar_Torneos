@@ -7,6 +7,7 @@ import com.gestiontorneos.gui.organizador.PanelParticipantes;
 import com.gestiontorneos.gui.organizador.PanelCrearPartido;
 import com.gestiontorneos.gui.organizador.PanelRegistrarResultado;
 import com.gestiontorneos.model.participante.Participante;
+import com.gestiontorneos.model.partido.Partido;
 import com.gestiontorneos.model.torneo.Torneo;
 import java.util.List;
 
@@ -110,6 +111,23 @@ public class VentanaPrincipal extends JPanel implements MouseListener {
         }
         panelInicio.setTorneoReciente(torneoCard);
 
+        //evento futuro
+        JPanel futuroCard = new JPanel();
+        if (!lista.isEmpty()) {
+            Torneo t = lista.get(lista.size() - 1);
+            List<Partido> pendientes = t.getCalendario().getPendientes();
+            if (!pendientes.isEmpty()) {
+                Partido p = pendientes.get(0);
+                futuroCard.add(new JLabel(p.getLocal().getNombre() + " vs " + p.getVisitante().getNombre()));
+            } else {
+                futuroCard.add(new JLabel("No hay partidos pendientes"));
+            }
+        } else {
+            futuroCard.add(new JLabel("Sin eventos"));
+        }
+        panelInicio.setFuturoEvento(futuroCard);
+
+        //lider
         JPanel leaderCard = new JPanel();
         if (!lista.isEmpty()) {
             Participante lider = lista.get(lista.size() - 1).getClasificacion().getLider();
